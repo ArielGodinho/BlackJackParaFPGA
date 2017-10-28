@@ -11,3 +11,5 @@ incremental_db/**
 .qsf
 .qws
 .sof
+
+.DS_Store
