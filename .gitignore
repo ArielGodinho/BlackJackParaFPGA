@@ -1,0 +1,13 @@
+db/
+db/**
+incremental_db/
+incremental_db/**
+
+.rpt
+.done
+.summary
+.pof
+.qarlog
+.qsf
+.qws
+.sof
