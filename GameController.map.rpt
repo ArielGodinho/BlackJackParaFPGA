@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GameController
-Sat Oct 28 19:39:33 2017
+Sat Oct 28 20:33:11 2017
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -10,12 +10,7 @@ Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Source Files Read
-  6. Analysis & Synthesis Resource Usage Summary
-  7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. General Register Statistics
- 10. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Messages
 
 
 
@@ -41,20 +36,20 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +------------------------------------+----------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Oct 28 19:39:33 2017        ;
+; Analysis & Synthesis Status        ; Failed - Sat Oct 28 20:33:11 2017            ;
 ; Quartus II Version                 ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
 ; Revision Name                      ; GameController                               ;
 ; Top-level Entity Name              ; GameController                               ;
 ; Family                             ; Cyclone II                                   ;
-; Total logic elements               ; 10                                           ;
-;     Total combinational functions  ; 0                                            ;
-;     Dedicated logic registers      ; 10                                           ;
-; Total registers                    ; 10                                           ;
-; Total pins                         ; 129                                          ;
-; Total virtual pins                 ; 0                                            ;
-; Total memory bits                  ; 0                                            ;
-; Embedded Multiplier 9-bit elements ; 0                                            ;
-; Total PLLs                         ; 0                                            ;
+; Total logic elements               ; N/A until Partition Merge                    ;
+;     Total combinational functions  ; N/A until Partition Merge                    ;
+;     Dedicated logic registers      ; N/A until Partition Merge                    ;
+; Total registers                    ; N/A until Partition Merge                    ;
+; Total pins                         ; N/A until Partition Merge                    ;
+; Total virtual pins                 ; N/A until Partition Merge                    ;
+; Total memory bits                  ; N/A until Partition Merge                    ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                    ;
+; Total PLLs                         ; N/A until Partition Merge                    ;
 +------------------------------------+----------------------------------------------+
 
 
@@ -147,318 +142,24 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                              ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                 ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------+
-; GameController.vhd               ; yes             ; User VHDL File  ; C:/Users/Ariel/Documents/LabDig/Projeto/BlackJackParaFPGA/GameController.vhd ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-; Estimated Total logic elements              ; 10    ;
-;                                             ;       ;
-; Total combinational functions               ; 0     ;
-; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 0     ;
-;     -- 3 input functions                    ; 0     ;
-;     -- <=2 input functions                  ; 0     ;
-;                                             ;       ;
-; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 0     ;
-;     -- arithmetic mode                      ; 0     ;
-;                                             ;       ;
-; Total registers                             ; 10    ;
-;     -- Dedicated logic registers            ; 10    ;
-;     -- I/O registers                        ; 0     ;
-;                                             ;       ;
-; I/O pins                                    ; 129   ;
-; Maximum fan-out node                        ; clock ;
-; Maximum fan-out                             ; 10    ;
-; Total fan-out                               ; 40    ;
-; Average fan-out                             ; 0.29  ;
-+---------------------------------------------+-------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |GameController            ; 0 (0)             ; 10 (10)      ; 0           ; 0            ; 0       ; 0         ; 129  ; 0            ; |GameController     ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; player0.cards[1..2,4..8,10]            ; Stuck at GND due to stuck port data_in ;
-; player1.cards[2..4,6,10..11]           ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 14 ;                                        ;
-+----------------------------------------+----------------------------------------+
-
-
-+------------------------------------------------------+
-; General Register Statistics                          ;
-+----------------------------------------------+-------+
-; Statistic                                    ; Value ;
-+----------------------------------------------+-------+
-; Total registers                              ; 10    ;
-; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 10    ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 10    ;
-; Number of registers using Preset             ; 0     ;
-+----------------------------------------------+-------+
-
-
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Sat Oct 28 19:39:31 2017
+    Info: Processing started: Sat Oct 28 20:33:10 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off BlackJackParaFPGA -c GameController
-Info: Found 2 design units, including 1 entities, in source file gamecontroller.vhd
-    Info: Found design unit 1: GameController-arch
-    Info: Found entity 1: GameController
-Info: Elaborating entity "GameController" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at GameController.vhd(26): used implicit default value for signal "gameEndded" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at GameController.vhd(27): used implicit default value for signal "nextRound" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10631): VHDL Process Statement warning at GameController.vhd(51): inferring latch(es) for signal or variable "player0", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at GameController.vhd(51): inferring latch(es) for signal or variable "player1", which holds its previous value in one or more paths through the process
-Info (10041): Inferred latch for "player1.cards[12]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[13]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[14]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[15]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[16]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[17]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[18]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[19]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[20]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[21]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[22]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[23]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[24]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[25]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[26]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[27]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[28]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[29]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[30]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[31]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[32]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[33]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[34]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[35]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[36]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[37]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[38]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[39]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[40]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[41]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[42]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[43]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[44]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[45]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[46]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[47]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[48]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[49]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[50]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[51]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[52]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[53]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[54]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[55]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[56]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[57]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[58]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player1.cards[59]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[12]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[13]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[14]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[15]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[16]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[17]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[18]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[19]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[20]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[21]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[22]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[23]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[24]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[25]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[26]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[27]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[28]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[29]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[30]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[31]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[32]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[33]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[34]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[35]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[36]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[37]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[38]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[39]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[40]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[41]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[42]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[43]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[44]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[45]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[46]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[47]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[48]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[49]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[50]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[51]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[52]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[53]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[54]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[55]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[56]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[57]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[58]" at GameController.vhd(51)
-Info (10041): Inferred latch for "player0.cards[59]" at GameController.vhd(51)
-Warning: Output pins are stuck at VCC or GND
-    Warning (13410): Pin "gameEndded" is stuck at GND
-    Warning (13410): Pin "nextRound" is stuck at GND
-    Warning (13410): Pin "player0Cards[1]" is stuck at GND
-    Warning (13410): Pin "player0Cards[2]" is stuck at GND
-    Warning (13410): Pin "player0Cards[4]" is stuck at GND
-    Warning (13410): Pin "player0Cards[5]" is stuck at GND
-    Warning (13410): Pin "player0Cards[6]" is stuck at GND
-    Warning (13410): Pin "player0Cards[7]" is stuck at GND
-    Warning (13410): Pin "player0Cards[8]" is stuck at GND
-    Warning (13410): Pin "player0Cards[10]" is stuck at GND
-    Warning (13410): Pin "player0Cards[12]" is stuck at GND
-    Warning (13410): Pin "player0Cards[13]" is stuck at GND
-    Warning (13410): Pin "player0Cards[14]" is stuck at GND
-    Warning (13410): Pin "player0Cards[15]" is stuck at GND
-    Warning (13410): Pin "player0Cards[16]" is stuck at GND
-    Warning (13410): Pin "player0Cards[17]" is stuck at GND
-    Warning (13410): Pin "player0Cards[18]" is stuck at GND
-    Warning (13410): Pin "player0Cards[19]" is stuck at GND
-    Warning (13410): Pin "player0Cards[20]" is stuck at GND
-    Warning (13410): Pin "player0Cards[21]" is stuck at GND
-    Warning (13410): Pin "player0Cards[22]" is stuck at GND
-    Warning (13410): Pin "player0Cards[23]" is stuck at GND
-    Warning (13410): Pin "player0Cards[24]" is stuck at GND
-    Warning (13410): Pin "player0Cards[25]" is stuck at GND
-    Warning (13410): Pin "player0Cards[26]" is stuck at GND
-    Warning (13410): Pin "player0Cards[27]" is stuck at GND
-    Warning (13410): Pin "player0Cards[28]" is stuck at GND
-    Warning (13410): Pin "player0Cards[29]" is stuck at GND
-    Warning (13410): Pin "player0Cards[30]" is stuck at GND
-    Warning (13410): Pin "player0Cards[31]" is stuck at GND
-    Warning (13410): Pin "player0Cards[32]" is stuck at GND
-    Warning (13410): Pin "player0Cards[33]" is stuck at GND
-    Warning (13410): Pin "player0Cards[34]" is stuck at GND
-    Warning (13410): Pin "player0Cards[35]" is stuck at GND
-    Warning (13410): Pin "player0Cards[36]" is stuck at GND
-    Warning (13410): Pin "player0Cards[37]" is stuck at GND
-    Warning (13410): Pin "player0Cards[38]" is stuck at GND
-    Warning (13410): Pin "player0Cards[39]" is stuck at GND
-    Warning (13410): Pin "player0Cards[40]" is stuck at GND
-    Warning (13410): Pin "player0Cards[41]" is stuck at GND
-    Warning (13410): Pin "player0Cards[42]" is stuck at GND
-    Warning (13410): Pin "player0Cards[43]" is stuck at GND
-    Warning (13410): Pin "player0Cards[44]" is stuck at GND
-    Warning (13410): Pin "player0Cards[45]" is stuck at GND
-    Warning (13410): Pin "player0Cards[46]" is stuck at GND
-    Warning (13410): Pin "player0Cards[47]" is stuck at GND
-    Warning (13410): Pin "player0Cards[48]" is stuck at GND
-    Warning (13410): Pin "player0Cards[49]" is stuck at GND
-    Warning (13410): Pin "player0Cards[50]" is stuck at GND
-    Warning (13410): Pin "player0Cards[51]" is stuck at GND
-    Warning (13410): Pin "player0Cards[52]" is stuck at GND
-    Warning (13410): Pin "player0Cards[53]" is stuck at GND
-    Warning (13410): Pin "player0Cards[54]" is stuck at GND
-    Warning (13410): Pin "player0Cards[55]" is stuck at GND
-    Warning (13410): Pin "player0Cards[56]" is stuck at GND
-    Warning (13410): Pin "player0Cards[57]" is stuck at GND
-    Warning (13410): Pin "player0Cards[58]" is stuck at GND
-    Warning (13410): Pin "player0Cards[59]" is stuck at GND
-    Warning (13410): Pin "player1Cards[2]" is stuck at GND
-    Warning (13410): Pin "player1Cards[3]" is stuck at GND
-    Warning (13410): Pin "player1Cards[4]" is stuck at GND
-    Warning (13410): Pin "player1Cards[6]" is stuck at GND
-    Warning (13410): Pin "player1Cards[10]" is stuck at GND
-    Warning (13410): Pin "player1Cards[11]" is stuck at GND
-    Warning (13410): Pin "player1Cards[12]" is stuck at GND
-    Warning (13410): Pin "player1Cards[13]" is stuck at GND
-    Warning (13410): Pin "player1Cards[14]" is stuck at GND
-    Warning (13410): Pin "player1Cards[15]" is stuck at GND
-    Warning (13410): Pin "player1Cards[16]" is stuck at GND
-    Warning (13410): Pin "player1Cards[17]" is stuck at GND
-    Warning (13410): Pin "player1Cards[18]" is stuck at GND
-    Warning (13410): Pin "player1Cards[19]" is stuck at GND
-    Warning (13410): Pin "player1Cards[20]" is stuck at GND
-    Warning (13410): Pin "player1Cards[21]" is stuck at GND
-    Warning (13410): Pin "player1Cards[22]" is stuck at GND
-    Warning (13410): Pin "player1Cards[23]" is stuck at GND
-    Warning (13410): Pin "player1Cards[24]" is stuck at GND
-    Warning (13410): Pin "player1Cards[25]" is stuck at GND
-    Warning (13410): Pin "player1Cards[26]" is stuck at GND
-    Warning (13410): Pin "player1Cards[27]" is stuck at GND
-    Warning (13410): Pin "player1Cards[28]" is stuck at GND
-    Warning (13410): Pin "player1Cards[29]" is stuck at GND
-    Warning (13410): Pin "player1Cards[30]" is stuck at GND
-    Warning (13410): Pin "player1Cards[31]" is stuck at GND
-    Warning (13410): Pin "player1Cards[32]" is stuck at GND
-    Warning (13410): Pin "player1Cards[33]" is stuck at GND
-    Warning (13410): Pin "player1Cards[34]" is stuck at GND
-    Warning (13410): Pin "player1Cards[35]" is stuck at GND
-    Warning (13410): Pin "player1Cards[36]" is stuck at GND
-    Warning (13410): Pin "player1Cards[37]" is stuck at GND
-    Warning (13410): Pin "player1Cards[38]" is stuck at GND
-    Warning (13410): Pin "player1Cards[39]" is stuck at GND
-    Warning (13410): Pin "player1Cards[40]" is stuck at GND
-    Warning (13410): Pin "player1Cards[41]" is stuck at GND
-    Warning (13410): Pin "player1Cards[42]" is stuck at GND
-    Warning (13410): Pin "player1Cards[43]" is stuck at GND
-    Warning (13410): Pin "player1Cards[44]" is stuck at GND
-    Warning (13410): Pin "player1Cards[45]" is stuck at GND
-    Warning (13410): Pin "player1Cards[46]" is stuck at GND
-    Warning (13410): Pin "player1Cards[47]" is stuck at GND
-    Warning (13410): Pin "player1Cards[48]" is stuck at GND
-    Warning (13410): Pin "player1Cards[49]" is stuck at GND
-    Warning (13410): Pin "player1Cards[50]" is stuck at GND
-    Warning (13410): Pin "player1Cards[51]" is stuck at GND
-    Warning (13410): Pin "player1Cards[52]" is stuck at GND
-    Warning (13410): Pin "player1Cards[53]" is stuck at GND
-    Warning (13410): Pin "player1Cards[54]" is stuck at GND
-    Warning (13410): Pin "player1Cards[55]" is stuck at GND
-    Warning (13410): Pin "player1Cards[56]" is stuck at GND
-    Warning (13410): Pin "player1Cards[57]" is stuck at GND
-    Warning (13410): Pin "player1Cards[58]" is stuck at GND
-    Warning (13410): Pin "player1Cards[59]" is stuck at GND
-Warning: Design contains 4 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "playerTurn"
-    Warning (15610): No output dependent on input pin "doEndTurn"
-    Warning (15610): No output dependent on input pin "dealNewCard"
-    Warning (15610): No output dependent on input pin "stopDealing"
-Info: Implemented 139 device resources after synthesis - the final resource count might be different
-    Info: Implemented 7 input pins
-    Info: Implemented 122 output pins
-    Info: Implemented 10 logic cells
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 122 warnings
-    Info: Peak virtual memory: 247 megabytes
-    Info: Processing ended: Sat Oct 28 19:39:33 2017
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+Error (10500): VHDL syntax error at GameController.vhd(29) near text "array";  expecting an identifier ("array" is a reserved keyword), or a string literal File: C:/Users/Ariel/Documents/LabDig/Projeto/BlackJackParaFPGA/GameController.vhd Line: 29
+Error (10500): VHDL syntax error at GameController.vhd(38) near text "array";  expecting an identifier ("array" is a reserved keyword), or a string literal, or "buffer", or "in", or "inout", or "linkage", or "out" File: C:/Users/Ariel/Documents/LabDig/Projeto/BlackJackParaFPGA/GameController.vhd Line: 38
+Error (10500): VHDL syntax error at GameController.vhd(44) near text "end";  expecting an identifier ("end" is a reserved keyword), or "constant", or "file", or "signal", or "variable" File: C:/Users/Ariel/Documents/LabDig/Projeto/BlackJackParaFPGA/GameController.vhd Line: 44
+Error (10500): VHDL syntax error at GameController.vhd(61) near text "begin";  expecting an identifier ("begin" is a reserved keyword), or "constant", or "file", or "signal", or "variable" File: C:/Users/Ariel/Documents/LabDig/Projeto/BlackJackParaFPGA/GameController.vhd Line: 61
+Error (10500): VHDL syntax error at GameController.vhd(62) near text ")";  expecting ":", or "," File: C:/Users/Ariel/Documents/LabDig/Projeto/BlackJackParaFPGA/GameController.vhd Line: 62
+Info: Found 0 design units, including 0 entities, in source file gamecontroller.vhd
+Error: Quartus II Analysis & Synthesis was unsuccessful. 5 errors, 0 warnings
+    Error: Peak virtual memory: 239 megabytes
+    Error: Processing ended: Sat Oct 28 20:33:11 2017
+    Error: Elapsed time: 00:00:01
+    Error: Total CPU time (on all processors): 00:00:02
 
 
