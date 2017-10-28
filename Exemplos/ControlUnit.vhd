@@ -11,7 +11,8 @@ entity ControlUnit is
 		gameFinished: in std_logic;
 		playerTurn: out std_logic;
 		dealCards: out std_logic;
-		calculateResult out std_logic
+		calculateResult: out std_logic;
+		showResult: out std_logic
 	);
 end ControlUnit;
 
@@ -69,11 +70,72 @@ begin
 					else
 						state <= showingResult;
 					end if;
-
 			end case;
 		end if;
-			
+	end process;
 
+	process (clock, state)
+	begin
+		case state is
+			when start =>
+				playerTurn <= 0;
+				dealCards <= 0;
+				calculateResult <= 0;
+				showResult <= 0;
+
+			when dealingCards =>
+				playerTurn <= 0;
+				dealCards <= 1;
+				calculateResult <= 0;
+				showResult <= 0;
+
+			when firstPlayerTurn =>
+				playerTurn <= 0;
+				dealCards <= 0;
+				calculateResult <= 0;
+				showResult <= 0;
+
+			when secondPlayerTurn =>
+				playerTurn <= 1;
+				dealCards <= 0;
+				calculateResult <= 0;
+				showResult <= 0;
+
+			when calculatingResult =>
+				playerTurn <= 0;
+				dealCards <= 0;
+				calculateResult <= 1;
+				showResult <= 0;
+
+			when showingResult =>
+				playerTurn <= 0;
+				dealCards <= 0;
+				calculateResult <= 0;
+				showResult <= 1;
+
+			when waiting =>
+				playerTurn <= 0;
+				dealCards <= 0;
+				calculateResult <= 0;
+				showResult <= 0;
+		end case;
 	end process;
 
 end arch ; -- archControlUnit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
