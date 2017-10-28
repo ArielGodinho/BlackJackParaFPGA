@@ -25,7 +25,7 @@ begin
 	process (clock, state, reset, endGame, gameBegan, gameFinished, nextTurn, playerTurn, dealCards, calculateResult)
 	begin
 		if reset = '1' then
-			estado <= start;
+			state <= start;
 
 		elsif (rising_edge(clock)) then
 			case state is
