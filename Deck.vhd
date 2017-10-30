@@ -28,7 +28,7 @@ begin
 			if (shuffleDeck = '1') then
 				-- TODO: implement random module that is gonna shuffle the deck
 				shuffledIndex <= (
-					0, 10, 20, 30, 40, 50, 48, 38, 28, 18, 8, 3, 13, 23, 33, 43, 45, 35, 25, 15, 5, 15, 25, 35, 45,
+					0, 10, 20, 30, 40, 50, 48, 38, 28, 18, 8, 3, 13, 23, 33, 43, 45, 35, 25, 15, 5,
 					42, 32, 22, 12, 2, 9, 19, 29, 39, 49, 44, 34, 24, 14, 4, 1, 11, 21, 31, 41, 51, 47, 37, 27, 17,
 					7, 6, 16, 26, 36, 46
 				);
@@ -39,7 +39,7 @@ begin
 	process(clock, topCardTaken)
 	begin
 		if (rising_edge(clock)) then
-			if (topCardTaken = 1) then
+			if (topCardTaken = '1') then
 				currentCard <= currentCard + 1;
 			end if;
 		end if;

@@ -2,6 +2,10 @@ db/
 db/**
 incremental_db/
 incremental_db/**
+output_files/
+output_files/**
+simulation/
+simulation/**
 
 .rpt
 .done
@@ -11,5 +15,7 @@ incremental_db/**
 .qsf
 .qws
 .sof
+.bak
+.txt
 
 .DS_Store
