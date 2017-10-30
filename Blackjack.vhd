@@ -100,6 +100,10 @@ begin
 
 	h4: HexadecimalDisplay port map (sResult, result);
 
+	sResult <= std_logic_vector(to_unsigned(sResultInt, 4));
+	sPlayer0CardsSum <= std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));
+	sPlayer1CardsSum <= std_logic_vector(to_unsigned(sPlayer1CardsSumInt, 8));
+
 end arch;
 
 
