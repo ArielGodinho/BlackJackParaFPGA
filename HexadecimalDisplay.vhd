@@ -1,15 +1,16 @@
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity hex_display is
-    Port ( data : in std_logic_vector(3 downto 0);
-	    segs : out std_logic_vector(6 downto 0));
-end hex_display;
+entity HexadecimalDisplay is
+    port(
+    	data : in std_logic_vector(3 downto 0);
+		segs : out std_logic_vector(6 downto 0)
+	);
+end HexadecimalDisplay;
 
-architecture arch of hex_display is
+architecture arch of HexadecimalDisplay is
 begin
     process (data) is
     begin
