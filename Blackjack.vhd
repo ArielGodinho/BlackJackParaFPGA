@@ -30,7 +30,8 @@ architecture arch of Blackjack is
             stopDealing: in std_logic;
             nextRound: out std_logic;
             player0Cards: out std_logic_vector(59 downto 0);
-            player1Cards: out std_logic_vector(59 downto 0)
+            player1Cards: out std_logic_vector(59 downto 0);
+            debugTopCard: out std_logic_vector(5 downto 0)
         );
     end component GameController;
 
@@ -88,7 +89,7 @@ architecture arch of Blackjack is
 
 begin
 
-	k1: GameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards);
+	k1: GameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards, lastCardTaken);
 	k2: ControlUnit port map (clock, reset, '1', sNextRound, '1', sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult);
 	k3: ResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sResultInt, sGameFinished, sPlayer0CardsSumInt, sPlayer1CardsSumInt);
 	
