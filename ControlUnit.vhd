@@ -5,12 +5,13 @@ entity ControlUnit is
 	port(
 		clock: in std_logic;
 		reset: in std_logic;
+		dealCardsIn: in std_logic;
 		nextTurn: in std_logic;
 		endGame: in std_logic;
 		gameBegan: in std_logic;
 		gameFinished: in std_logic;
 		playerTurn: out std_logic;
-		dealCards: out std_logic;
+		dealCardsOut: out std_logic;
 		calculateResult: out std_logic;
 		showResult: out std_logic
 	);
@@ -30,7 +31,7 @@ begin
 		elsif (rising_edge(clock)) then
 			case state is
 				when start =>
-					if dealCards = '1' then
+					if dealCardsIn = '1' then
 						state <= dealingCards;
 					else
 						state <= start;
@@ -79,43 +80,43 @@ begin
 		case state is
 			when start =>
 				playerTurn <= 0;
-				dealCards <= 0;
+				dealCardsOut <= 0;
 				calculateResult <= 0;
 				showResult <= 0;
 
 			when dealingCards =>
 				playerTurn <= 0;
-				dealCards <= 1;
+				dealCardsOut <= 1;
 				calculateResult <= 0;
 				showResult <= 0;
 
 			when firstPlayerTurn =>
 				playerTurn <= 0;
-				dealCards <= 0;
+				dealCardsOut <= 0;
 				calculateResult <= 0;
 				showResult <= 0;
 
 			when secondPlayerTurn =>
 				playerTurn <= 1;
-				dealCards <= 0;
+				dealCardsOut <= 0;
 				calculateResult <= 0;
 				showResult <= 0;
 
 			when calculatingResult =>
 				playerTurn <= 0;
-				dealCards <= 0;
+				dealCardsOut <= 0;
 				calculateResult <= 1;
 				showResult <= 0;
 
 			when showingResult =>
 				playerTurn <= 0;
-				dealCards <= 0;
+				dealCardsOut <= 0;
 				calculateResult <= 0;
 				showResult <= 1;
 
 			when waiting =>
 				playerTurn <= 0;
-				dealCards <= 0;
+				dealCardsOut <= 0;
 				calculateResult <= 0;
 				showResult <= 0;
 		end case;
