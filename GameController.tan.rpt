@@ -1,0 +1,214 @@
+Classic Timing Analyzer report for GameController
+Sat Oct 28 19:39:39 2017
+Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Timing Analyzer Settings
+  4. Clock Settings Summary
+  5. Parallel Compilation
+  6. tsu
+  7. tco
+  8. th
+  9. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                                                                         ;
++------------------------------+-------+---------------+-------------+------------------+------------------+------------+----------+--------------+
+; Type                         ; Slack ; Required Time ; Actual Time ; From             ; To               ; From Clock ; To Clock ; Failed Paths ;
++------------------------------+-------+---------------+-------------+------------------+------------------+------------+----------+--------------+
+; Worst-case tsu               ; N/A   ; None          ; 4.316 ns    ; dealCards        ; player1.cards[9] ; --         ; clock    ; 0            ;
+; Worst-case tco               ; N/A   ; None          ; 7.413 ns    ; player0.cards[0] ; player0Cards[0]  ; clock      ; --       ; 0            ;
+; Worst-case th                ; N/A   ; None          ; -4.086 ns   ; dealCards        ; player1.cards[9] ; --         ; clock    ; 0            ;
+; Total number of failed paths ;       ;               ;             ;                  ;                  ;            ;          ; 0            ;
++------------------------------+-------+---------------+-------------+------------------+------------------+------------+----------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                                                                                            ;
++------------------------------------------------------------------------------------------------------+--------------------+------+----+-------------+
+; Option                                                                                               ; Setting            ; From ; To ; Entity Name ;
++------------------------------------------------------------------------------------------------------+--------------------+------+----+-------------+
+; Device Name                                                                                          ; EP2C5F256C6        ;      ;    ;             ;
+; Timing Models                                                                                        ; Final              ;      ;    ;             ;
+; Default hold multicycle                                                                              ; Same as Multicycle ;      ;    ;             ;
+; Cut paths between unrelated clock domains                                                            ; On                 ;      ;    ;             ;
+; Cut off read during write signal paths                                                               ; On                 ;      ;    ;             ;
+; Cut off feedback from I/O pins                                                                       ; On                 ;      ;    ;             ;
+; Report Combined Fast/Slow Timing                                                                     ; Off                ;      ;    ;             ;
+; Ignore Clock Settings                                                                                ; Off                ;      ;    ;             ;
+; Analyze latches as synchronous elements                                                              ; On                 ;      ;    ;             ;
+; Enable Recovery/Removal analysis                                                                     ; Off                ;      ;    ;             ;
+; Enable Clock Latency                                                                                 ; Off                ;      ;    ;             ;
+; Use TimeQuest Timing Analyzer                                                                        ; Off                ;      ;    ;             ;
+; Number of source nodes to report per destination node                                                ; 10                 ;      ;    ;             ;
+; Number of destination nodes to report                                                                ; 10                 ;      ;    ;             ;
+; Number of paths to report                                                                            ; 200                ;      ;    ;             ;
+; Report Minimum Timing Checks                                                                         ; Off                ;      ;    ;             ;
+; Use Fast Timing Models                                                                               ; Off                ;      ;    ;             ;
+; Report IO Paths Separately                                                                           ; Off                ;      ;    ;             ;
+; Perform Multicorner Analysis                                                                         ; On                 ;      ;    ;             ;
+; Reports the worst-case path for each clock domain and analysis                                       ; Off                ;      ;    ;             ;
+; Reports worst-case timing paths for each clock domain and analysis                                   ; On                 ;      ;    ;             ;
+; Specifies the maximum number of worst-case timing paths to report for each clock domain and analysis ; 100                ;      ;    ;             ;
+; Removes common clock path pessimism (CCPP) during slack computation                                  ; Off                ;      ;    ;             ;
+; Output I/O Timing Endpoint                                                                           ; Near End           ;      ;    ;             ;
++------------------------------------------------------------------------------------------------------+--------------------+------+----+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Settings Summary                                                                                                                                                             ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Clock Node Name ; Clock Setting Name ; Type     ; Fmax Requirement ; Early Latency ; Late Latency ; Based on ; Multiply Base Fmax by ; Divide Base Fmax by ; Offset ; Phase offset ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; clock           ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 8      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++------------------------------------------------------------------------------+
+; tsu                                                                          ;
++-------+--------------+------------+-----------+-------------------+----------+
+; Slack ; Required tsu ; Actual tsu ; From      ; To                ; To Clock ;
++-------+--------------+------------+-----------+-------------------+----------+
+; N/A   ; None         ; 4.316 ns   ; dealCards ; player0.cards[0]  ; clock    ;
+; N/A   ; None         ; 4.316 ns   ; dealCards ; player0.cards[3]  ; clock    ;
+; N/A   ; None         ; 4.316 ns   ; dealCards ; player0.cards[9]  ; clock    ;
+; N/A   ; None         ; 4.316 ns   ; dealCards ; player0.cards[11] ; clock    ;
+; N/A   ; None         ; 4.316 ns   ; dealCards ; player1.cards[0]  ; clock    ;
+; N/A   ; None         ; 4.316 ns   ; dealCards ; player1.cards[1]  ; clock    ;
+; N/A   ; None         ; 4.316 ns   ; dealCards ; player1.cards[5]  ; clock    ;
+; N/A   ; None         ; 4.316 ns   ; dealCards ; player1.cards[7]  ; clock    ;
+; N/A   ; None         ; 4.316 ns   ; dealCards ; player1.cards[8]  ; clock    ;
+; N/A   ; None         ; 4.316 ns   ; dealCards ; player1.cards[9]  ; clock    ;
++-------+--------------+------------+-----------+-------------------+----------+
+
+
++---------------------------------------------------------------------------------------+
+; tco                                                                                   ;
++-------+--------------+------------+-------------------+------------------+------------+
+; Slack ; Required tco ; Actual tco ; From              ; To               ; From Clock ;
++-------+--------------+------------+-------------------+------------------+------------+
+; N/A   ; None         ; 7.413 ns   ; player0.cards[0]  ; player0Cards[0]  ; clock      ;
+; N/A   ; None         ; 6.941 ns   ; player1.cards[7]  ; player1Cards[7]  ; clock      ;
+; N/A   ; None         ; 6.728 ns   ; player1.cards[0]  ; player1Cards[0]  ; clock      ;
+; N/A   ; None         ; 6.052 ns   ; player0.cards[3]  ; player0Cards[3]  ; clock      ;
+; N/A   ; None         ; 6.047 ns   ; player1.cards[1]  ; player1Cards[1]  ; clock      ;
+; N/A   ; None         ; 5.907 ns   ; player0.cards[9]  ; player0Cards[9]  ; clock      ;
+; N/A   ; None         ; 5.906 ns   ; player1.cards[9]  ; player1Cards[9]  ; clock      ;
+; N/A   ; None         ; 5.765 ns   ; player1.cards[5]  ; player1Cards[5]  ; clock      ;
+; N/A   ; None         ; 5.755 ns   ; player1.cards[8]  ; player1Cards[8]  ; clock      ;
+; N/A   ; None         ; 5.711 ns   ; player0.cards[11] ; player0Cards[11] ; clock      ;
++-------+--------------+------------+-------------------+------------------+------------+
+
+
++------------------------------------------------------------------------------------+
+; th                                                                                 ;
++---------------+-------------+-----------+-----------+-------------------+----------+
+; Minimum Slack ; Required th ; Actual th ; From      ; To                ; To Clock ;
++---------------+-------------+-----------+-----------+-------------------+----------+
+; N/A           ; None        ; -4.086 ns ; dealCards ; player0.cards[0]  ; clock    ;
+; N/A           ; None        ; -4.086 ns ; dealCards ; player0.cards[3]  ; clock    ;
+; N/A           ; None        ; -4.086 ns ; dealCards ; player0.cards[9]  ; clock    ;
+; N/A           ; None        ; -4.086 ns ; dealCards ; player0.cards[11] ; clock    ;
+; N/A           ; None        ; -4.086 ns ; dealCards ; player1.cards[0]  ; clock    ;
+; N/A           ; None        ; -4.086 ns ; dealCards ; player1.cards[1]  ; clock    ;
+; N/A           ; None        ; -4.086 ns ; dealCards ; player1.cards[5]  ; clock    ;
+; N/A           ; None        ; -4.086 ns ; dealCards ; player1.cards[7]  ; clock    ;
+; N/A           ; None        ; -4.086 ns ; dealCards ; player1.cards[8]  ; clock    ;
+; N/A           ; None        ; -4.086 ns ; dealCards ; player1.cards[9]  ; clock    ;
++---------------+-------------+-----------+-----------+-------------------+----------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Classic Timing Analyzer
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+    Info: Processing started: Sat Oct 28 19:39:39 2017
+Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off BlackJackParaFPGA -c GameController --timing_analysis_only
+Warning: Found pins functioning as undefined clocks and/or memory enables
+    Info: Assuming node "clock" is an undefined clock
+Info: No valid register-to-register data paths exist for clock "clock"
+Info: tsu for register "player0.cards[0]" (data pin = "dealCards", clock pin = "clock") is 4.316 ns
+    Info: + Longest pin to register delay is 6.724 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.830 ns) = 0.830 ns; Loc. = PIN_B12; Fanout = 10; PIN Node = 'dealCards'
+        Info: 2: + IC(5.234 ns) + CELL(0.660 ns) = 6.724 ns; Loc. = LCFF_X27_Y12_N25; Fanout = 1; REG Node = 'player0.cards[0]'
+        Info: Total cell delay = 1.490 ns ( 22.16 % )
+        Info: Total interconnect delay = 5.234 ns ( 77.84 % )
+    Info: + Micro setup delay of destination is -0.036 ns
+    Info: - Shortest clock path from clock "clock" to destination register is 2.372 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.979 ns) = 0.979 ns; Loc. = PIN_H2; Fanout = 1; CLK Node = 'clock'
+        Info: 2: + IC(0.122 ns) + CELL(0.000 ns) = 1.101 ns; Loc. = CLKCTRL_G2; Fanout = 10; COMB Node = 'clock~clkctrl'
+        Info: 3: + IC(0.734 ns) + CELL(0.537 ns) = 2.372 ns; Loc. = LCFF_X27_Y12_N25; Fanout = 1; REG Node = 'player0.cards[0]'
+        Info: Total cell delay = 1.516 ns ( 63.91 % )
+        Info: Total interconnect delay = 0.856 ns ( 36.09 % )
+Info: tco from clock "clock" to destination pin "player0Cards[0]" through register "player0.cards[0]" is 7.413 ns
+    Info: + Longest clock path from clock "clock" to source register is 2.372 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.979 ns) = 0.979 ns; Loc. = PIN_H2; Fanout = 1; CLK Node = 'clock'
+        Info: 2: + IC(0.122 ns) + CELL(0.000 ns) = 1.101 ns; Loc. = CLKCTRL_G2; Fanout = 10; COMB Node = 'clock~clkctrl'
+        Info: 3: + IC(0.734 ns) + CELL(0.537 ns) = 2.372 ns; Loc. = LCFF_X27_Y12_N25; Fanout = 1; REG Node = 'player0.cards[0]'
+        Info: Total cell delay = 1.516 ns ( 63.91 % )
+        Info: Total interconnect delay = 0.856 ns ( 36.09 % )
+    Info: + Micro clock to output delay of source is 0.250 ns
+    Info: + Longest register to pin delay is 4.791 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X27_Y12_N25; Fanout = 1; REG Node = 'player0.cards[0]'
+        Info: 2: + IC(2.179 ns) + CELL(2.612 ns) = 4.791 ns; Loc. = PIN_E5; Fanout = 0; PIN Node = 'player0Cards[0]'
+        Info: Total cell delay = 2.612 ns ( 54.52 % )
+        Info: Total interconnect delay = 2.179 ns ( 45.48 % )
+Info: th for register "player0.cards[0]" (data pin = "dealCards", clock pin = "clock") is -4.086 ns
+    Info: + Longest clock path from clock "clock" to destination register is 2.372 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.979 ns) = 0.979 ns; Loc. = PIN_H2; Fanout = 1; CLK Node = 'clock'
+        Info: 2: + IC(0.122 ns) + CELL(0.000 ns) = 1.101 ns; Loc. = CLKCTRL_G2; Fanout = 10; COMB Node = 'clock~clkctrl'
+        Info: 3: + IC(0.734 ns) + CELL(0.537 ns) = 2.372 ns; Loc. = LCFF_X27_Y12_N25; Fanout = 1; REG Node = 'player0.cards[0]'
+        Info: Total cell delay = 1.516 ns ( 63.91 % )
+        Info: Total interconnect delay = 0.856 ns ( 36.09 % )
+    Info: + Micro hold delay of destination is 0.266 ns
+    Info: - Shortest pin to register delay is 6.724 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.830 ns) = 0.830 ns; Loc. = PIN_B12; Fanout = 10; PIN Node = 'dealCards'
+        Info: 2: + IC(5.234 ns) + CELL(0.660 ns) = 6.724 ns; Loc. = LCFF_X27_Y12_N25; Fanout = 1; REG Node = 'player0.cards[0]'
+        Info: Total cell delay = 1.490 ns ( 22.16 % )
+        Info: Total interconnect delay = 5.234 ns ( 77.84 % )
+Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 179 megabytes
+    Info: Processing ended: Sat Oct 28 19:39:39 2017
+    Info: Elapsed time: 00:00:00
+    Info: Total CPU time (on all processors): 00:00:00
+
+

@@ -1,0 +1,325 @@
+ -- Copyright (C) 1991-2010 Altera Corporation
+ -- Your use of Altera Corporation's design tools, logic functions 
+ -- and other software and tools, and its AMPP partner logic 
+ -- functions, and any output files from any of the foregoing 
+ -- (including device programming or simulation files), and any 
+ -- associated documentation or information are expressly subject 
+ -- to the terms and conditions of the Altera Program License 
+ -- Subscription Agreement, Altera MegaCore Function License 
+ -- Agreement, or other applicable license agreement, including, 
+ -- without limitation, that your use is for the sole purpose of 
+ -- programming logic devices manufactured by Altera and sold by 
+ -- Altera or its authorized distributors.  Please refer to the 
+ -- applicable agreement for further details.
+ -- 
+ -- This is a Quartus II output file. It is for reporting purposes only, and is
+ -- not intended for use as a Quartus II input file. This file cannot be used
+ -- to make Quartus II pin assignments - for instructions on how to make pin
+ -- assignments, please see Quartus II help.
+ ---------------------------------------------------------------------------------
+
+
+
+ ---------------------------------------------------------------------------------
+ -- NC            : No Connect. This pin has no internal connection to the device.
+ -- DNU           : Do Not Use. This pin MUST NOT be connected.
+ -- VCCINT        : Dedicated power pin, which MUST be connected to VCC  (1.2V).
+ -- VCCIO         : Dedicated power pin, which MUST be connected to VCC
+ --                 of its bank.
+ --					Bank 1:		3.3V
+ --					Bank 2:		3.3V
+ --					Bank 3:		3.3V
+ --					Bank 4:		3.3V
+ -- GND           : Dedicated ground pin. Dedicated GND pins MUST be connected to GND.
+ --					It can also be used to report unused dedicated pins. The connection
+ --					on the board for unused dedicated pins depends on whether this will
+ --					be used in a future design. One example is device migration. When
+ --					using device migration, refer to the device pin-tables. If it is a
+ --					GND pin in the pin table or if it will not be used in a future design
+ --					for another purpose the it MUST be connected to GND. If it is an unused
+ --					dedicated pin, then it can be connected to a valid signal on the board
+ --					(low, high, or toggling) if that signal is required for a different
+ --					revision of the design.
+ -- GND+          : Unused input pin. It can also be used to report unused dual-purpose pins.
+ --					This pin should be connected to GND. It may also be connected  to a
+ --					valid signal  on the board  (low, high, or toggling)  if that signal
+ --					is required for a different revision of the design.
+ -- GND*          : Unused  I/O  pin.   For transceiver I/O banks, connect each pin marked GND*
+ --           	    either individually through a 10k Ohm resistor to GND or tie all pins
+ --           	    together and connect through a single 10k Ohm resistor to GND.
+ --           	    For non-transceiver I/O banks, connect each pin marked GND* directly to GND
+ --           	    or leave it unconnected.
+ -- RESERVED      : Unused I/O pin, which MUST be left unconnected.
+ -- RESERVED_INPUT    : Pin is tri-stated and should be connected to the board.
+ -- RESERVED_INPUT_WITH_WEAK_PULLUP    : Pin is tri-stated with internal weak pull-up resistor.
+ -- RESERVED_INPUT_WITH_BUS_HOLD       : Pin is tri-stated with bus-hold circuitry.
+ -- RESERVED_OUTPUT_DRIVEN_HIGH        : Pin is output driven high.
+ ---------------------------------------------------------------------------------
+
+
+
+ ---------------------------------------------------------------------------------
+ -- Pin directions (input, output or bidir) are based on device operating in user mode.
+ ---------------------------------------------------------------------------------
+
+Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+CHIP  "GameController"  ASSIGNED TO AN: EP2C5F256C6
+
+Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
+-------------------------------------------------------------------------------------------------------------
+GND                          : A1        : gnd    :                   :         :           :                
+VCCIO2                       : A2        : power  :                   : 3.3V    : 2         :                
+player0Cards[29]             : A3        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[27]             : A4        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[42]             : A5        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[25]             : A6        : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[30]             : A7        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[26]             : A8        : output : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : A9        :        :                   :         : 2         :                
+player1Cards[44]             : A10       : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[58]             : A11       : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[14]             : A12       : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[31]             : A13       : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[38]             : A14       : output : 3.3-V LVTTL       :         : 2         : N              
+VCCIO2                       : A15       : power  :                   : 3.3V    : 2         :                
+GND                          : A16       : gnd    :                   :         :           :                
+VCCIO1                       : B1        : power  :                   : 3.3V    : 1         :                
+GND                          : B2        : gnd    :                   :         :           :                
+player0Cards[12]             : B3        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[13]             : B4        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[40]             : B5        : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[22]             : B6        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[23]             : B7        : output : 3.3-V LVTTL       :         : 2         : N              
+NC                           : B8        :        :                   :         :           :                
+doEndTurn                    : B9        : input  : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[49]             : B10       : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[29]             : B11       : output : 3.3-V LVTTL       :         : 2         : N              
+dealCards                    : B12       : input  : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[54]             : B13       : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[1]              : B14       : output : 3.3-V LVTTL       :         : 2         : N              
+GND                          : B15       : gnd    :                   :         :           :                
+VCCIO3                       : B16       : power  :                   : 3.3V    : 3         :                
+player1Cards[25]             : C1        : output : 3.3-V LVTTL       :         : 1         : N              
+GND*                         : C2        :        :                   :         : 1         :                
+~ASDO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : C3        : input  : 3.3-V LVTTL       :         : 1         : N              
+player1Cards[42]             : C4        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[24]             : C5        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[7]              : C6        : output : 3.3-V LVTTL       :         : 2         : N              
+VCCIO2                       : C7        : power  :                   : 3.3V    : 2         :                
+GND                          : C8        : gnd    :                   :         :           :                
+GND                          : C9        : gnd    :                   :         :           :                
+VCCIO2                       : C10       : power  :                   : 3.3V    : 2         :                
+player1Cards[34]             : C11       : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[21]             : C12       : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[3]              : C13       : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[5]              : C14       : output : 3.3-V LVTTL       :         : 3         : N              
+NC                           : C15       :        :                   :         :           :                
+NC                           : C16       :        :                   :         :           :                
+NC                           : D1        :        :                   :         :           :                
+NC                           : D2        :        :                   :         :           :                
+player0Cards[45]             : D3        : output : 3.3-V LVTTL       :         : 1         : N              
+player1Cards[59]             : D4        : output : 3.3-V LVTTL       :         : 1         : N              
+player1Cards[12]             : D5        : output : 3.3-V LVTTL       :         : 1         : N              
+player1Cards[33]             : D6        : output : 3.3-V LVTTL       :         : 2         : N              
+NC                           : D7        :        :                   :         :           :                
+player1Cards[36]             : D8        : output : 3.3-V LVTTL       :         : 2         : N              
+NC                           : D9        :        :                   :         :           :                
+player1Cards[55]             : D10       : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[41]             : D11       : output : 3.3-V LVTTL       :         : 2         : N              
+GND_PLL2                     : D12       : gnd    :                   :         :           :                
+player1Cards[8]              : D13       : output : 3.3-V LVTTL       :         : 3         : N              
+player1Cards[9]              : D14       : output : 3.3-V LVTTL       :         : 3         : N              
+gameEndded                   : D15       : output : 3.3-V LVTTL       :         : 3         : N              
+playerTurn                   : D16       : input  : 3.3-V LVTTL       :         : 3         : N              
+GND*                         : E1        :        :                   :         : 1         :                
+GND*                         : E2        :        :                   :         : 1         :                
+stopDealing                  : E3        : input  : 3.3-V LVTTL       :         : 1         : N              
+player0Cards[57]             : E4        : output : 3.3-V LVTTL       :         : 1         : N              
+player0Cards[0]              : E5        : output : 3.3-V LVTTL       :         : 1         : N              
+player1Cards[20]             : E6        : output : 3.3-V LVTTL       :         : 2         : N              
+VCCIO2                       : E7        : power  :                   : 3.3V    : 2         :                
+GND                          : E8        : gnd    :                   :         :           :                
+GND                          : E9        : gnd    :                   :         :           :                
+VCCIO2                       : E10       : power  :                   : 3.3V    : 2         :                
+GNDA_PLL2                    : E11       : gnd    :                   :         :           :                
+VCCA_PLL2                    : E12       : power  :                   : 1.2V    :           :                
+NC                           : E13       :        :                   :         :           :                
+player0Cards[9]              : E14       : output : 3.3-V LVTTL       :         : 3         : N              
+NC                           : E15       :        :                   :         :           :                
+player0Cards[11]             : E16       : output : 3.3-V LVTTL       :         : 3         : N              
+DATA0                        : F1        : input  :                   :         : 1         :                
+TCK                          : F2        : input  :                   :         : 1         :                
+player0Cards[55]             : F3        : output : 3.3-V LVTTL       :         : 1         : N              
+~nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : F4        : input  : 3.3-V LVTTL       :         : 1         : N              
+NC                           : F5        :        :                   :         :           :                
+player1Cards[39]             : F6        : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[35]             : F7        : output : 3.3-V LVTTL       :         : 2         : N              
+player1Cards[11]             : F8        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[56]             : F9        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[50]             : F10       : output : 3.3-V LVTTL       :         : 2         : N              
+VCCD_PLL2                    : F11       : power  :                   : 1.2V    :           :                
+GND_PLL2                     : F12       : gnd    :                   :         :           :                
+NC                           : F13       :        :                   :         :           :                
+NC                           : F14       :        :                   :         :           :                
+player1Cards[40]             : F15       : output : 3.3-V LVTTL       :         : 3         : N              
+player1Cards[18]             : F16       : output : 3.3-V LVTTL       :         : 3         : N              
+TMS                          : G1        : input  :                   :         : 1         :                
+TDO                          : G2        : output :                   :         : 1         :                
+VCCIO1                       : G3        : power  :                   : 3.3V    : 1         :                
+NC                           : G4        :        :                   :         :           :                
+nCE                          : G5        :        :                   :         : 1         :                
+player1Cards[37]             : G6        : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[2]              : G7        : output : 3.3-V LVTTL       :         : 2         : N              
+GND                          : G8        : gnd    :                   :         :           :                
+VCCINT                       : G9        : power  :                   : 1.2V    :           :                
+player1Cards[19]             : G10       : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[30]             : G11       : output : 3.3-V LVTTL       :         : 2         : N              
+player0Cards[58]             : G12       : output : 3.3-V LVTTL       :         : 3         : N              
+player1Cards[47]             : G13       : output : 3.3-V LVTTL       :         : 3         : N              
+VCCIO3                       : G14       : power  :                   : 3.3V    : 3         :                
+GND*                         : G15       :        :                   :         : 3         :                
+player0Cards[19]             : G16       : output : 3.3-V LVTTL       :         : 3         : N              
+reset                        : H1        : input  : 3.3-V LVTTL       :         : 1         : N              
+clock                        : H2        : input  : 3.3-V LVTTL       :         : 1         : N              
+GND                          : H3        : gnd    :                   :         :           :                
+DCLK                         : H4        :        :                   :         : 1         :                
+TDI                          : H5        : input  :                   :         : 1         :                
+NC                           : H6        :        :                   :         :           :                
+VCCINT                       : H7        : power  :                   : 1.2V    :           :                
+GND                          : H8        : gnd    :                   :         :           :                
+GND                          : H9        : gnd    :                   :         :           :                
+VCCINT                       : H10       : power  :                   : 1.2V    :           :                
+player1Cards[10]             : H11       : output : 3.3-V LVTTL       :         : 3         : N              
+player0Cards[51]             : H12       : output : 3.3-V LVTTL       :         : 3         : N              
+player0Cards[46]             : H13       : output : 3.3-V LVTTL       :         : 3         : N              
+GND                          : H14       : gnd    :                   :         :           :                
+GND+                         : H15       :        :                   :         : 3         :                
+GND+                         : H16       :        :                   :         : 3         :                
+GND+                         : J1        :        :                   :         : 1         :                
+GND+                         : J2        :        :                   :         : 1         :                
+GND                          : J3        : gnd    :                   :         :           :                
+GND*                         : J4        :        :                   :         : 1         :                
+nCONFIG                      : J5        :        :                   :         : 1         :                
+NC                           : J6        :        :                   :         :           :                
+VCCINT                       : J7        : power  :                   : 1.2V    :           :                
+GND                          : J8        : gnd    :                   :         :           :                
+GND                          : J9        : gnd    :                   :         :           :                
+NC                           : J10       :        :                   :         :           :                
+GND*                         : J11       :        :                   :         : 3         :                
+player1Cards[51]             : J12       : output : 3.3-V LVTTL       :         : 3         : N              
+MSEL0                        : J13       :        :                   :         : 3         :                
+GND                          : J14       : gnd    :                   :         :           :                
+GND+                         : J15       :        :                   :         : 3         :                
+GND+                         : J16       :        :                   :         : 3         :                
+player0Cards[34]             : K1        : output : 3.3-V LVTTL       :         : 1         : N              
+player0Cards[6]              : K2        : output : 3.3-V LVTTL       :         : 1         : N              
+VCCIO1                       : K3        : power  :                   : 3.3V    : 1         :                
+player1Cards[57]             : K4        : output : 3.3-V LVTTL       :         : 1         : N              
+GND*                         : K5        :        :                   :         : 1         :                
+NC                           : K6        :        :                   :         :           :                
+NC                           : K7        :        :                   :         :           :                
+NC                           : K8        :        :                   :         :           :                
+GND                          : K9        : gnd    :                   :         :           :                
+player1Cards[24]             : K10       : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[13]             : K11       : output : 3.3-V LVTTL       :         : 4         : N              
+MSEL1                        : K12       :        :                   :         : 3         :                
+NC                           : K13       :        :                   :         :           :                
+VCCIO3                       : K14       : power  :                   : 3.3V    : 3         :                
+player1Cards[45]             : K15       : output : 3.3-V LVTTL       :         : 3         : N              
+player1Cards[4]              : K16       : output : 3.3-V LVTTL       :         : 3         : N              
+player1Cards[27]             : L1        : output : 3.3-V LVTTL       :         : 1         : N              
+GND*                         : L2        :        :                   :         : 1         :                
+player1Cards[52]             : L3        : output : 3.3-V LVTTL       :         : 1         : N              
+GND*                         : L4        :        :                   :         : 1         :                
+GND_PLL1                     : L5        : gnd    :                   :         :           :                
+VCCD_PLL1                    : L6        : power  :                   : 1.2V    :           :                
+player0Cards[28]             : L7        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[18]             : L8        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[15]             : L9        : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[26]             : L10       : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[0]              : L11       : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[22]             : L12       : output : 3.3-V LVTTL       :         : 4         : N              
+CONF_DONE                    : L13       :        :                   :         : 3         :                
+player0Cards[4]              : L14       : output : 3.3-V LVTTL       :         : 3         : N              
+player1Cards[54]             : L15       : output : 3.3-V LVTTL       :         : 3         : N              
+GND*                         : L16       :        :                   :         : 3         :                
+player1Cards[14]             : M1        : output : 3.3-V LVTTL       :         : 1         : N              
+player0Cards[43]             : M2        : output : 3.3-V LVTTL       :         : 1         : N              
+dealNewCard                  : M3        : input  : 3.3-V LVTTL       :         : 1         : N              
+GND*                         : M4        :        :                   :         : 1         :                
+VCCA_PLL1                    : M5        : power  :                   : 1.2V    :           :                
+GNDA_PLL1                    : M6        : gnd    :                   :         :           :                
+VCCIO4                       : M7        : power  :                   : 3.3V    : 4         :                
+GND                          : M8        : gnd    :                   :         :           :                
+GND                          : M9        : gnd    :                   :         :           :                
+VCCIO4                       : M10       : power  :                   : 3.3V    : 4         :                
+player0Cards[17]             : M11       : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[16]             : M12       : output : 3.3-V LVTTL       :         : 3         : N              
+nSTATUS                      : M13       :        :                   :         : 3         :                
+player0Cards[1]              : M14       : output : 3.3-V LVTTL       :         : 3         : N              
+player0Cards[41]             : M15       : output : 3.3-V LVTTL       :         : 3         : N              
+player1Cards[23]             : M16       : output : 3.3-V LVTTL       :         : 3         : N              
+GND*                         : N1        :        :                   :         : 1         :                
+GND*                         : N2        :        :                   :         : 1         :                
+NC                           : N3        :        :                   :         :           :                
+NC                           : N4        :        :                   :         :           :                
+GND_PLL1                     : N5        : gnd    :                   :         :           :                
+NC                           : N6        :        :                   :         :           :                
+NC                           : N7        :        :                   :         :           :                
+nextRound                    : N8        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[38]             : N9        : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[31]             : N10       : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[50]             : N11       : output : 3.3-V LVTTL       :         : 4         : N              
+GND*                         : N12       :        :                   :         : 3         :                
+player0Cards[8]              : N13       : output : 3.3-V LVTTL       :         : 3         : N              
+~LVDS41p/nCEO~               : N14       : output : 3.3-V LVTTL       :         : 3         : N              
+player1Cards[32]             : N15       : output : 3.3-V LVTTL       :         : 3         : N              
+player0Cards[36]             : N16       : output : 3.3-V LVTTL       :         : 3         : N              
+player0Cards[47]             : P1        : output : 3.3-V LVTTL       :         : 1         : N              
+player1Cards[56]             : P2        : output : 3.3-V LVTTL       :         : 1         : N              
+player0Cards[44]             : P3        : output : 3.3-V LVTTL       :         : 1         : N              
+player1Cards[6]              : P4        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[10]             : P5        : output : 3.3-V LVTTL       :         : 4         : N              
+NC                           : P6        :        :                   :         :           :                
+VCCIO4                       : P7        : power  :                   : 3.3V    : 4         :                
+GND                          : P8        : gnd    :                   :         :           :                
+GND                          : P9        : gnd    :                   :         :           :                
+VCCIO4                       : P10       : power  :                   : 3.3V    : 4         :                
+GND*                         : P11       :        :                   :         : 4         :                
+player1Cards[43]             : P12       : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[2]              : P13       : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[48]             : P14       : output : 3.3-V LVTTL       :         : 3         : N              
+player0Cards[53]             : P15       : output : 3.3-V LVTTL       :         : 3         : N              
+GND*                         : P16       :        :                   :         : 3         :                
+VCCIO1                       : R1        : power  :                   : 3.3V    : 1         :                
+GND                          : R2        : gnd    :                   :         :           :                
+player1Cards[46]             : R3        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[16]             : R4        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[35]             : R5        : output : 3.3-V LVTTL       :         : 4         : N              
+NC                           : R6        :        :                   :         :           :                
+player0Cards[20]             : R7        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[5]              : R8        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[39]             : R9        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[37]             : R10       : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[28]             : R11       : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[32]             : R12       : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[7]              : R13       : output : 3.3-V LVTTL       :         : 4         : N              
+GND*                         : R14       :        :                   :         : 4         :                
+GND                          : R15       : gnd    :                   :         :           :                
+VCCIO3                       : R16       : power  :                   : 3.3V    : 3         :                
+GND                          : T1        : gnd    :                   :         :           :                
+VCCIO4                       : T2        : power  :                   : 3.3V    : 4         :                
+player1Cards[15]             : T3        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[49]             : T4        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[48]             : T5        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[52]             : T6        : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[59]             : T7        : output : 3.3-V LVTTL       :         : 4         : N              
+GND*                         : T8        :        :                   :         : 4         :                
+player1Cards[17]             : T9        : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[53]             : T10       : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[33]             : T11       : output : 3.3-V LVTTL       :         : 4         : N              
+player0Cards[21]             : T12       : output : 3.3-V LVTTL       :         : 4         : N              
+player1Cards[3]              : T13       : output : 3.3-V LVTTL       :         : 4         : N              
+GND*                         : T14       :        :                   :         : 4         :                
+VCCIO4                       : T15       : power  :                   : 3.3V    : 4         :                
+GND                          : T16       : gnd    :                   :         :           :                
