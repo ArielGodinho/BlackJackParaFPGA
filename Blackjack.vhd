@@ -97,7 +97,7 @@ begin
 	h2: HexadecimalDisplay port map (sPlayer1CardsSum(3 downto 0), player1CardsSum(6 downto 0));
 	h3: HexadecimalDisplay port map (sPlayer1CardsSum(7 downto 4), player1CardsSum(13 downto 7));
 
-	h4: HexadecimalDisplay port map (sResult, result)
+	h4: HexadecimalDisplay port map (sResult, result);
 
 end arch;
 
