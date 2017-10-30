@@ -66,29 +66,29 @@ begin
 
     process(clock, reset, dealCards, playerTurn, doEndTurn, dealNewCard, stopDealing)
     begin
-
+		
         if reset='1' then
             player0 <= c_Player;
             player1 <= c_Player;
-        elsif rising_edge(clock) then		  
-			  if sNextRound = '1' then
+				
+        elsif rising_edge(clock) then
+				if sNextRound = '1' then
 					sNextRound <= '0';
 					sNextCard <= '0';
-			  end if;
-			  
-            if dealCards = '1' then         --Dealing the initial cards
+            elsif dealCards = '1' then         --Dealing the initial cards
                 player0.cards(11 downto 6) <= "101000";
                 player0.cards(5 downto 0) <= "001001";
                 player1.cards(11 downto 6) <= "001110";
                 player1.cards(5 downto 0) <= "100011";
                 player0.cardCount <= 2;
-                player1.cardCount <= 2;
-                sNextRound <= '1';              
+                player1.cardCount <= 2;      
             elsif doEndTurn = '1' then      -- Calculate endturn
 
 
-            elsif playerTurn = '0' and not player0.stopped then     -- Player 0 turn's
-                if dealNewCard = '1' then
+            elsif playerTurn = '0' then     -- Player 0 turn's
+					 if player0.stopped then
+						  sNextRound <= '1';
+                elsif dealNewCard = '1' then
                     player0.cards(59 downto 6) <= player0.cards(53 downto 0);
                     player0.cards(5 downto 0) <= sTopCard;
                     player0.cardCount <= player0.cardCount;
@@ -99,8 +99,10 @@ begin
                     sNextRound <= '1';       
                 end if;
 
-            elsif playerTurn = '1' and not player1.stopped then     -- Player 1 turn's
-                if dealNewCard = '1' then
+            elsif playerTurn = '1' then     -- Player 1 turn's
+                if player1.stopped then
+						  sNextRound <= '1';
+                elsif dealNewCard = '1' then
                     player1.cards(59 downto 6) <= player1.cards(53 downto 0);
                     player1.cards(5 downto 0) <= sTopCard;
                     player1.cardCount <= player1.cardCount;
@@ -117,7 +119,7 @@ begin
     end process;
     player0Cards <= player0.cards;
     player1Cards <= player1.cards;
-	nextRound <= sNextRound;
+	 nextRound <= sNextRound;
     debugTopCard <= sTopCard;
 end arch;
 
