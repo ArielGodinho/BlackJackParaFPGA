@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+USE ieee.numeric_std.all;
 
 entity Blackjack is
 	port(
@@ -76,14 +77,34 @@ architecture arch of Blackjack is
 	signal sGameFinished: std_logic;
 	signal sCalculateResult: std_logic;
 	signal sShowResult: std_logic;
-	signal sResult: integer;
+	signal sResultInt: integer;
+	signal sResult: std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(sResultInt, 4));
 	signal sDealNewCard: std_logic := (not sPlayerTurn and dealCardToPlayer0) or (sPlayerTurn and dealCardToPlayer1);
 	signal sStopDealing: std_logic := (not sPlayerTurn and stopDealingToPlayer0) or (sPlayerTurn and stopDealingToPlayer1);
+	signal sPlayer0CardsSumInt: integer;
+	signal sPlayer1CardsSumInt: integer;
+	signal sPlayer0CardsSum: std_logic_vector(7 downto 0) := std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));
+	signal sPlayer1CardsSum: std_logic_vector(7 downto 0) := std_logic_vector(to_unsigned(sPlayer1CardsSumInt, 8));
 
 begin
 
 	k1: GameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards);
 	k2: ControlUnit port map (clock, reset, '1', sNextRound, '1', sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult);
-	k3: ResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sResult, sGameFinished);
+	k3: ResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sResultInt, sGameFinished, sPlayer0CardsSumInt, sPlayer1CardsSumInt);
+	
+	h0: HexadecimalDisplay port map (sPlayer0CardsSum(3 downto 0), player0CardsSum(6 downto 0));
+	h1: HexadecimalDisplay port map (sPlayer0CardsSum(7 downto 4), player0CardsSum(13 downto 7));
+	h2: HexadecimalDisplay port map (sPlayer1CardsSum(3 downto 0), player1CardsSum(6 downto 0));
+	h3: HexadecimalDisplay port map (sPlayer1CardsSum(7 downto 4), player1CardsSum(13 downto 7));
+
+	h4: HexadecimalDisplay port map (sResult, result)
 
 end arch;
+
+
+
+
+
+
+
+
