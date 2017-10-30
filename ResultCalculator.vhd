@@ -12,7 +12,9 @@ entity ResultCalculator is
 			-- 1 -> player 1 won
 			-- 2 -> player 2 won
 			-- 3 -> both players lost
-		gameFinished: out std_logic
+		gameFinished: out std_logic;
+		debugPlayerOneCardsSum: out integer;
+		debugPlayerTwoCardsSum: out integer
 	);
 end ResultCalculator;
 
@@ -57,5 +59,8 @@ begin
 			end loop ; -- checkingCards
 		end if;
 	end process;
+
+	debugPlayerOneCardsSum <= playerOneCardsSum;
+	debugPlayerTwoCardsSum <= playerTwoCardsSum;
 
 end arch;

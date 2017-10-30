@@ -55,7 +55,9 @@ architecture arch of Blackjack is
 			playerOneCards: in std_logic_vector(59 downto 0);
 			playerTwoCards: in std_logic_vector(59 downto 0);
 			result: out integer;
-			gameFinished: out std_logic
+			gameFinished: out std_logic;
+			debugPlayerOneCardsSum: out integer;
+			debugPlayerTwoCardsSum: out integer
 		);
 	end component ResultCalculator;
 
