@@ -26,7 +26,8 @@ entity GameController is
         nextRound           : out std_logic;
         --Debug
         player0Cards        : out std_logic_vector(59 downto 0);
-        player1Cards        : out std_logic_vector(59 downto 0)
+        player1Cards        : out std_logic_vector(59 downto 0);
+        debugTopCard        : out std_logic_vector(5 downto 0)
     );
 end GameController;
 
@@ -116,7 +117,8 @@ begin
     end process;
     player0Cards <= player0.cards;
     player1Cards <= player1.cards;
-	 nextRound <= sNextRound;
+	nextRound <= sNextRound;
+    debugTopCard <= sTopCard;
 end arch;
 
 
