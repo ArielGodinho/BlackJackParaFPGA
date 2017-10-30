@@ -7,11 +7,12 @@ entity ResultCalculator is
 		clock: in std_logic;
 		playerOneCards: in std_logic_vector(59 downto 0);
 		playerTwoCards: in std_logic_vector(59 downto 0);
-		result: out integer
+		result: out integer;
 			-- 0 -> game continues
 			-- 1 -> player 1 won
 			-- 2 -> player 2 won
 			-- 3 -> both players lost
+		gameFinished: out std_logic
 	);
 end ResultCalculator;
 
@@ -38,12 +39,16 @@ begin
 
 				if (playerOneCardsSum <= 21 and playerTwoCardsSum <= 21) then
 					result <= 0;
+					gameFinished <= 0;
 				elsif (playerOneCardsSum <= 21 and playerTwoCardsSum > 21) then
 					result <= 1;
+					gameFinished <= 1;
 				elsif (playerOneCardsSum > 21 and playerTwoCardsSum <= 21) then
 					result <= 2;
+					gameFinished <= 1;
 				elsif (playerOneCardsSum > 21 and playerTwoCardsSum > 21) then
 					result <= 3;
+					gameFinished <= 1;
 				end if;
 
 				base <= base + 6;
