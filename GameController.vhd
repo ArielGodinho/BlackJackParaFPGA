@@ -23,67 +23,90 @@ entity GameController is
 
 --      count               : out std_logic_vector(0 to 3);
         --Output
-        gameEndded          : out std_logic;
         nextRound           : out std_logic;
         --Debug
-        player0Cards        : out array(0 to 9) of Card;
-        player1Cards        : out array(0 to 9) of Card
+        player0Cards        : out std_logic_vector(59 downto 0);
+        player1Cards        : out std_logic_vector(59 downto 0)
     );
 end GameController;
 
 architecture arch of GameController is
+    component Deck is
+        port (
+            clock        : in  std_logic;
+            shuffleDeck  : in  std_logic;
+            topCardTaken : in  std_logic;
+            topCard      : out std_logic_vector(5 downto 0)
+        );
+    end component Deck;    
+
     type Player is record
         stopped             : boolean;
         cardCount           : integer;
-        cards               : array(0 to 9) of Card;
-    end record Player;
-
-    type Card is record
-        value               : std_logic_vector(3 downto 0);
-        suit                : std_logic_vector(1 downto 0);
-    end record Player;
+        cards               : std_logic_vector(59 downto 0);
+    end record Player;  
 
     constant c_Player : Player := (
         stopped => false,
         cardCount => 0,
-        cards => (others => c_Card)
+        cards => (others => '0')
     );
-    constant c_Card : Card := (
-        value => "0000",
-        suit => "00"
-    ); 
 
     signal player0 : Player := c_Player;
     signal player1 : Player := c_Player;
-    signal topCard : Card := c_Card;
-
+    signal sShuffleDeck : std_logic := '0';
+    signal sNextCard : std_logic := '0';
+    signal sTopCard : std_logic_vector(5 downto 0);
 
 begin
+
+    d1 : Deck port map (clock, sShuffleDeck, sNextCard, sTopCard);
+
     process(clock, reset, playerTurn)
-    begin 
+    begin
+        if nextRound = '1' then
+            nextRound <= '0';
+            sNextCard <= '0';
+        end if;
+
         if reset='1' then
             player0 <= c_Player;
             player1 <= c_Player;
         elsif rising_edge(clock) then
-            topCard.suit = "01";
-            topCard.value = "1100";
-
             if dealCards = '1' then         --Dealing the initial cards
-                if playerTurn = '0' then
-                    player0.cards(player0.cardCount) <= topCard;
-                    player0.cardCount <= player0.cardCount + 1;
-                else
-                    player1.cards(player1.cardCount) <= topCard;
-                    player1.cardCount <= player1.cardCount + 1;
-                end if;
+                player0.cards(11 downto 6) <= "101000";
+                player0.cards(5 downto 0) <= "001001";
+                player1.cards(11 downto 6) <= "001110";
+                player1.cards(5 downto 0) <= "100011";
+                player0.cardCount <= 2;
+                player1.cardCount <= 2;
+                nextRound <= '1';              
             elsif doEndTurn = '1' then      -- Calculate endturn
 
 
-            elsif playerTurn = '0' then     -- Player 0 turn's
-                
+            elsif playerTurn = '0' and player0.stopped = '0' then     -- Player 0 turn's
+                if dealNewCard = '1' then
+                    player0.cards(59 downto 6) <= player0.cards(53 downto 0);
+                    player0.cards(5 downto 0) <= sTopCard;
+                    player0.cardCount <= player0.cardCount;
+                    sNextCard <= '1';
+                    nextRound <= '1';
+                elsif stopDealing = '1' then
+                    player0.stopped <= '1';
+                    nextRound <= '1';       
+                end if;
 
-            elsif playerTurn = '1' then     -- Player 1 turn's
-
+            elsif playerTurn = '1' and player1.stopped = '0' then     -- Player 1 turn's
+                if dealNewCard = '1' then
+                    player1.cards(59 downto 6) <= player1.cards(53 downto 0);
+                    player1.cards(5 downto 0) <= sTopCard;
+                    player1.cardCount <= player1.cardCount;
+                    sNextCard <= '1';
+                    nextRound <= '1';
+                elsif stopDealing = '1' then
+                    player1.stopped <= '1';
+                    nextRound <= '1';       
+                end if;
 
             end if;
 
