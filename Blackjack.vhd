@@ -5,10 +5,10 @@ entity Blackjack is
 	port(
 		clock: in std_logic;
 		reset: in std_logic;
-		dealCardsToPlayerOne: in std_logic;
-		dealCardsToPlayerTwo: in std_logic;
-		player0Stopped: in std_logic;
-		player1Stopped: in std_logic;
+		dealCardToPlayer0: in std_logic;
+		dealCardToPlayer1: in std_logic;
+		stopDealingToPlayer0: in std_logic;
+		stopDealingToPlayer1: in std_logic;
 		player0CardsSum: out std_logic_vector(13 downto 0);
 		player1CardsSum: out std_logic_vector(13 downto 0);
 		lastCardTaken: out std_logic_vector(5 downto 0);
@@ -66,6 +66,22 @@ architecture arch of Blackjack is
 		);
 	end component HexadecimalDisplay;
 
+	signal sDealCardsOut: std_logic;
+	signal sPlayerTurn: std_logic;
+	signal sNextRound: std_logic;
+	signal sPlayer0cards: std_logic_vector(59 downto 0);
+	signal sPlayer1cards: std_logic_vector(59 downto 0);
+	signal sGameFinished: std_logic;
+	signal sCalculateResult: std_logic;
+	signal sShowResult: std_logic;
+	signal sResult: integer;
+	signal sDealNewCard: std_logic := (not sPlayerTurn and dealCardToPlayer0) or (sPlayerTurn and dealCardToPlayer1);
+	signal sStopDealing: std_logic := (not sPlayerTurn and stopDealingToPlayer0) or (sPlayerTurn and stopDealingToPlayer1);
+
 begin
+
+	k1: GameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards);
+	k2: ControlUnit port map (clock, reset, '1', sNextRound, '1', sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult);
+	k3: ResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sResult, sGameFinished);
 
 end arch;
