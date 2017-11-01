@@ -77,12 +77,16 @@ begin
 
 			if (playerOneCardsSum < 21 and playerTwoCardsSum < 21) then
 				result <= 0;
+				gameFinished <= 0;
 			elsif (playerOneCardsSum < 21 and playerTwoCardsSum > 21) then
 				result <= 1;
+				gameFinished <= 1;
 			elsif (playerOneCardsSum > 21 and playerTwoCardsSum < 21) then
 				result <= 2;
+				gameFinished <= 1;
 			elsif (playerOneCardsSum > 21 and playerTwoCardsSum > 21) then
 				result <= 3;
+				gameFinished <= 1;
 			end if;
 			
 		end if;
