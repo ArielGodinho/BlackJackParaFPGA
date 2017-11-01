@@ -74,6 +74,16 @@ begin
 			
 			playerOneCardsSum <= getCorrectSum(playerOneCardsSum, playerOneCards);
 			playerTwoCardsSum <= getCorrectSum(playerTwoCardsSum, playerTwoCards);
+
+			if (playerOneCards < 21 and playerTwoCardsSum < 21) then
+				result <= 0;
+			elsif (playerOneCards < 21 and playerTwoCardsSum > 21) then
+				result <= 1;
+			elsif (playerOneCards > 21 and playerTwoCardsSum < 21) then
+				result <= 2;
+			elsif (playerOneCards > 21 and playerTwoCardsSum > 21) then
+				result <= 3;
+			end if;
 			
 		end if;
 	end process;
