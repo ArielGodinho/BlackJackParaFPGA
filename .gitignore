@@ -6,16 +6,21 @@ output_files/
 output_files/**
 simulation/
 simulation/**
+.qsys_edit/
+.qsys_edit/**
 
-.rpt
-.done
-.summary
-.pof
-.qarlog
-.qsf
-.qws
-.sof
-.bak
-.txt
+*.rpt
+*.done
+*.summary
+*.pof
+*.qarlog
+*.qsf
+*.qws
+*.sof
+*.bak
+*.txt
+*.sld
+*.jdi
+*.fit.smsg
 
-.DS_Store
+*.DS_Store
