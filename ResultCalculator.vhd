@@ -24,39 +24,15 @@ architecture arch of ResultCalculator is
 	signal playerOneCardsSum: integer;
 	signal playerTwoCardsSum: integer;
 	signal base: integer;
+	signal counter: integer := 0;
 begin
 	
 	process (clock, playerOneCards, playerTwoCards)
 	begin
-		if (rising_edge(clock))
-			base <= 0;
-			playerOneCardsSum <= 0;
-			playerTwoCardsSum <= 0;
-			playerTwoStillHasCards <= playerOneCards(5) or playerOneCards(4) or playerOneCards(3) or playerOneCards(2);
-			playerTwoStillHasCards <= playerTwoCards(5) or playerTwoCards(4) or playerTwoCards(3) or playerTwoCards(2);
-
-			checkingCards : while (playerTwoStillHasCards and playerTwoStillHasCards) loop
-				playerOneCardsSum <= playerOneCardsSum + to_integer(unsigned(playerOneCards(5+base downto 2+base)));
-				playerTwoCardsSum <= playerTwoCardsSum + to_integer(unsigned(playerTwoCards(5+base downto 2+base)));
-
-				if (playerOneCardsSum <= 21 and playerTwoCardsSum <= 21) then
-					result <= 0;
-					gameFinished <= 0;
-				elsif (playerOneCardsSum <= 21 and playerTwoCardsSum > 21) then
-					result <= 1;
-					gameFinished <= 1;
-				elsif (playerOneCardsSum > 21 and playerTwoCardsSum <= 21) then
-					result <= 2;
-					gameFinished <= 1;
-				elsif (playerOneCardsSum > 21 and playerTwoCardsSum > 21) then
-					result <= 3;
-					gameFinished <= 1;
-				end if;
-
-				base <= base + 6;
-				playerTwoStillHasCards <= playerOneCards(5+base) or playerOneCards(4+base) or playerOneCards(3+base) or playerOneCards(2+base);
-				playerTwoStillHasCards <= playerTwoCards(5+base) or playerTwoCards(4+base) or playerTwoCards(3+base) or playerTwoCards(2+base);
-			end loop ; -- checkingCards
+		if (rising_edge(clock)) then
+			playerOneCardsSum <= to_integer(unsigned(playerOneCards(5 downto 2))) + to_integer(unsigned(playerOneCards(11 downto 8))) + to_integer(unsigned(playerOneCards(17 downto 14))) + to_integer(unsigned(playerOneCards(23 downto 20)));
+			playerTwoCardsSum <= to_integer(unsigned(playerTwoCards(5 downto 2))) + to_integer(unsigned(playerTwoCards(11 downto 8))) + to_integer(unsigned(playerTwoCards(17 downto 14))) + to_integer(unsigned(playerTwoCards(23 downto 20)));
+			
 		end if;
 	end process;
 

@@ -20,22 +20,7 @@ architecture arch of Deck is
 		"000111", "001011", "001111", "010011", "010111", "011011", "011111", "100011", "100111", "101011", "101111", "110011", "110111"
 	);
 	signal currentCard: integer := 0;
-	signal shuffledIndex: integer_vector;
 begin
-	process(clock, shuffleDeck)
-	begin
-		if (rising_edge(clock)) then
-			if (shuffleDeck = '1') then
-				-- TODO: implement random module that is gonna shuffle the deck
-				shuffledIndex <= (
-					0, 10, 20, 30, 40, 50, 48, 38, 28, 18, 8, 3, 13, 23, 33, 43, 45, 35, 25, 15, 5,
-					42, 32, 22, 12, 2, 9, 19, 29, 39, 49, 44, 34, 24, 14, 4, 1, 11, 21, 31, 41, 51, 47, 37, 27, 17,
-					7, 6, 16, 26, 36, 46
-				);
-			end if;
-		end if;
-	end process;
-
 	process(clock, topCardTaken)
 	begin
 		if (rising_edge(clock)) then
@@ -45,7 +30,7 @@ begin
 		end if;
 	end process;
 
-	topCard <= deck(shuffledIndex(currentCard));
+	topCard <= deck(currentCard);
 end arch;
 
 

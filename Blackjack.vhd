@@ -13,7 +13,12 @@ entity Blackjack is
 		player0CardsSum: out std_logic_vector(13 downto 0);
 		player1CardsSum: out std_logic_vector(13 downto 0);
 		lastCardTaken: out std_logic_vector(5 downto 0);
-		result: out std_logic_vector(6 downto 0)
+		result: out std_logic_vector(6 downto 0);
+      nextRound: out std_logic;
+		playerTurn: out std_logic;
+		dealCardsOut: out std_logic;
+		calculateResult: out std_logic;
+		showResult: out std_logic
 	);
 end Blackjack;
 
@@ -89,6 +94,9 @@ architecture arch of Blackjack is
 
 begin
 
+	sDealNewCard <= (not sPlayerTurn and dealCardToPlayer0) or (sPlayerTurn and dealCardToPlayer1);
+	sStopDealing <= (not sPlayerTurn and stopDealingToPlayer0) or (sPlayerTurn and stopDealingToPlayer1);
+	
 	k1: GameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards, lastCardTaken);
 	k2: ControlUnit port map (clock, reset, '1', sNextRound, '1', sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult);
 	k3: ResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sResultInt, sGameFinished, sPlayer0CardsSumInt, sPlayer1CardsSumInt);
@@ -103,7 +111,12 @@ begin
 	sResult <= std_logic_vector(to_unsigned(sResultInt, 4));
 	sPlayer0CardsSum <= std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));
 	sPlayer1CardsSum <= std_logic_vector(to_unsigned(sPlayer1CardsSumInt, 8));
-
+	
+	playerTurn <= sPlayerTurn;
+	dealCardsOut <= sDealCardsOut;
+	calculateResult <= sCalculateResult;
+	showResult <= sShowResult;
+	nextRound <= sNextRound;
 end arch;
 
 

@@ -19,11 +19,11 @@ end ControlUnit;
 
 architecture arch of ControlUnit is
 
-	type state_type is (start, dealingCards, firstPlayerTurn, secondPlayerTurn, calculatingResult, showingResult, waiting);
+	type state_type is (start, dealingCards, firstPlayerTurn, secondPlayerTurn, calculatingResult, showingResult);
 	signal state: state_type;
 
 begin
-	process (clock, state, reset, endGame, gameBegan, gameFinished, nextTurn, playerTurn, dealCards, calculateResult)
+	process (clock, state, reset, endGame, gameBegan, gameFinished, nextTurn, dealCardsIn)
 	begin
 		if reset = '1' then
 			state <= start;
@@ -38,11 +38,8 @@ begin
 					end if;
 
 				when dealingCards =>
-					if gameBegan = '1' then
 						state <= firstPlayerTurn;
-					else
-						state <= dealingCards;
-					end if;
+					
 
 				when firstPlayerTurn =>
 					if nextTurn = '1' then
@@ -67,7 +64,7 @@ begin
 
 				when showingResult =>
 					if endGame = '1' then
-						state <= waiting;
+						state <= start;
 					else
 						state <= showingResult;
 					end if;
@@ -79,46 +76,40 @@ begin
 	begin
 		case state is
 			when start =>
-				playerTurn <= 0;
-				dealCardsOut <= 0;
-				calculateResult <= 0;
-				showResult <= 0;
+				playerTurn <= '0';
+				dealCardsOut <= '0';
+				calculateResult <= '0';
+				showResult <= '0';
 
 			when dealingCards =>
-				playerTurn <= 0;
-				dealCardsOut <= 1;
-				calculateResult <= 0;
-				showResult <= 0;
+				playerTurn <= '0';
+				dealCardsOut <= '1';
+				calculateResult <= '0';
+				showResult <= '0';
 
 			when firstPlayerTurn =>
-				playerTurn <= 0;
-				dealCardsOut <= 0;
-				calculateResult <= 0;
-				showResult <= 0;
+				playerTurn <= '0';
+				dealCardsOut <= '0';
+				calculateResult <= '0';
+				showResult <= '0';
 
 			when secondPlayerTurn =>
-				playerTurn <= 1;
-				dealCardsOut <= 0;
-				calculateResult <= 0;
-				showResult <= 0;
+				playerTurn <= '1';
+				dealCardsOut <= '0';
+				calculateResult <= '0';
+				showResult <= '0';
 
 			when calculatingResult =>
-				playerTurn <= 0;
-				dealCardsOut <= 0;
-				calculateResult <= 1;
-				showResult <= 0;
+				playerTurn <= '0';
+				dealCardsOut <= '0';
+				calculateResult <= '1';
+				showResult <= '0';
 
 			when showingResult =>
-				playerTurn <= 0;
-				dealCardsOut <= 0;
-				calculateResult <= 0;
-				showResult <= 1;
-
-			when waiting =>
-				playerTurn <= 0;
-				dealCardsOut <= 0;
-				calculateResult <= 0;
-				showResult <= 0;
+				playerTurn <= '0';
+				dealCardsOut <= '0';
+				calculateResult <= '0';
+				showResult <= '1';
 		end case;
 	end process;
 
