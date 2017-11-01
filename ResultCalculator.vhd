@@ -53,7 +53,7 @@ architecture arch of ResultCalculator is
 			return previousSum;
 		else
 			isThereSomeAce := isCardAce(cards(5 downto 2)) or isCardAce(cards(11 downto 8)) or isCardAce(cards(17 downto 14)) or isCardAce(cards(23 downto 20)) or isCardAce(cards(29 downto 26)) or
-				isCardAce(cards(35 downto 32)) or isCardAce(cards(41 downto 38)) or isCardAce(cards(47 downto 44)) or isCardAce(cards(53 downto 50)) or isCardAce(cards(59 downto 56));
+			isCardAce(cards(35 downto 32)) or isCardAce(cards(41 downto 38)) or isCardAce(cards(47 downto 44)) or isCardAce(cards(53 downto 50)) or isCardAce(cards(59 downto 56));
 			if (isThereSomeAce) then
 				return previousSum + 10;
 			else
