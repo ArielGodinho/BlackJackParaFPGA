@@ -79,49 +79,50 @@ architecture arch of Blackjack is
 		);
 	end component HexadecimalDisplay;
 	
-	signal sDealCardsOut       : std_logic;
-	signal sPlayerTurn         : std_logic;
-	signal sNextRound          : std_logic;
-	signal sPlayer0cards       : std_logic_vector(59 downto 0);
-	signal sPlayer1cards       : std_logic_vector(59 downto 0);
-	signal sGameFinished       : std_logic;
-	signal sCalculateResult    : std_logic;
-	signal sShowResult         : std_logic;
-	signal sResultInt          : integer;
-	signal sResult             : std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(sResultInt, 4));
-	signal sDealNewCard        : std_logic;
-	signal sStopDealing        : std_logic;
-	signal sRawDealNewCard     : std_logic;
-	signal sRawStopDealing     : std_logic;
-	signal sDelayedDealNewCard : std_logic;
-	signal sDelayedStopDealing : std_logic;
-	signal sPlayer0CardsSumInt : integer;
-	signal sPlayer1CardsSumInt : integer;
-	signal sPlayer0CardsSum    : std_logic_vector(7 downto 0) := std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));
-	signal sPlayer1CardsSum    : std_logic_vector(7 downto 0) := std_logic_vector(to_unsigned(sPlayer1CardsSumInt, 8));
+	component EdgeDetector is
+		port (
+			clock    : in  STD_LOGIC;
+			signalIn : in  STD_LOGIC;
+			output   : out STD_LOGIC
+		);
+	end component EdgeDetector; 
+	
+	signal sDealCardsOut         : std_logic;
+	signal sPlayerTurn           : std_logic;
+	signal sNextRound            : std_logic;
+	signal sPlayer0cards         : std_logic_vector(59 downto 0);
+	signal sPlayer1cards         : std_logic_vector(59 downto 0);
+	signal sGameFinished         : std_logic;
+	signal sCalculateResult      : std_logic;
+	signal sShowResult           : std_logic;
+	signal sResultInt            : integer;
+	signal sResult               : std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(sResultInt, 4));
+	signal sDealCardToPlayer0    : std_logic;
+	signal sDealCardToPlayer1    : std_logic;
+	signal sStopDealingToPlayer0 : std_logic;
+	signal sStopDealingToPlayer1 : std_logic;
+	signal sDealNewCard          : std_logic;
+	signal sStopDealing          : std_logic;
+	signal sPlayer0CardsSumInt   : integer;
+	signal sPlayer1CardsSumInt   : integer;
+	signal sPlayer0CardsSum      : std_logic_vector(7 downto 0) := std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));
+	signal sPlayer1CardsSum      : std_logic_vector(7 downto 0) := std_logic_vector(to_unsigned(sPlayer1CardsSumInt, 8));
 	
 begin
-	sRawDealNewCard <= (not sPlayerTurn and dealCardToPlayer0) or (sPlayerTurn and dealCardToPlayer1);
-	sRawStopDealing <= (not sPlayerTurn and stopDealingToPlayer0) or (sPlayerTurn and stopDealingToPlayer1);
+		e0 : EdgeDetector port map (clock, dealCardToPlayer0, sDealCardToPlayer0);
+		e1 : EdgeDetector port map (clock, dealCardToPlayer1, sDealCardToPlayer1);
+		e2 : EdgeDetector port map (clock, stopDealingToPlayer0, sStopDealingToPlayer0);
+		e3 : EdgeDetector port map (clock, stopDealingToPlayer1, sStopDealingToPlayer1);
 	
-	process(clock)
-	begin
-		if rising_edge(clock) then
-			sDelayedDealNewCard <= sRawDealNewCard;
-			sDelayedStopDealing <= sRawStopDealing;
-		end if;
-	end process;
-	sDealNewCard <= (not sDelayedDealNewCard) and sRawDealNewCard; 
-	sStopDealing <= (not sDelayedStopDealing) and sRawStopDealing;
-	
-	--sDealNewCard <= (not sPlayerTurn and dealCardToPlayer0) or (sPlayerTurn and dealCardToPlayer1);
-	--sStopDealing <= (not sPlayerTurn and stopDealingToPlayer0) or (sPlayerTurn and stopDealingToPlayer1);
+	sDealNewCard <= (not sPlayerTurn and sDealCardToPlayer0) or (sPlayerTurn and sDealCardToPlayer1);
+	sStopDealing <= (not sPlayerTurn and sStopDealingToPlayer0) or (sPlayerTurn and sStopDealingToPlayer1);
 	
 		k1 : GameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards, lastCardTaken);
 		k2 : ControlUnit port map (clock, reset, '1', sNextRound, reset, sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult);
 		k3 : ResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sResultInt, sGameFinished, sPlayer0CardsSumInt, sPlayer1CardsSumInt);
 	
-	
+	sPlayer0CardsSum <= std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));
+	sPlayer1CardsSum <= std_logic_vector(to_unsigned(sPlayer1CardsSumInt, 8)); 
 	sResult          <= std_logic_vector(to_unsigned(sResultInt, 4));
 	
 		h0 : HexadecimalDisplay port map (sPlayer0CardsSum(3 downto 0), player0CardsSum(6 downto 0));
@@ -130,14 +131,12 @@ begin
 		h3 : HexadecimalDisplay port map (sPlayer1CardsSum(7 downto 4), player1CardsSum(13 downto 7));
 	
 		h4 : HexadecimalDisplay port map (sResult, result);
-	sPlayer0CardsSum <= std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));
-	sPlayer1CardsSum <= std_logic_vector(to_unsigned(sPlayer1CardsSumInt, 8));
 	
-	playerTurn      <= sPlayerTurn;
-	dealCardsOut    <= sDealCardsOut;
-	calculateResult <= sCalculateResult;
-	showResult      <= sShowResult;
-	nextRound       <= sNextRound;
+	playerTurn           <= sPlayerTurn;
+	dealCardsOut         <= sDealCardsOut;
+	calculateResult      <= sCalculateResult;
+	showResult           <= sShowResult;
+	nextRound            <= sNextRound;
 	debugPlayer0CardsSum <= sPlayer0CardsSumInt;
 	debugPlayer1CardsSum <= sPlayer1CardsSumInt;
 end arch;
