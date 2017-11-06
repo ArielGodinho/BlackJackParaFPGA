@@ -25,18 +25,6 @@ architecture arch of ResultCalculator is
 	signal playerTwoCardsSum      : integer;
 	signal base                   : integer;
 	signal counter                : integer := 0;
-	
-	function getCorrectValue (cardValue : std_logic_vector(3 downto 0)) return integer is
-		variable cardValueInt               : integer := 0;
-	begin
-		cardValueInt := to_integer(unsigned(cardValue));
-		if (cardValueInt > 10) then
-			return 10;
-		else
-			return cardValueInt;
-		end if;
-	end getCorrectValue;
-	
 begin
 	
 	process (clock, playerOneCards, playerTwoCards)
@@ -45,8 +33,8 @@ begin
 			playerOneCardsSum <= 0;
 			playerTwoCardsSum <= 0;
 
-			playerOneCardsSum <= getCorrectValue(playerOneCards(5 downto 2)) + getCorrectValue(playerOneCards(11 downto 8)) + getCorrectValue(playerOneCards(17 downto 14)) + getCorrectValue(playerOneCards(23 downto 20)) + getCorrectValue(playerOneCards(29 downto 26)) + getCorrectValue(playerOneCards(35 downto 32)) + getCorrectValue(playerOneCards(41 downto 38)) + getCorrectValue(playerOneCards(47 downto 44)) + getCorrectValue(playerOneCards(53 downto 50)) + getCorrectValue(playerOneCards(59 downto 56));
-			playerTwoCardsSum <= getCorrectValue(playerTwoCards(5 downto 2)) + getCorrectValue(playerTwoCards(11 downto 8)) + getCorrectValue(playerTwoCards(17 downto 14)) + getCorrectValue(playerTwoCards(23 downto 20)) + getCorrectValue(playerTwoCards(29 downto 26)) + getCorrectValue(playerTwoCards(35 downto 32)) + getCorrectValue(playerTwoCards(41 downto 38)) + getCorrectValue(playerTwoCards(47 downto 44)) + getCorrectValue(playerTwoCards(53 downto 50)) + getCorrectValue(playerTwoCards(59 downto 56));
+			playerOneCardsSum <= to_integer(unsigned(playerOneCards(5 downto 2))) + to_integer(unsigned(playerOneCards(11 downto 8))) + to_integer(unsigned(playerOneCards(17 downto 14))) + to_integer(unsigned(playerOneCards(23 downto 20))) + to_integer(unsigned(playerOneCards(29 downto 26))) + to_integer(unsigned(playerOneCards(35 downto 32))) + to_integer(unsigned(playerOneCards(41 downto 38))) + to_integer(unsigned(playerOneCards(47 downto 44))) + to_integer(unsigned(playerOneCards(53 downto 50))) + to_integer(unsigned(playerOneCards(59 downto 56)));
+			playerTwoCardsSum <= to_integer(unsigned(playerTwoCards(5 downto 2))) + to_integer(unsigned(playerTwoCards(11 downto 8))) + to_integer(unsigned(playerTwoCards(17 downto 14))) + to_integer(unsigned(playerTwoCards(23 downto 20))) + to_integer(unsigned(playerTwoCards(29 downto 26))) + to_integer(unsigned(playerTwoCards(35 downto 32))) + to_integer(unsigned(playerTwoCards(41 downto 38))) + to_integer(unsigned(playerTwoCards(47 downto 44))) + to_integer(unsigned(playerTwoCards(53 downto 50))) + to_integer(unsigned(playerTwoCards(59 downto 56)));
 			
 			if (playerOneCardsSum <= 21 and playerTwoCardsSum <= 21) then
 				result <= 0;
