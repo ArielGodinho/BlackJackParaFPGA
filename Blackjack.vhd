@@ -97,10 +97,10 @@ architecture arch of Blackjack is
 	signal sShowResult           : std_logic;
 	signal sResultInt            : integer;
 	signal sResult               : std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(sResultInt, 4));
-	signal sDealCardToPlayer0    : std_logic;
-	signal sDealCardToPlayer1    : std_logic;
-	signal sStopDealingToPlayer0 : std_logic;
-	signal sStopDealingToPlayer1 : std_logic;
+	signal sDealCardToPlayer0    : std_logic                    := '0';
+	signal sDealCardToPlayer1    : std_logic                    := '0';
+	signal sStopDealingToPlayer0 : std_logic                    := '0';
+	signal sStopDealingToPlayer1 : std_logic                    := '0';
 	signal sDealNewCard          : std_logic;
 	signal sStopDealing          : std_logic;
 	signal sPlayer0CardsSumInt   : integer;

@@ -24,6 +24,7 @@ quit -f
 
 
 
+
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
@@ -42,6 +43,7 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
 
 
 
@@ -1323,7 +1325,15 @@ TRANSITION_LIST("dealCardToPlayer0")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
+		LEVEL 0 FOR 60.0;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 120.0;
+		LEVEL 1 FOR 40.0;
+		LEVEL 0 FOR 120.0;
+		LEVEL 1 FOR 30.0;
+		LEVEL 0 FOR 150.0;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 450.0;
 	}
 }
 
@@ -1332,9 +1342,15 @@ TRANSITION_LIST("dealCardToPlayer1")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 220.0;
-		LEVEL 1 FOR 420.0;
-		LEVEL 0 FOR 360.0;
+		LEVEL 0 FOR 130.0;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 120.0;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 170.0;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 150.0;
+		LEVEL 1 FOR 30.0;
+		LEVEL 0 FOR 350.0;
 	}
 }
 
@@ -1352,9 +1368,7 @@ TRANSITION_LIST("stopDealingToPlayer0")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 120.0;
-		LEVEL 1 FOR 10.0;
-		LEVEL 0 FOR 870.0;
+		LEVEL 0 FOR 1000.0;
 	}
 }
 
