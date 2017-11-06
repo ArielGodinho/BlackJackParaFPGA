@@ -19,7 +19,7 @@ end ControlUnit;
 
 architecture arch of ControlUnit is
 
-	type state_type is (start, dealingCards, firstPlayerTurn, secondPlayerTurn, calculatingResult, showingResult);
+	type state_type is (start, dealingCards, firstPlayerTurn, secondPlayerTurn, calculatingResult, waiting, showingResult);
 	signal state: state_type;
 
 begin
@@ -50,10 +50,13 @@ begin
 
 				when secondPlayerTurn =>
 					if nextTurn = '1' then
-						state <= calculatingResult;
+						state <= waiting;
 					else
 						state <= secondPlayerTurn;
 					end if;
+
+				when waiting =>
+						state <= calculatingResult;
 
 				when calculatingResult =>
 					if gameFinished = '1' then
@@ -97,6 +100,12 @@ begin
 				playerTurn <= '1';
 				dealCardsOut <= '0';
 				calculateResult <= '0';
+				showResult <= '0';
+
+			when waiting =>
+				playerTurn <= '0';
+				dealCardsOut <= '0';
+				calculateResult <= '1';
 				showResult <= '0';
 
 			when calculatingResult =>

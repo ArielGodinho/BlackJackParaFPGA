@@ -22,5 +22,6 @@ simulation/**
 *.jdi
 *.fit.smsg
 *.pin
+*.cdf
 
 *.DS_Store
