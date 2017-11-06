@@ -14,6 +14,8 @@ entity Blackjack is
 		debugStopDealing     : out std_logic;
 		player0CardsSum      : out std_logic_vector(13 downto 0);
 		player1CardsSum      : out std_logic_vector(13 downto 0);
+		debugPlayer0CardsSum : out integer;
+		debugPlayer1CardsSum : out integer;
 		lastCardTaken        : out std_logic_vector(5 downto 0);
 		result               : out std_logic_vector(6 downto 0);
 		nextRound            : out std_logic;
@@ -116,8 +118,11 @@ begin
 	--sStopDealing <= (not sPlayerTurn and stopDealingToPlayer0) or (sPlayerTurn and stopDealingToPlayer1);
 	
 		k1 : GameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards, lastCardTaken);
-		k2 : ControlUnit port map (clock, reset, '1', sNextRound, '1', sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult);
+		k2 : ControlUnit port map (clock, reset, '1', sNextRound, reset, sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult);
 		k3 : ResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sResultInt, sGameFinished, sPlayer0CardsSumInt, sPlayer1CardsSumInt);
+	
+	
+	sResult          <= std_logic_vector(to_unsigned(sResultInt, 4));
 	
 		h0 : HexadecimalDisplay port map (sPlayer0CardsSum(3 downto 0), player0CardsSum(6 downto 0));
 		h1 : HexadecimalDisplay port map (sPlayer0CardsSum(7 downto 4), player0CardsSum(13 downto 7));
@@ -125,8 +130,6 @@ begin
 		h3 : HexadecimalDisplay port map (sPlayer1CardsSum(7 downto 4), player1CardsSum(13 downto 7));
 	
 		h4 : HexadecimalDisplay port map (sResult, result);
-	
-	sResult          <= std_logic_vector(to_unsigned(sResultInt, 4));
 	sPlayer0CardsSum <= std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));
 	sPlayer1CardsSum <= std_logic_vector(to_unsigned(sPlayer1CardsSumInt, 8));
 	
@@ -135,6 +138,8 @@ begin
 	calculateResult <= sCalculateResult;
 	showResult      <= sShowResult;
 	nextRound       <= sNextRound;
+	debugPlayer0CardsSum <= sPlayer0CardsSumInt;
+	debugPlayer1CardsSum <= sPlayer1CardsSumInt;
 end arch;
 
 
