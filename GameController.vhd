@@ -35,6 +35,7 @@ architecture arch of GameController is
     component Deck is
         port (
             clock        : in  std_logic;
+            reset        : in  std_logic;
             shuffleDeck  : in  std_logic;
             topCardTaken : in  std_logic;
             topCard      : out std_logic_vector(5 downto 0)
@@ -62,7 +63,7 @@ architecture arch of GameController is
 
 begin
 
-    d1 : Deck port map (clock, sShuffleDeck, sNextCard, sTopCard);
+    d1 : Deck port map (clock, reset, sShuffleDeck, sNextCard, sTopCard);
 
     process(clock, reset, dealCards, playerTurn, doEndTurn, dealNewCard, stopDealing)
     begin

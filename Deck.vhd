@@ -4,6 +4,7 @@ use ieee.std_logic_1164.all;
 entity Deck is
 	port(
 		clock: in std_logic;
+		reset: in std_logic;
 		shuffleDeck: in std_logic;
 		topCardTaken: in std_logic;
 		topCard: out std_logic_vector(5 downto 0)
@@ -23,7 +24,9 @@ architecture arch of Deck is
 begin
 	process(clock, topCardTaken)
 	begin
-		if (rising_edge(clock)) then
+		if (reset = '1') then
+			currentCard <= 0;
+		elsif (rising_edge(clock)) then
 			if (topCardTaken = '1') then
 				currentCard <= currentCard + 1;
 			end if;
