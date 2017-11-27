@@ -53,6 +53,10 @@ architecture exemplo of Printer is
 	signal DOIS_PONTOS : std_logic_vector(6 downto 0) := "0111010";
 	signal CR          : std_logic_vector(6 downto 0) := "0001101";
 	signal LF          : std_logic_vector(6 downto 0) := "0001010";
+	signal ZERO        : std_logic_vector(6 downto 0) := "00110000";
+	signal ONE         : std_logic_vector(6 downto 0) := "00110001";
+	signal TWO         : std_logic_vector(6 downto 0) := "00110010";
+	signal THREE       : std_logic_vector(6 downto 0) := "00110011";
 	
 	
 	
@@ -142,46 +146,86 @@ begin
 	process(contagem)
 	begin
 		if unsigned(contagem) = 0 then
-			saida <= O;
+			if result = "1000000" then
+				saida <= ZERO;
+			elsif result = "1111001" then
+				saida <= ONE;
+			elsif result = "0100100" then
+				saida <= TWO;
+			elsif result = "0110000" then
+				saida <= THREE;
+			end if;
 			
 		elsif unsigned(contagem) = 1 then
 			saida <= ESP;
 			
 		elsif unsigned(contagem) = 2 then
-			saida <= V;
+			if player0CardsSum(13 downto 7) = "1000000" then
+				saida <= ZERO;
+			elsif player0CardsSum(13 downto 7) = "1111001" then
+				saida <= ONE;
+			elsif player0CardsSum(13 downto 7) = "0100100" then
+				saida <= TWO;
+			elsif player0CardsSum(13 downto 7) = "0110000" then
+				saida <= THREE;
+			elsif player0CardsSum(13 downto 7) = "0011001" then
+				saida <= FOUR;
+			elsif player0CardsSum(13 downto 7) = "0010010" then
+				saida <= FIVE;
+			elsif player0CardsSum(13 downto 7) = "0000010" then
+				saida <= SIX;
+			elsif player0CardsSum(13 downto 7) = "1111000" then
+				saida <= SEVEN;
+			elsif player0CardsSum(13 downto 7) = "0000000" then
+				saida <= EIGHT;
+			elsif player0CardsSum(13 downto 7) = "0011000" then
+				saida <= NINE;
+			elsif player0CardsSum(13 downto 7) = "0001000" then
+				saida <= A;
+			elsif player0CardsSum(13 downto 7) = "0000011" then
+				saida <= B;
+			elsif player0CardsSum(13 downto 7) = "1000110" then
+				saida <= C;
+			elsif player0CardsSum(13 downto 7) = "0100001" then
+				saida <= D;
+			elsif player0CardsSum(13 downto 7) = "0000110" then
+				saida <= E;
+			elsif player0CardsSum(13 downto 7) = "0001110" then
+				saida <= F;
+
 			
 		elsif unsigned(contagem) = 3 then
-			saida <= E;
+			saida <= ESP;
 			
 		elsif unsigned(contagem) = 4 then
-			saida <= N;
+			saida <= ESP;
 			
 		elsif unsigned(contagem) = 5 then
-			saida <= C;
+			saida <= ESP;
 			
 		elsif unsigned(contagem) = 6 then
-			saida <= E;
+			saida <= ESP;
 			
 		elsif unsigned(contagem) = 7 then
-			saida <= D;
+			saida <= ESP;
 			
 		elsif unsigned(contagem) = 8 then
-			saida <= O;
+			saida <= ESP;
 			
 		elsif unsigned(contagem) = 9 then
-			saida <= R;
+			saida <= ESP;
 			
 		elsif unsigned(contagem) = 10 then
 			saida <= ESP;
 			
 		elsif unsigned(contagem) = 11 then
-			saida <= E;
+			saida <= ESP;
 			
 		elsif unsigned(contagem) = 12 then
-			saida <= H;
+			saida <= ESP;
 			
 		elsif unsigned(contagem) = 13 then
-			saida <= DOIS_PONTOS;
+			saida <= ESP;
 			
 		elsif unsigned(contagem) = 14 then
 			saida <= ESP;
