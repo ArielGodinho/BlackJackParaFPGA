@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 
-entity imprime_vencedor is
+entity Printer is
 	port(clock : in std_logic;
 		reset           : in  std_logic;
 		imprime         : in  std_logic;
@@ -15,9 +15,9 @@ entity imprime_vencedor is
 	);
 	
 	
-end imprime_vencedor;
+end Printer;
 
-architecture exemplo of imprime_vencedor is
+architecture exemplo of Printer is
 	
 	type tipo_estado is (inicial, imprime_char, espera, prox_char, final);
 	signal estado : tipo_estado;
