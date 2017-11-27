@@ -29,7 +29,46 @@ entity TerminalInterface is
 end TerminalInterface;
 
 architecture arch of TerminalInterface is
-	
+	signal sDealCardsToPlayer0   : std_logic;
+	signal sDealCardsToPlayer1   : std_logic;
+	signal sStopDealingToPlayer0 : std_logic;
+	signal sStopDealingToPlayer1 : std_logic;
 begin
-	
+	process (clock, reset, dadoRecepcao, temDadoRecebido)
+	begin 
+		if reset = '1' then
+			sDealCardsToPlayer0   <= '0';
+			sDealCardsToPlayer1   <= '0';
+			sStopDealingToPlayer0 <= '0';
+			sStopDealingToPlayer1 <= '0'; 
+		elsif(rising_edge(clock)) then
+			if temDadoRecebido = '1' then
+				case dadoRecepcao is
+					when "10000010" => -- A - Deal P0
+						sDealCardsToPlayer0 <= '1';
+					when "11000110" => -- S - Deal P1
+						sDealCardsToPlayer1 <= '1';
+					when "10001101" => -- F - Stop P0
+						sStopDealingToPlayer0 <= '1';
+					when "10001110" => -- G - Stop P1
+						sStopDealingToPlayer1 <= '1';
+						
+					when others => 
+						sDealCardsToPlayer0   <= '0';
+						sDealCardsToPlayer1   <= '0';
+						sStopDealingToPlayer0 <= '0';
+						sStopDealingToPlayer1 <= '0'; 
+				end case;
+			else
+				sDealCardsToPlayer0   <= '0';
+				sDealCardsToPlayer1   <= '0';
+				sStopDealingToPlayer0 <= '0';
+				sStopDealingToPlayer1 <= '0'; 
+			end if;
+		end if;
+	end process; 
+	dealCardsToPlayer0   <= sDealCardsToPlayer0;
+	dealCardsToPlayer1   <= sDealCardsToPlayer1;
+	stopDealingToPlayer0 <= sStopDealingToPlayer0;
+	stopDealingToPlayer1 <= sStopDealingToPlayer1; 
 end arch;
