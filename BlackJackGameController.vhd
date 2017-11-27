@@ -9,7 +9,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL; 
 
-entity GameController is
+entity BlackJackGameController is
     port(
         clock               : in std_logic;
         reset               : in std_logic;
@@ -29,9 +29,9 @@ entity GameController is
         player1Cards        : out std_logic_vector(59 downto 0);
         debugTopCard        : out std_logic_vector(5 downto 0)
     );
-end GameController;
+end BlackJackGameController;
 
-architecture arch of GameController is
+architecture arch of BlackJackGameController is
     component Deck is
         port (
             clock        : in  std_logic;

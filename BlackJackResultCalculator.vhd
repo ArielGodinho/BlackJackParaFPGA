@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
 
-entity ResultCalculator is
+entity BlackJackResultCalculator is
 	port(
 		clock          : in  std_logic;
 		playerOneCards : in  std_logic_vector(59 downto 0);
@@ -16,9 +16,9 @@ entity ResultCalculator is
 		debugPlayerOneCardsSum : out integer;
 		debugPlayerTwoCardsSum : out integer
 	);
-end ResultCalculator;
+end BlackJackResultCalculator;
 
-architecture arch of ResultCalculator is
+architecture arch of BlackJackResultCalculator is
 	signal playerOneStillHasCards : std_logic;
 	signal playerTwoStillHasCards : std_logic;
 	signal playerOneCardsSum      : integer;

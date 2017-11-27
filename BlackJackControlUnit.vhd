@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity ControlUnit is
+entity BlackJackControlUnit is
 	port(
 		clock: in std_logic;
 		reset: in std_logic;
@@ -15,9 +15,9 @@ entity ControlUnit is
 		calculateResult: out std_logic;
 		showResult: out std_logic
 	);
-end ControlUnit;
+end BlackJackControlUnit;
 
-architecture arch of ControlUnit is
+architecture arch of BlackJackControlUnit is
 
 	type state_type is (start, dealingCards, firstPlayerTurn, secondPlayerTurn, calculatingResult, waiting, showingResult);
 	signal state: state_type;
