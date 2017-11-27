@@ -75,6 +75,7 @@ architecture arch of TopLevelEntity is
 			player0CardsSum         : in  std_logic_vector(13 downto 0);
 			player1CardsSum         : in  std_logic_vector(13 downto 0);
 			result                  : in  std_logic_vector(6 downto 0);
+			nextRound                  : in  std_logic;
 			dealCardsToPlayer0      : out std_logic;
 			dealCardsToPlayer1      : out std_logic;
 			stopDealingToPlayer0    : out std_logic;

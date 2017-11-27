@@ -53,17 +53,22 @@ architecture exemplo of Printer is
 	signal DOIS_PONTOS : std_logic_vector(6 downto 0) := "0111010";
 	signal CR          : std_logic_vector(6 downto 0) := "0001101";
 	signal LF          : std_logic_vector(6 downto 0) := "0001010";
-	signal ZERO        : std_logic_vector(6 downto 0) := "00110000";
-	signal ONE         : std_logic_vector(6 downto 0) := "00110001";
-	signal TWO         : std_logic_vector(6 downto 0) := "00110010";
-	signal THREE       : std_logic_vector(6 downto 0) := "00110011";
+	signal ZERO        : std_logic_vector(6 downto 0) := "0110000";
+	signal ONE         : std_logic_vector(6 downto 0) := "0110001";
+	signal TWO         : std_logic_vector(6 downto 0) := "0110010";
+	signal THREE       : std_logic_vector(6 downto 0) := "0110011";
+	signal FOUR        : std_logic_vector(6 downto 0) := "0110100";
+	signal FIVE        : std_logic_vector(6 downto 0) := "0110101";
+	signal SIX         : std_logic_vector(6 downto 0) := "0110110";
+	signal SEVEN       : std_logic_vector(6 downto 0) := "0110111";
+	signal EIGHT       : std_logic_vector(6 downto 0) := "0111000";
+	signal NINE        : std_logic_vector(6 downto 0) := "0111001";
 	
 	
 	
 	
 	component PrinterCounter is
 		port(clock : in std_logic;
-			tick     : in  std_logic;
 			clear    : in  std_logic;
 			enable   : in  std_logic;
 			contagem : out std_logic_vector(3 downto 0);
@@ -76,7 +81,7 @@ architecture exemplo of Printer is
 	
 begin
 	
-		cont : PrinterCounter port map(clock, '1', reset, conta, contagem, fim_conta);
+		cont : PrinterCounter port map(clock, '0', '1', contagem, fim_conta);
 	
 	process (clock, fim_transmissao)
 	begin
@@ -192,7 +197,7 @@ begin
 				saida <= E;
 			elsif player0CardsSum(13 downto 7) = "0001110" then
 				saida <= F;
-
+			end if;
 			
 		elsif unsigned(contagem) = 3 then
 			saida <= ESP;
