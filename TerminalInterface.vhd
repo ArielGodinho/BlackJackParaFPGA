@@ -46,7 +46,7 @@ begin
 				case dadoRecepcao is
 					when "10000010" => -- A - Deal P0
 						sDealCardsToPlayer0 <= '1';
-					when "11000110" => -- S - Deal P1
+					when "10100110" => -- S - Deal P1
 						sDealCardsToPlayer1 <= '1';
 					when "10001101" => -- F - Stop P0
 						sStopDealingToPlayer0 <= '1';
