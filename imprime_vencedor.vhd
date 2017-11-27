@@ -6,7 +6,6 @@ entity imprime_vencedor is
 	port(clock : in std_logic;
 		reset           : in  std_logic;
 		imprime         : in  std_logic;
-		vencedor        : in  std_logic_vector(1 downto 0);
 		fim_transmissao : in  std_logic;
 		player0CardsSum : in  std_logic_vector(13 downto 0);
 		player1CardsSum : in  std_logic_vector(13 downto 0);
@@ -52,6 +51,8 @@ architecture exemplo of imprime_vencedor is
 	signal Z           : std_logic_vector(6 downto 0) := "1011010";
 	signal ESP         : std_logic_vector(6 downto 0) := "0100000";
 	signal DOIS_PONTOS : std_logic_vector(6 downto 0) := "0111010";
+	signal CR          : std_logic_vector(6 downto 0) := "0001101";
+	signal LF          : std_logic_vector(6 downto 0) := "0001010";
 	
 	
 	
@@ -73,7 +74,7 @@ begin
 	
 		cont : PrinterCounter port map(clock, '1', reset, conta, contagem, fim_conta);
 	
-	process (clock, vencedor,fim_transmissao)
+	process (clock, fim_transmissao)
 	begin
 		
 		
@@ -185,11 +186,11 @@ begin
 		elsif unsigned(contagem) = 14 then
 			saida <= ESP;
 			
-		elsif unsigned(contagem) = 15 AND vencedor = "10" then
-			saida <= A;
+		elsif unsigned(contagem) = 15 then
+			saida <= CR;
 			
-		elsif unsigned(contagem) = 15 AND vencedor = "01" then
-			saida <= B;
+		elsif unsigned(contagem) = 15 then
+			saida <= LF;
 			
 		end if;
 		
