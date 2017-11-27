@@ -4,7 +4,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 
-entity contador_vencedor is
+entity PrinterCounter is
     port(clock 		: in  std_logic;
         clear 		: in  std_logic;
         enable		: in  std_logic;
@@ -12,9 +12,9 @@ entity contador_vencedor is
         entrada	: in  std_logic_vector(3 downto 0);
         contagem	: out std_logic_vector(3 downto 0);
         fim			: out std_logic);
-end contador_vencedor;
+end PrinterCounter;
 
-architecture exemplo of contador_vencedor is
+architecture exemplo of PrinterCounter is
 signal IQ: unsigned(3 downto 0);
 
 
