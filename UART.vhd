@@ -16,8 +16,7 @@ entity UART is
 
 		recebeDado				: in  std_logic;
 		--Outputs
-		hexaInterface0			: out std_logic_vector(6 downto 0);
-		hexaInterface1			: out std_logic_vector(6 downto 0);
+		dadoRecepcao 			: out std_logic_vector(7 downto 0);
 		paridadeOk     			: out std_logic;
 
 		saidaSerial  			: out std_logic;
@@ -25,21 +24,20 @@ entity UART is
 
 		temDadoRecebido			: out std_logic;
 		--Debug
+		hexaInterface0			: out std_logic_vector(6 downto 0);
+		hexaInterface1			: out std_logic_vector(6 downto 0);
 		hexaRecepcao0			: out std_logic_vector(6 downto 0);
 		hexaRecepcao1			: out std_logic_vector(6 downto 0);		
 		subClockRunning 		: out std_logic;
-		dadoRecepcao 			: out std_logic_vector(7 downto 0);
 		saidasEstadoRecepcao 	: out std_logic_vector(3 downto 0);
 		clockInternoRecepcao	: out std_logic;
 		countRecepcao  		  	: out std_logic_vector(0 to 3);
-
 		registradorTransmissao	: out std_logic_vector(11 downto 0);
 		countTransmissao		: out std_logic_vector(0 to 3);
 		clockInternoTransmissao	: out std_logic;
 		resetCountDebug 		: out std_logic;
 		loadRegisterDebug 		: out std_logic;
 		shiftRegisterDebug 		: out std_logic;
-
 		dadoRegistrador			: out std_logic_vector(7 downto 0);
 		dadoDisplay 			: out std_logic_vector(7 downto 0)
 	);
