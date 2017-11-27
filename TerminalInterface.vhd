@@ -12,6 +12,7 @@ entity TerminalInterface is
 		player0CardsSum      : in  std_logic_vector(13 downto 0);
 		player1CardsSum      : in  std_logic_vector(13 downto 0);
 		result               : in  std_logic_vector(6 downto 0); 
+		nextRound				: in std_logic;
 		dealCardsToPlayer0   : out std_logic;
 		dealCardsToPlayer1   : out std_logic;
 		stopDealingToPlayer0 : out std_logic;
@@ -29,11 +30,38 @@ entity TerminalInterface is
 end TerminalInterface;
 
 architecture arch of TerminalInterface is
+    component Printer is
+        port (
+            clock           : in  std_logic;
+            reset           : in  std_logic;
+            imprime         : in  std_logic;
+            fim_transmissao : in  std_logic;
+            player0CardsSum : in  std_logic_vector(13 downto 0);
+            player1CardsSum : in  std_logic_vector(13 downto 0);
+            result          : in  std_logic_vector(6 downto 0);
+            transmite_dado  : out std_logic;
+            saida           : out std_logic_vector(6 downto 0)
+        );
+    end component Printer;
+
 	signal sDealCardsToPlayer0   : std_logic;
 	signal sDealCardsToPlayer1   : std_logic;
 	signal sStopDealingToPlayer0 : std_logic;
 	signal sStopDealingToPlayer1 : std_logic;
 begin
+    printer1 : Printer
+        port map (
+            clock           => clock,
+            reset           => reset,
+            imprime         => nextRound,
+            fim_transmissao => not trasmissaoEmAndadamento,
+            player0CardsSum => player0CardsSum,
+            player1CardsSum => player1CardsSum,
+            result          => result,
+            transmite_dado  => transmiteDado,
+            saida           => dadoTransmissao
+        );	
+
 	process (clock, reset, dadoRecepcao, temDadoRecebido)
 	begin 
 		if reset = '1' then

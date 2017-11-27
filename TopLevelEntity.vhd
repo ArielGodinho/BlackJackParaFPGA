@@ -101,6 +101,7 @@ architecture arch of TopLevelEntity is
 	signal sDadoRecepcao : std_logic_vector(7 downto 0);
 	signal sTrasmissaoEmAndadamento : std_logic;
 	signal sTemDadoRecebido : std_logic;
+	signal sNextRound:std_logic;
 begin
     bj : Blackjack
         port map (
@@ -118,7 +119,7 @@ begin
             debugPlayer1CardsSum => open,
             lastCardTaken        => open,
             result               => sResult,
-            nextRound            => open,
+            nextRound            => sNextRound,
             playerTurn           => open,
             dealCardsOut         => open,
             calculateResult      => open,
@@ -161,6 +162,7 @@ begin
             player0CardsSum         => sPlayer0CardsSum,
             player1CardsSum         => sPlayer1CardsSum,
             result                  => sResult,
+			nextRound				=> sNextRound,
             dealCardsToPlayer0      => sDealCardToPlayer0,
             dealCardsToPlayer1      => sDealCardToPlayer1,
             stopDealingToPlayer0    => sStopDealingToPlayer0,
