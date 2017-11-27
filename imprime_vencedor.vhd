@@ -9,7 +9,14 @@ entity imprime_vencedor is
 		vencedor        : in  std_logic_vector(1 downto 0);
 		fim_transmissao : in  std_logic;
 		transmite_dado  : out std_logic;
-		saida           : out std_logic_vector(6 downto 0));
+		saida           : out std_logic_vector(6 downto 0);
+
+		player0CardsSum: in std_logic_vector(13 downto 0);
+		player1CardsSum: in std_logic_vector(13 downto 0);
+		result: in std_logic_vector(6 downto 0)
+		);
+
+
 end imprime_vencedor;
 
 architecture exemplo of imprime_vencedor is
