@@ -56,7 +56,7 @@ architecture exemplo of imprime_vencedor is
 	
 	
 	
-	component contador is
+	component PrinterCounter is
 		port(clock : in std_logic;
 			tick     : in  std_logic;
 			clear    : in  std_logic;
@@ -71,7 +71,7 @@ architecture exemplo of imprime_vencedor is
 	
 begin
 	
-		cont : contador port map(clock, '1', reset, conta, contagem, fim_conta);
+		cont : PrinterCounter port map(clock, '1', reset, conta, contagem, fim_conta);
 	
 	process (clock, vencedor,fim_transmissao)
 	begin
