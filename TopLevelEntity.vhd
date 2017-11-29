@@ -11,7 +11,7 @@ entity TopLevelEntity is
 
 		debugUartDadoRecepcao: out std_logic_vector(7 downto 0);
 		debugHexaRecepcao0           : out std_logic_vector(6 downto 0);
-		debugHexaRecepcao1           : out std_logic_vector(6 downto 0)
+		debugHexaRecepcao1           : out std_logic_vector(6 downto 0);
 		debugSubClockRunning: out std_logic
 	);
 end TopLevelEntity;
