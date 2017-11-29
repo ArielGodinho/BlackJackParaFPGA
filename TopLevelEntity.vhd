@@ -7,7 +7,9 @@ entity TopLevelEntity is
 		clock         : in  std_logic;
 		reset         : in  std_logic;
 		entradaSerial : in  std_logic;
-		saidaSerial   : out std_logic
+		saidaSerial   : out std_logic;
+
+		debugUartDadoRecepcao: out std_logic_vector(7 downto 0)
 	);
 end TopLevelEntity;
 
@@ -131,7 +133,7 @@ begin
             clock                   => clock,
             reset                   => reset,
             entradaSerial           => entradaSerial,
-            transmiteDado           => sTransmiteDado,
+            transmiteDado           => '1',
             dadoTransmissao         => sDadoTransmissao,
             recebeDado              => sRecebeDado,
             dadoRecepcao            => sDadoRecepcao,
@@ -175,4 +177,6 @@ begin
             recebeDado              => sRecebeDado,
             dadoTransmissao         => sDadoTransmissao
         );	
+
+    debugUartDadoRecepcao <= sDadoRecepcao;
 end arch;
