@@ -18,8 +18,8 @@ begin
 		if clear = '1' then
 			temp <= "00000000";
 		elsif (rising_edge(clock) and enable='1') then
-			temp(7 downto 1) <= temp(6 downto 0);
-			temp(0) <= inputData;
+			temp(6 downto 0) <= temp(7 downto 1);
+			temp(7) <= inputData;
 		end if;
 		temp2 <= not (temp(7) xor temp(6) xor temp(5) xor temp(4) xor temp(3) xor temp(2) xor temp(1) xor temp(0));
 	end process;
