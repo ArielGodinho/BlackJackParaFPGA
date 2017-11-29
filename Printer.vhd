@@ -11,7 +11,9 @@ entity Printer is
 		player1CardsSum : in  std_logic_vector(13 downto 0);
 		result          : in  std_logic_vector(6 downto 0);
 		transmite_dado  : out std_logic;
-		saida           : out std_logic_vector(6 downto 0)
+		saida           : out std_logic_vector(6 downto 0);
+		debugContagem: out std_logic_vector(3 downto 0);
+		debugEstado: out std_logic_vector(2 downto 0)
 	);
 	
 	
@@ -82,6 +84,7 @@ architecture exemplo of Printer is
 begin
 	
 		cont : PrinterCounter port map(clock, '0', '1', contagem, fim_conta);
+		debugContagem <= contagem;
 	
 	process (clock, fim_transmissao)
 	begin
@@ -129,21 +132,26 @@ begin
 			when inicial => 
 				transmite_dado <= '0';
 				conta          <= '0';
+				debugEstado <= "000";
 				
 			when imprime_char => 
 				transmite_dado <= '1';
 				conta          <= '0';
+				debugEstado <= "001";
 			when espera => 
 				transmite_dado <= '0';
 				conta          <= '0';
+				debugEstado <= "010";
 				
 			when prox_char => 
 				transmite_dado <= '0';
 				conta          <= '1';
+				debugEstado <= "011";
 				
 			when final => 
 				transmite_dado <= '0';
 				conta          <= '0';
+				debugEstado <= "100";
 		end case;
 	end process;
 	

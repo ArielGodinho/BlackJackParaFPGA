@@ -10,8 +10,16 @@ entity TopLevelEntity is
 		saidaSerial   : out std_logic;
 
 		debugUartDadoRecepcao: out std_logic_vector(7 downto 0);
-		debugClockInternoRecepcao: out std_logic
-	);
+		debugClockInternoRecepcao: out std_logic;
+		debugDealCardsToPlayer0      : out std_logic;
+		debugDealCardsToPlayer1      : out std_logic;
+		debugPlayer0CardsSum      : out std_logic_vector(13 downto 0);
+		debugPlayer1CardsSum      : out std_logic_vector(13 downto 0);
+		debugNextRound: out std_logic;
+		debugSaidaPrinter: out std_logic_vector(6 downto 0);
+		debugContagem: out std_logic_vector(3 downto 0);
+		debugEstado: out std_logic_vector(2 downto 0)
+		);
 end TopLevelEntity;
 
 architecture arch of TopLevelEntity is
@@ -88,7 +96,9 @@ architecture arch of TopLevelEntity is
 			temDadoRecebido         : in  std_logic;
 			transmiteDado           : out std_logic;
 			recebeDado              : out std_logic;
-			dadoTransmissao         : out std_logic_vector(6 downto 0)
+			dadoTransmissao         : out std_logic_vector(6 downto 0);
+			debugContagem: out std_logic_vector(3 downto 0);
+			debugEstado: out std_logic_vector(2 downto 0)
 		);
 	end component TerminalInterface; 
 
@@ -107,6 +117,8 @@ architecture arch of TopLevelEntity is
 	signal sTemDadoRecebido : std_logic;
 	signal sNextRound:std_logic;
 	signal sClockInternoRecepcao: std_logic;
+	signal sDebugContagem: std_logic_vector(3 downto 0);
+	signal sDebugEstado: std_logic_vector(2 downto 0);
 begin
     bj : Blackjack
         port map (
@@ -135,7 +147,7 @@ begin
             clock                   => clock,
             reset                   => reset,
             entradaSerial           => entradaSerial,
-            transmiteDado           => '0',
+            transmiteDado           => '1',
             dadoTransmissao         => sDadoTransmissao,
             recebeDado              => '1',
             dadoRecepcao            => sDadoRecepcao,
@@ -177,9 +189,19 @@ begin
             temDadoRecebido         => sTemDadoRecebido,
             transmiteDado           => sTransmiteDado,
             recebeDado              => sRecebeDado,
-            dadoTransmissao         => sDadoTransmissao
+            dadoTransmissao         => sDadoTransmissao,
+				debugContagem => sDebugContagem,
+				debugEstado => sDebugEstado
         );	
 
     debugUartDadoRecepcao <= sDadoRecepcao;
 	 debugClockInternoRecepcao <= sClockInternoRecepcao;
+	 debugDealCardsToPlayer0      <= sDealCardToPlayer0;
+    debugDealCardsToPlayer1      <= sDealCardToPlayer1;
+	 debugPlayer0CardsSum      <= sPlayer0CardsSum;
+    debugPlayer1CardsSum      <= sPlayer1CardsSum;
+	 debugNextRound <= sNextRound;
+	 debugSaidaPrinter <= sDadoTransmissao;
+	 debugContagem <= sDebugContagem;
+	 debugEstado <= sDebugEstado;
 end arch;

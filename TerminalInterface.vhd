@@ -25,7 +25,9 @@ entity TerminalInterface is
 		temDadoRecebido         : in  std_logic; 
 		transmiteDado           : out std_logic;
 		recebeDado              : out std_logic;
-		dadoTransmissao         : out std_logic_vector(6 downto 0)
+		dadoTransmissao         : out std_logic_vector(6 downto 0);
+		debugContagem: out std_logic_vector(3 downto 0);
+		debugEstado: out std_logic_vector(2 downto 0)
 	);
 end TerminalInterface;
 
@@ -40,7 +42,9 @@ architecture arch of TerminalInterface is
             player1CardsSum : in  std_logic_vector(13 downto 0);
             result          : in  std_logic_vector(6 downto 0);
             transmite_dado  : out std_logic;
-            saida           : out std_logic_vector(6 downto 0)
+            saida           : out std_logic_vector(6 downto 0);
+				debugContagem: out std_logic_vector(3 downto 0);
+				debugEstado: out std_logic_vector(2 downto 0)
         );
     end component Printer;
 
@@ -48,6 +52,8 @@ architecture arch of TerminalInterface is
 	signal sDealCardsToPlayer1   : std_logic;
 	signal sStopDealingToPlayer0 : std_logic;
 	signal sStopDealingToPlayer1 : std_logic;
+	signal sDebugContagem: std_logic_vector(3 downto 0);
+	signal sDebugEstado: std_logic_vector(2 downto 0);
 begin
     printer1 : Printer
         port map (
@@ -72,13 +78,25 @@ begin
 		elsif(rising_edge(clock)) then
 			if temDadoRecebido = '1' then
 				case dadoRecepcao is
-					when "10000010" => -- A - Deal P0
-						sDealCardsToPlayer0 <= '1';
-					when "10100110" => -- S - Deal P1
-						sDealCardsToPlayer1 <= '1';
-					when "10001101" => -- F - Stop P0
+					when "01000001" => -- A - Deal P0
+						sDealCardsToPlayer0   <= '1';
+						sDealCardsToPlayer1   <= '0';
+						sStopDealingToPlayer0 <= '0';
+						sStopDealingToPlayer1 <= '0';
+					when "01010011" => -- S - Deal P1
+						sDealCardsToPlayer0   <= '0';
+						sDealCardsToPlayer1   <= '1';
+						sStopDealingToPlayer0 <= '0';
+						sStopDealingToPlayer1 <= '0';
+					when "11000110" => -- F - Stop P0
+						sDealCardsToPlayer0   <= '0';
+						sDealCardsToPlayer1   <= '0';
 						sStopDealingToPlayer0 <= '1';
-					when "10001110" => -- G - Stop P1
+						sStopDealingToPlayer1 <= '0';
+					when "01000111" => -- G - Stop P1
+						sDealCardsToPlayer0   <= '0';
+						sDealCardsToPlayer1   <= '0';
+						sStopDealingToPlayer0 <= '0';
 						sStopDealingToPlayer1 <= '1';
 						
 					when others => 
@@ -98,5 +116,7 @@ begin
 	dealCardsToPlayer0   <= sDealCardsToPlayer0;
 	dealCardsToPlayer1   <= sDealCardsToPlayer1;
 	stopDealingToPlayer0 <= sStopDealingToPlayer0;
-	stopDealingToPlayer1 <= sStopDealingToPlayer1; 
+	stopDealingToPlayer1 <= sStopDealingToPlayer1;
+	debugContagem <= sDebugContagem;
+	debugEstado <= sDebugEstado;
 end arch;
