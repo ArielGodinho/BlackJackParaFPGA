@@ -9,7 +9,10 @@ entity TopLevelEntity is
 		entradaSerial : in  std_logic;
 		saidaSerial   : out std_logic;
 
-		debugUartDadoRecepcao: out std_logic_vector(7 downto 0)
+		debugUartDadoRecepcao: out std_logic_vector(7 downto 0);
+		debugHexaRecepcao0           : out std_logic_vector(6 downto 0);
+		debugHexaRecepcao1           : out std_logic_vector(6 downto 0)
+		debugSubClockRunning: out std_logic;
 	);
 end TopLevelEntity;
 
@@ -105,6 +108,10 @@ architecture arch of TopLevelEntity is
 	signal sTrasmissaoEmAndadamento : std_logic;
 	signal sTemDadoRecebido : std_logic;
 	signal sNextRound:std_logic;
+	
+	signal sHexaRecepcao0           : std_logic_vector(6 downto 0);
+	signal sHexaRecepcao1           :  std_logic_vector(6 downto 0);
+	signal sSubClockRunning: std_logic;
 begin
     bj : Blackjack
         port map (
@@ -133,9 +140,9 @@ begin
             clock                   => clock,
             reset                   => reset,
             entradaSerial           => entradaSerial,
-            transmiteDado           => '1',
+            transmiteDado           => '0',
             dadoTransmissao         => sDadoTransmissao,
-            recebeDado              => sRecebeDado,
+            recebeDado              => '1',
             dadoRecepcao            => sDadoRecepcao,
             paridadeOk              => open,
             saidaSerial             => saidaSerial,
@@ -143,9 +150,9 @@ begin
             temDadoRecebido         => sTemDadoRecebido,
             hexaInterface0          => open,
             hexaInterface1          => open,
-            hexaRecepcao0           => open,
-            hexaRecepcao1           => open,
-            subClockRunning         => open,
+            hexaRecepcao0           => sHexaRecepcao0,
+            hexaRecepcao1           => sHexaRecepcao1,
+            subClockRunning         => sSubClockRunning,
             saidasEstadoRecepcao    => open,
             clockInternoRecepcao    => open,
             countRecepcao           => open,
@@ -179,4 +186,7 @@ begin
         );	
 
     debugUartDadoRecepcao <= sDadoRecepcao;
+	 debugHexaRecepcao0 <= sHexaRecepcao0;
+	 debugHexaRecepcao1 <= sHexaRecepcao1;
+	 debugSubClockRunning <= sSubClockRunning;
 end arch;

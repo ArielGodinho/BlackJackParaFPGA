@@ -4,7 +4,7 @@ use IEEE.numeric_std.ALL;
  
 entity RecepcaoClockGenerator is
 	generic(
-	      M: integer := 50000000/1200     -- modulo do contador
+	      M: integer := 4     -- modulo do contador
 	   );
 	port (
 		clk, reset: in std_logic;
