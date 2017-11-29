@@ -10,9 +10,7 @@ entity TopLevelEntity is
 		saidaSerial   : out std_logic;
 
 		debugUartDadoRecepcao: out std_logic_vector(7 downto 0);
-		debugHexaRecepcao0           : out std_logic_vector(6 downto 0);
-		debugHexaRecepcao1           : out std_logic_vector(6 downto 0);
-		debugSubClockRunning: out std_logic
+		debugClockInternoRecepcao: out std_logic
 	);
 end TopLevelEntity;
 
@@ -108,10 +106,7 @@ architecture arch of TopLevelEntity is
 	signal sTrasmissaoEmAndadamento : std_logic;
 	signal sTemDadoRecebido : std_logic;
 	signal sNextRound:std_logic;
-	
-	signal sHexaRecepcao0           : std_logic_vector(6 downto 0);
-	signal sHexaRecepcao1           :  std_logic_vector(6 downto 0);
-	signal sSubClockRunning: std_logic;
+	signal sClockInternoRecepcao: std_logic;
 begin
     bj : Blackjack
         port map (
@@ -150,11 +145,11 @@ begin
             temDadoRecebido         => sTemDadoRecebido,
             hexaInterface0          => open,
             hexaInterface1          => open,
-            hexaRecepcao0           => sHexaRecepcao0,
-            hexaRecepcao1           => sHexaRecepcao1,
-            subClockRunning         => sSubClockRunning,
+            hexaRecepcao0           => open,
+            hexaRecepcao1           => open,
+            subClockRunning         => open,
             saidasEstadoRecepcao    => open,
-            clockInternoRecepcao    => open,
+            clockInternoRecepcao    => sClockInternoRecepcao,
             countRecepcao           => open,
             registradorTransmissao  => open,
             countTransmissao        => open,
@@ -186,7 +181,5 @@ begin
         );	
 
     debugUartDadoRecepcao <= sDadoRecepcao;
-	 debugHexaRecepcao0 <= sHexaRecepcao0;
-	 debugHexaRecepcao1 <= sHexaRecepcao1;
-	 debugSubClockRunning <= sSubClockRunning;
+	 debugClockInternoRecepcao <= sClockInternoRecepcao;
 end arch;
