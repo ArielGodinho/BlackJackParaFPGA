@@ -21,9 +21,6 @@ end TransmissaoFluxoDeDados;
 architecture exemplo of TransmissaoFluxoDeDados is
 
     component TransmissaoClockGenerator is
-        generic (
-            M : integer := 41667
-        );
         port (
             clk, reset                 : in  std_logic;
             clock_out, subClockRunning : out std_logic

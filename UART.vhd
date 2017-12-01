@@ -40,8 +40,7 @@ entity UART is
 		shiftRegisterDebug 		: out std_logic;
 		dadoRegistrador			: out std_logic_vector(7 downto 0);
 		dadoDisplay 			: out std_logic_vector(7 downto 0);
-		debugEstadoTransUC: out std_logic_vector(1 downto 0);
-		debugClockInternoTransmissao: out std_logic
+		debugEstadoTransUC: out std_logic_vector(1 downto 0)
 	);
 end UART;
 
@@ -142,6 +141,4 @@ begin
 	sHex0 <= sDadoParaleloDisplay(4) & sDadoParaleloDisplay(5) & sDadoParaleloDisplay(6) & sDadoParaleloDisplay(7);
 	dadoRegistrador <= sDadoParaleloInterface;
 	dadoDisplay <= sDadoParaleloDisplay;
-	
-	debugClockInternoTransmissao <= sSubClockRunning;
 end arch;

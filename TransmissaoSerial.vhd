@@ -61,7 +61,7 @@ signal sDebugEstadoTransUC: std_logic_vector(1 downto 0);
 	
 begin 
 	
-	k1 : TransmissaoUnidadeControle port map (sClockInterno, reset, enviar, sCount, pronto, sResetCount, sLoadRegister, sShiftRegister, sDebugEstadoTransUC);
+	k1 : TransmissaoUnidadeControle port map (clock, reset, enviar, sCount, pronto, sResetCount, sLoadRegister, sShiftRegister, sDebugEstadoTransUC);
 	k2 : TransmissaoFluxoDeDados port map (clock, reset, dadoParalelo, sResetCount, sLoadRegister, sShiftRegister, sCount, saidaSerial, sClockInterno, conteudoRegistrador, subClockRunning);
 				
 

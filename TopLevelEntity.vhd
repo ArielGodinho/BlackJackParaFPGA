@@ -80,8 +80,7 @@ architecture arch of TopLevelEntity is
 			shiftRegisterDebug      : out std_logic;
 			dadoRegistrador         : out std_logic_vector(7 downto 0);
 			dadoDisplay             : out std_logic_vector(7 downto 0);
-			debugEstadoTransUC: out std_logic_vector(1 downto 0);
-			debugClockInternoTransmissao: out std_logic
+			debugEstadoTransUC: out std_logic_vector(1 downto 0)
 		);
 	end component UART;
 	
@@ -171,14 +170,13 @@ begin
             countRecepcao           => open,
             registradorTransmissao  => open,
             countTransmissao        => open,
-            clockInternoTransmissao => open,
+            clockInternoTransmissao => debugClockInternoTransmissao,
             resetCountDebug         => open,
             loadRegisterDebug       => open,
             shiftRegisterDebug      => open,
             dadoRegistrador         => open,
             dadoDisplay             => open,
-				debugEstadoTransUC => debugEstadoTransUC,
-				debugClockInternoTransmissao => debugClockInternoTransmissao
+				debugEstadoTransUC => debugEstadoTransUC
         );	
     interface : TerminalInterface
         port map (
