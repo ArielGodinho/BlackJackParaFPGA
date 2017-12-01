@@ -273,9 +273,6 @@ begin
 			saida <= ESP;
 			
 		elsif unsigned(contagem) = 14 then
-			saida <= ESP;
-			
-		elsif unsigned(contagem) = 15 then
 			saida <= CR;
 			
 		elsif unsigned(contagem) = 15 then
