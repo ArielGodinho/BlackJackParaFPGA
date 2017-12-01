@@ -65,7 +65,9 @@ begin
             player1CardsSum => player1CardsSum,
             result          => result,
             transmite_dado  => transmiteDado,
-            saida           => dadoTransmissao
+            saida           => dadoTransmissao,
+				debugContagem => sDebugContagem,
+				debugEstado => sDebugEstado
         );	
 
 	process (clock, reset, dadoRecepcao, temDadoRecebido)
