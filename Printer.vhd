@@ -21,7 +21,7 @@ end Printer;
 
 architecture exemplo of Printer is
 	
-	type tipo_estado is (inicial, imprime_char, espera, delay, prox_char);
+	type tipo_estado is (inicial, imprime_char, espera, doCount, delay, prox_char);
 	signal estado : tipo_estado;
 	
 	
@@ -107,9 +107,12 @@ begin
 					
 				when espera => 
 					if fim_transmissao = '1' then
-						estado     <= delay;
+						estado     <= doCount;
 						delayCount <= 0;
 					end if;
+
+				when doCount => 
+					estado <= delay;
 					
 				when delay => 
 					if delayCount = 50 then
@@ -146,20 +149,26 @@ begin
 				transmite_dado <= '1';
 				conta          <= '0';
 				debugEstado    <= "001";
+
 			when espera => 
 				transmite_dado <= '0';
 				conta          <= '0';
 				debugEstado    <= "010";
+
+			when doCount => 
+				transmite_dado <= '0';
+				conta          <= '1';
+				debugEstado    <= "011";
 				
 			when delay => 
 				transmite_dado <= '0';
 				conta          <= '0';
-				debugEstado    <= "011";
+				debugEstado    <= "100";
 				
 			when prox_char => 
 				transmite_dado <= '0';
-				conta          <= '1';
-				debugEstado    <= "100";
+				conta          <= '0';
+				debugEstado    <= "101";
 		end case;
 	end process;
 	
