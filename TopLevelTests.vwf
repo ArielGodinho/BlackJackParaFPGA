@@ -22,6 +22,7 @@ run -all
 quit -f
 
 
+
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
@@ -40,6 +41,7 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
 
 
 </modelsim_script_timing>
@@ -750,36 +752,6 @@ SIGNAL("debugClockInternoTransmissao")
 	PARENT = "";
 }
 
-SIGNAL("debugEstadoTransUC")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = BUS;
-	WIDTH = 2;
-	LSB_INDEX = 0;
-	DIRECTION = OUTPUT;
-	PARENT = "";
-}
-
-SIGNAL("debugEstadoTransUC[1]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "debugEstadoTransUC";
-}
-
-SIGNAL("debugEstadoTransUC[0]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "debugEstadoTransUC";
-}
-
 SIGNAL("debugRegistradorTransmissao")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
@@ -908,6 +880,16 @@ SIGNAL("debugRegistradorTransmissao[0]")
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
 	PARENT = "debugRegistradorTransmissao";
+}
+
+SIGNAL("debugTemDadoRecebido")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
 }
 
 TRANSITION_LIST("clock")
@@ -1471,24 +1453,6 @@ TRANSITION_LIST("debugClockInternoTransmissao")
 	}
 }
 
-TRANSITION_LIST("debugEstadoTransUC[1]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL X FOR 2000.0;
-	}
-}
-
-TRANSITION_LIST("debugEstadoTransUC[0]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL X FOR 2000.0;
-	}
-}
-
 TRANSITION_LIST("debugRegistradorTransmissao[11]")
 {
 	NODE
@@ -1589,6 +1553,15 @@ TRANSITION_LIST("debugRegistradorTransmissao[1]")
 }
 
 TRANSITION_LIST("debugRegistradorTransmissao[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 2000.0;
+	}
+}
+
+TRANSITION_LIST("debugTemDadoRecebido")
 {
 	NODE
 	{
@@ -2258,17 +2231,17 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "debugEstadoTransUC";
+	CHANNEL = "debugRegistradorTransmissao";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 67;
 	TREE_LEVEL = 0;
-	CHILDREN = 68, 69;
+	CHILDREN = 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "debugEstadoTransUC[1]";
+	CHANNEL = "debugRegistradorTransmissao[11]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 68;
@@ -2278,7 +2251,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "debugEstadoTransUC[0]";
+	CHANNEL = "debugRegistradorTransmissao[10]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 69;
@@ -2288,42 +2261,12 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "debugRegistradorTransmissao";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 70;
-	TREE_LEVEL = 0;
-	CHILDREN = 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "debugRegistradorTransmissao[11]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 71;
-	TREE_LEVEL = 1;
-	PARENT = 70;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "debugRegistradorTransmissao[10]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 72;
-	TREE_LEVEL = 1;
-	PARENT = 70;
-}
-
-DISPLAY_LINE
-{
 	CHANNEL = "debugRegistradorTransmissao[9]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 73;
+	TREE_INDEX = 70;
 	TREE_LEVEL = 1;
-	PARENT = 70;
+	PARENT = 67;
 }
 
 DISPLAY_LINE
@@ -2331,9 +2274,9 @@ DISPLAY_LINE
 	CHANNEL = "debugRegistradorTransmissao[8]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 74;
+	TREE_INDEX = 71;
 	TREE_LEVEL = 1;
-	PARENT = 70;
+	PARENT = 67;
 }
 
 DISPLAY_LINE
@@ -2341,9 +2284,9 @@ DISPLAY_LINE
 	CHANNEL = "debugRegistradorTransmissao[7]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 75;
+	TREE_INDEX = 72;
 	TREE_LEVEL = 1;
-	PARENT = 70;
+	PARENT = 67;
 }
 
 DISPLAY_LINE
@@ -2351,9 +2294,9 @@ DISPLAY_LINE
 	CHANNEL = "debugRegistradorTransmissao[6]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 76;
+	TREE_INDEX = 73;
 	TREE_LEVEL = 1;
-	PARENT = 70;
+	PARENT = 67;
 }
 
 DISPLAY_LINE
@@ -2361,9 +2304,9 @@ DISPLAY_LINE
 	CHANNEL = "debugRegistradorTransmissao[5]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 77;
+	TREE_INDEX = 74;
 	TREE_LEVEL = 1;
-	PARENT = 70;
+	PARENT = 67;
 }
 
 DISPLAY_LINE
@@ -2371,9 +2314,9 @@ DISPLAY_LINE
 	CHANNEL = "debugRegistradorTransmissao[4]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 78;
+	TREE_INDEX = 75;
 	TREE_LEVEL = 1;
-	PARENT = 70;
+	PARENT = 67;
 }
 
 DISPLAY_LINE
@@ -2381,9 +2324,9 @@ DISPLAY_LINE
 	CHANNEL = "debugRegistradorTransmissao[3]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 79;
+	TREE_INDEX = 76;
 	TREE_LEVEL = 1;
-	PARENT = 70;
+	PARENT = 67;
 }
 
 DISPLAY_LINE
@@ -2391,9 +2334,9 @@ DISPLAY_LINE
 	CHANNEL = "debugRegistradorTransmissao[2]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 80;
+	TREE_INDEX = 77;
 	TREE_LEVEL = 1;
-	PARENT = 70;
+	PARENT = 67;
 }
 
 DISPLAY_LINE
@@ -2401,9 +2344,9 @@ DISPLAY_LINE
 	CHANNEL = "debugRegistradorTransmissao[1]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 81;
+	TREE_INDEX = 78;
 	TREE_LEVEL = 1;
-	PARENT = 70;
+	PARENT = 67;
 }
 
 DISPLAY_LINE
@@ -2411,9 +2354,18 @@ DISPLAY_LINE
 	CHANNEL = "debugRegistradorTransmissao[0]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 82;
+	TREE_INDEX = 79;
 	TREE_LEVEL = 1;
-	PARENT = 70;
+	PARENT = 67;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "debugTemDadoRecebido";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 80;
+	TREE_LEVEL = 0;
 }
 
 TIME_BAR

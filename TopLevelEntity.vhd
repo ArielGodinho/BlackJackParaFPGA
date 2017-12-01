@@ -22,7 +22,8 @@ entity TopLevelEntity is
 		debugTransmiteDado           : out std_logic;
 		debugEstadoTransUC           : out std_logic_vector(1 downto 0);
 		debugClockInternoTransmissao : out std_logic;
-		debugRegistradorTransmissao  : out std_logic_vector(11 downto 0)
+		debugRegistradorTransmissao  : out std_logic_vector(11 downto 0);
+		debugTemDadoRecebido         : out std_logic
 	);
 end TopLevelEntity;
 
@@ -212,4 +213,5 @@ begin
 	debugEstado                 <= sDebugEstado;
 	debugTransmissaoEmAndamento <= sTransmissaoEmAndadamento;
 	debugTransmiteDado          <= sTransmiteDado;
+	debugTemDadoRecebido        <= sTemDadoRecebido;
 end arch;

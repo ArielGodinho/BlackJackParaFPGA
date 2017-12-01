@@ -131,7 +131,7 @@ begin
 
 
 	saidasEstadoRecepcao <= sSaidasRecepcao;
-	temDadoRecebido <= sTemDadoRecebido;
+	temDadoRecebido <= sDadoFoiRecebido;
 	dadoRecepcao <= sDadoParaleloRecepcao;
 
 	trasmissaoEmAndadamento <= not sPronto;
