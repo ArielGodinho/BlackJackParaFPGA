@@ -11,7 +11,9 @@ entity Printer is
 		player1CardsSum : in  std_logic_vector(13 downto 0);
 		result          : in  std_logic_vector(6 downto 0);
 		transmite_dado  : out std_logic;
-		saida           : out std_logic_vector(6 downto 0)
+		saida           : out std_logic_vector(6 downto 0);
+		debugContagem   : out std_logic_vector(3 downto 0);
+		debugEstado     : out std_logic_vector(2 downto 0)
 	);
 	
 	
@@ -19,7 +21,7 @@ end Printer;
 
 architecture exemplo of Printer is
 	
-	type tipo_estado is (inicial, imprime_char, espera, prox_char, final);
+	type tipo_estado is (inicial, imprime_char, espera, doCount, delay, prox_char);
 	signal estado : tipo_estado;
 	
 	
@@ -53,17 +55,22 @@ architecture exemplo of Printer is
 	signal DOIS_PONTOS : std_logic_vector(6 downto 0) := "0111010";
 	signal CR          : std_logic_vector(6 downto 0) := "0001101";
 	signal LF          : std_logic_vector(6 downto 0) := "0001010";
-	signal ZERO        : std_logic_vector(6 downto 0) := "00110000";
-	signal ONE         : std_logic_vector(6 downto 0) := "00110001";
-	signal TWO         : std_logic_vector(6 downto 0) := "00110010";
-	signal THREE       : std_logic_vector(6 downto 0) := "00110011";
+	signal ZERO        : std_logic_vector(6 downto 0) := "0110000";
+	signal ONE         : std_logic_vector(6 downto 0) := "0110001";
+	signal TWO         : std_logic_vector(6 downto 0) := "0110010";
+	signal THREE       : std_logic_vector(6 downto 0) := "0110011";
+	signal FOUR        : std_logic_vector(6 downto 0) := "0110100";
+	signal FIVE        : std_logic_vector(6 downto 0) := "0110101";
+	signal SIX         : std_logic_vector(6 downto 0) := "0110110";
+	signal SEVEN       : std_logic_vector(6 downto 0) := "0110111";
+	signal EIGHT       : std_logic_vector(6 downto 0) := "0111000";
+	signal NINE        : std_logic_vector(6 downto 0) := "0111001";
 	
 	
 	
 	
 	component PrinterCounter is
 		port(clock : in std_logic;
-			tick     : in  std_logic;
 			clear    : in  std_logic;
 			enable   : in  std_logic;
 			contagem : out std_logic_vector(3 downto 0);
@@ -73,17 +80,20 @@ architecture exemplo of Printer is
 	
 	signal conta, fim_conta : std_logic;
 	signal contagem         : std_logic_vector(3 downto 0);
+	signal delayCount       : integer := 0;
 	
 begin
 	
-		cont : PrinterCounter port map(clock, '1', reset, conta, contagem, fim_conta);
+		cont : PrinterCounter port map(clock, '0', conta, contagem, fim_conta);
+	debugContagem <= contagem;
 	
 	process (clock, fim_transmissao)
 	begin
 		
 		
 		if reset = '1' then
-			estado <= inicial;
+			estado     <= inicial;
+			delayCount <= 0;
 			
 		elsif (clock'event and clock = '1') then
 			case estado is
@@ -97,17 +107,26 @@ begin
 					
 				when espera => 
 					if fim_transmissao = '1' then
+						estado     <= doCount;
+						delayCount <= 0;
+					end if;
+
+				when doCount => 
+					estado <= delay;
+					
+				when delay => 
+					if delayCount = 50000 then
 						estado <= prox_char;
+					else
+						delayCount <= delayCount + 1;
 					end if;
 					
 				when prox_char => 
 					if fim_conta = '1' then
-						estado <= final;
+						estado <= inicial;
 					else
 						estado <= imprime_char;
 					end if;
-					
-				when final => 
 					
 					
 			end case;
@@ -124,21 +143,32 @@ begin
 			when inicial => 
 				transmite_dado <= '0';
 				conta          <= '0';
+				debugEstado    <= "000";
 				
 			when imprime_char => 
 				transmite_dado <= '1';
 				conta          <= '0';
+				debugEstado    <= "001";
+
 			when espera => 
 				transmite_dado <= '0';
 				conta          <= '0';
+				debugEstado    <= "010";
+
+			when doCount => 
+				transmite_dado <= '0';
+				conta          <= '1';
+				debugEstado    <= "011";
+				
+			when delay => 
+				transmite_dado <= '0';
+				conta          <= '0';
+				debugEstado    <= "100";
 				
 			when prox_char => 
 				transmite_dado <= '0';
-				conta          <= '1';
-				
-			when final => 
-				transmite_dado <= '0';
 				conta          <= '0';
+				debugEstado    <= "101";
 		end case;
 	end process;
 	
@@ -192,19 +222,115 @@ begin
 				saida <= E;
 			elsif player0CardsSum(13 downto 7) = "0001110" then
 				saida <= F;
-
+			end if;
 			
 		elsif unsigned(contagem) = 3 then
-			saida <= ESP;
+			if player0CardsSum(6 downto 0) = "1000000" then
+				saida <= ZERO;
+			elsif player0CardsSum(6 downto 0) = "1111001" then
+				saida <= ONE;
+			elsif player0CardsSum(6 downto 0) = "0100100" then
+				saida <= TWO;
+			elsif player0CardsSum(13 downto 0) = "0110000" then
+				saida <= THREE;
+			elsif player0CardsSum(6 downto 0) = "0011001" then
+				saida <= FOUR;
+			elsif player0CardsSum(6 downto 0) = "0010010" then
+				saida <= FIVE;
+			elsif player0CardsSum(6 downto 0) = "0000010" then
+				saida <= SIX;
+			elsif player0CardsSum(6 downto 0) = "1111000" then
+				saida <= SEVEN;
+			elsif player0CardsSum(6 downto 0) = "0000000" then
+				saida <= EIGHT;
+			elsif player0CardsSum(6 downto 0) = "0011000" then
+				saida <= NINE;
+			elsif player0CardsSum(6 downto 0) = "0001000" then
+				saida <= A;
+			elsif player0CardsSum(6 downto 0) = "0000011" then
+				saida <= B;
+			elsif player0CardsSum(6 downto 0) = "1000110" then
+				saida <= C;
+			elsif player0CardsSum(6 downto 0) = "0100001" then
+				saida <= D;
+			elsif player0CardsSum(6 downto 0) = "0000110" then
+				saida <= E;
+			elsif player0CardsSum(6 downto 0) = "0001110" then
+				saida <= F;
+			end if;
 			
 		elsif unsigned(contagem) = 4 then
 			saida <= ESP;
 			
 		elsif unsigned(contagem) = 5 then
-			saida <= ESP;
+			if player1CardsSum(13 downto 7) = "1000000" then
+				saida <= ZERO;
+			elsif player1CardsSum(13 downto 7) = "1111001" then
+				saida <= ONE;
+			elsif player1CardsSum(13 downto 7) = "0100100" then
+				saida <= TWO;
+			elsif player1CardsSum(13 downto 7) = "0110000" then
+				saida <= THREE;
+			elsif player1CardsSum(13 downto 7) = "0011001" then
+				saida <= FOUR;
+			elsif player1CardsSum(13 downto 7) = "0010010" then
+				saida <= FIVE;
+			elsif player1CardsSum(13 downto 7) = "0000010" then
+				saida <= SIX;
+			elsif player1CardsSum(13 downto 7) = "1111000" then
+				saida <= SEVEN;
+			elsif player1CardsSum(13 downto 7) = "0000000" then
+				saida <= EIGHT;
+			elsif player1CardsSum(13 downto 7) = "0011000" then
+				saida <= NINE;
+			elsif player1CardsSum(13 downto 7) = "0001000" then
+				saida <= A;
+			elsif player1CardsSum(13 downto 7) = "0000011" then
+				saida <= B;
+			elsif player1CardsSum(13 downto 7) = "1000110" then
+				saida <= C;
+			elsif player1CardsSum(13 downto 7) = "0100001" then
+				saida <= D;
+			elsif player1CardsSum(13 downto 7) = "0000110" then
+				saida <= E;
+			elsif player1CardsSum(13 downto 7) = "0001110" then
+				saida <= F;
+			end if;
 			
 		elsif unsigned(contagem) = 6 then
-			saida <= ESP;
+			if player1CardsSum(6 downto 0) = "1000000" then
+				saida <= ZERO;
+			elsif player1CardsSum(6 downto 0) = "1111001" then
+				saida <= ONE;
+			elsif player1CardsSum(6 downto 0) = "0100100" then
+				saida <= TWO;
+			elsif player1CardsSum(13 downto 0) = "0110000" then
+				saida <= THREE;
+			elsif player1CardsSum(6 downto 0) = "0011001" then
+				saida <= FOUR;
+			elsif player1CardsSum(6 downto 0) = "0010010" then
+				saida <= FIVE;
+			elsif player1CardsSum(6 downto 0) = "0000010" then
+				saida <= SIX;
+			elsif player1CardsSum(6 downto 0) = "1111000" then
+				saida <= SEVEN;
+			elsif player1CardsSum(6 downto 0) = "0000000" then
+				saida <= EIGHT;
+			elsif player1CardsSum(6 downto 0) = "0011000" then
+				saida <= NINE;
+			elsif player1CardsSum(6 downto 0) = "0001000" then
+				saida <= A;
+			elsif player1CardsSum(6 downto 0) = "0000011" then
+				saida <= B;
+			elsif player1CardsSum(6 downto 0) = "1000110" then
+				saida <= C;
+			elsif player1CardsSum(6 downto 0) = "0100001" then
+				saida <= D;
+			elsif player1CardsSum(6 downto 0) = "0000110" then
+				saida <= E;
+			elsif player1CardsSum(6 downto 0) = "0001110" then
+				saida <= F;
+			end if;
 			
 		elsif unsigned(contagem) = 7 then
 			saida <= ESP;
@@ -228,9 +354,6 @@ begin
 			saida <= ESP;
 			
 		elsif unsigned(contagem) = 14 then
-			saida <= ESP;
-			
-		elsif unsigned(contagem) = 15 then
 			saida <= CR;
 			
 		elsif unsigned(contagem) = 15 then

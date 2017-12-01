@@ -39,7 +39,8 @@ entity UART is
 		loadRegisterDebug 		: out std_logic;
 		shiftRegisterDebug 		: out std_logic;
 		dadoRegistrador			: out std_logic_vector(7 downto 0);
-		dadoDisplay 			: out std_logic_vector(7 downto 0)
+		dadoDisplay 			: out std_logic_vector(7 downto 0);
+		debugEstadoTransUC: out std_logic_vector(1 downto 0)
 	);
 end UART;
 
@@ -59,7 +60,8 @@ architecture arch of UART is
             clockInterno        : out std_logic;
             resetCountDebug     : out std_logic;
             loadRegisterDebug   : out std_logic;
-            shiftRegisterDebug  : out std_logic
+            shiftRegisterDebug  : out std_logic;
+				debugEstadoTransUC: out std_logic_vector(1 downto 0)
         );
     end component TransmissaoSerial;
 
@@ -106,7 +108,7 @@ begin
 	g4 : HexadecimalDisplay port map (sHex1, hexaInterface1);
 	g5 : HexadecimalDisplay port map (sHex0, hexaInterface0);
 
-	k1 : TransmissaoSerial port map (clock, reset, transmiteDado, dadoTransmissao, saidaSerial, sPronto, registradorTransmissao, sSubClockRunning, countTransmissao, clockInternoTransmissao, resetCountDebug, loadRegisterDebug, shiftRegisterDebug);
+	k1 : TransmissaoSerial port map (clock, reset, transmiteDado, dadoTransmissao, saidaSerial, sPronto, registradorTransmissao, sSubClockRunning, countTransmissao, clockInternoTransmissao, resetCountDebug, loadRegisterDebug, shiftRegisterDebug, debugEstadoTransUC);
 	k2 : RecepcaoSerial port map (reset, clock, entradaSerial, paridadeOk, hexaRecepcao1, hexaRecepcao0, subClockRunning, sDadoParaleloRecepcao, sSaidasRecepcao, clockInternoRecepcao, countRecepcao);
 
 	sDadoFoiRecebido <= not (sSaidasRecepcao(3) or sSaidasRecepcao(2) or sSaidasRecepcao(1) or sSaidasRecepcao(0));

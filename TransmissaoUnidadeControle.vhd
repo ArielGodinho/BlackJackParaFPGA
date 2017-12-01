@@ -10,7 +10,8 @@ entity TransmissaoUnidadeControle is
     	pronto					: out std_logic;
     	resetCount 				: out std_logic; 
         loadRegister       		: out std_logic; 
-        shiftRegister      		: out std_logic
+        shiftRegister      		: out std_logic;
+		  debugEstadoTransUC: out std_logic_vector(1 downto 0)
     );
 end TransmissaoUnidadeControle;
 
@@ -33,7 +34,7 @@ begin
 					end if;
 
 				when transmitting =>		-- espera o contador chegar a 11 para parar de transmitir
-					if count = "1100" then
+					if count = "1101" then
 						estado <= done;
 					else
 						estado <= transmitting;
@@ -58,16 +59,19 @@ begin
 				resetCount <= '1';
 				loadRegister <= '1';
 				shiftRegister <= '0';
+				debugEstadoTransUC <= "00";
 			when transmitting =>
 				pronto <= '0';
 				resetCount <= '0';
 				loadRegister <= '0';
 				shiftRegister <= '1';
+				debugEstadoTransUC <= "01";
 			when done =>
 				pronto <= '1';
 				resetCount <= '1';
 				loadRegister <= '0';
 				shiftRegister <= '0';
+				debugEstadoTransUC <= "10";
 		end case;
    end process;
 end exemplo;
