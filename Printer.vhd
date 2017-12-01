@@ -12,8 +12,8 @@ entity Printer is
 		result          : in  std_logic_vector(6 downto 0);
 		transmite_dado  : out std_logic;
 		saida           : out std_logic_vector(6 downto 0);
-		debugContagem: out std_logic_vector(3 downto 0);
-		debugEstado: out std_logic_vector(2 downto 0)
+		debugContagem   : out std_logic_vector(3 downto 0);
+		debugEstado     : out std_logic_vector(2 downto 0)
 	);
 	
 	
@@ -21,7 +21,7 @@ end Printer;
 
 architecture exemplo of Printer is
 	
-	type tipo_estado is (inicial, imprime_char, espera, prox_char, final);
+	type tipo_estado is (inicial, imprime_char, espera, delay, prox_char);
 	signal estado : tipo_estado;
 	
 	
@@ -80,18 +80,20 @@ architecture exemplo of Printer is
 	
 	signal conta, fim_conta : std_logic;
 	signal contagem         : std_logic_vector(3 downto 0);
+	signal delayCount       : integer := 0;
 	
 begin
 	
 		cont : PrinterCounter port map(clock, '0', conta, contagem, fim_conta);
-		debugContagem <= contagem;
+	debugContagem <= contagem;
 	
 	process (clock, fim_transmissao)
 	begin
 		
 		
 		if reset = '1' then
-			estado <= inicial;
+			estado     <= inicial;
+			delayCount <= 0;
 			
 		elsif (clock'event and clock = '1') then
 			case estado is
@@ -105,17 +107,23 @@ begin
 					
 				when espera => 
 					if fim_transmissao = '1' then
-						estado <= espera;
+						estado     <= delay;
+						delayCount <= 0;
+					end if;
+					
+				when delay => 
+					if delayCount = 50 then
+						estado <= prox_char;
+					else
+						delayCount <= delayCount + 1;
 					end if;
 					
 				when prox_char => 
 					if fim_conta = '1' then
-						estado <= final;
+						estado <= inicial;
 					else
 						estado <= imprime_char;
 					end if;
-					
-				when final => 
 					
 					
 			end case;
@@ -132,26 +140,26 @@ begin
 			when inicial => 
 				transmite_dado <= '0';
 				conta          <= '0';
-				debugEstado <= "000";
+				debugEstado    <= "000";
 				
 			when imprime_char => 
 				transmite_dado <= '1';
 				conta          <= '0';
-				debugEstado <= "001";
+				debugEstado    <= "001";
 			when espera => 
 				transmite_dado <= '0';
 				conta          <= '0';
-				debugEstado <= "010";
+				debugEstado    <= "010";
+				
+			when delay => 
+				transmite_dado <= '0';
+				conta          <= '0';
+				debugEstado    <= "011";
 				
 			when prox_char => 
 				transmite_dado <= '0';
 				conta          <= '1';
-				debugEstado <= "011";
-				
-			when final => 
-				transmite_dado <= '0';
-				conta          <= '0';
-				debugEstado <= "100";
+				debugEstado    <= "100";
 		end case;
 	end process;
 	

@@ -34,7 +34,7 @@ begin
 					end if;
 
 				when transmitting =>		-- espera o contador chegar a 11 para parar de transmitir
-					if count = "1100" then
+					if count = "1101" then
 						estado <= done;
 					else
 						estado <= transmitting;
