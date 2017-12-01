@@ -142,7 +142,7 @@ begin
 	dealCardsOut         <= sDealCardsOut;
 	calculateResult      <= sCalculateResult;
 	showResult           <= sShowResult;
-	nextRound            <= sNextRound;
+	nextRound            <= sNextRound and not sGameFinished;
 	debugPlayer0CardsSum <= sPlayer0CardsSumInt;
 	debugPlayer1CardsSum <= sPlayer1CardsSumInt;
 end arch;

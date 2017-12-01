@@ -46,7 +46,11 @@ begin
 				else
 					result <= 0;
 				end if;
-				gameFinished <= '0';
+				if (player0Stopped and player1Stopped) then
+					gameFinished <= '1';
+				else
+					gameFinished <= '0';
+				end if;
 			elsif (playerOneCardsSum <= 21 and playerTwoCardsSum > 21) then
 				result <= 1;
 				gameFinished <= '1';
@@ -58,9 +62,7 @@ begin
 				gameFinished <= '1';
 			end if;
 
-			if (player0Stopped and player1Stopped) then
-				gameFinished <= '1';
-			end if;
+			
 			
 		end if;
 	end process;
