@@ -80,6 +80,7 @@ begin
 		elsif(rising_edge(clock)) then
 			if temDadoRecebido = '1' then
 				case dadoRecepcao is
+					-- UPERCASE
 					when "01000001" => -- A - Deal P0
 						sDealCardsToPlayer0   <= '1';
 						sDealCardsToPlayer1   <= '0';
@@ -96,6 +97,28 @@ begin
 						sStopDealingToPlayer0 <= '0';
 						sStopDealingToPlayer1 <= '0';
 					when "01000111" => -- G - Stop P1
+						sDealCardsToPlayer0   <= '0';
+						sDealCardsToPlayer1   <= '0';
+						sStopDealingToPlayer0 <= '0';
+						sStopDealingToPlayer1 <= '1';
+
+					-- LOWERCASE
+					when "11100001" => -- a - Deal P0
+						sDealCardsToPlayer0   <= '1';
+						sDealCardsToPlayer1   <= '0';
+						sStopDealingToPlayer0 <= '0';
+						sStopDealingToPlayer1 <= '0';
+					when "11110011" => -- s - Stop P0
+						sDealCardsToPlayer0   <= '0';
+						sDealCardsToPlayer1   <= '0';
+						sStopDealingToPlayer0 <= '1';
+						sStopDealingToPlayer1 <= '0';
+					when "01100110" => -- f - Deal P1
+						sDealCardsToPlayer0   <= '0';
+						sDealCardsToPlayer1   <= '1';
+						sStopDealingToPlayer0 <= '0';
+						sStopDealingToPlayer1 <= '0';
+					when "11100111" => -- g - Stop P1
 						sDealCardsToPlayer0   <= '0';
 						sDealCardsToPlayer1   <= '0';
 						sStopDealingToPlayer0 <= '0';
