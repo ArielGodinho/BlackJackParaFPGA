@@ -4,8 +4,8 @@ use IEEE.numeric_std.ALL;
  
 entity TransmissaoClockGenerator is
 	generic(
-	      -- M: integer := 41667     -- modulo do contador real
-			M: integer := 32     -- modulo do contador waveform
+	      M: integer := 41667     -- modulo do contador real
+		  -- M: integer := 32     -- modulo do contador waveform
 	   );
 	port (
 		clk, reset: in std_logic;

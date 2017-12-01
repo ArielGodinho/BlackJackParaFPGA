@@ -115,7 +115,7 @@ begin
 					estado <= delay;
 					
 				when delay => 
-					if delayCount = 50 then
+					if delayCount = 50000 then
 						estado <= prox_char;
 					else
 						delayCount <= delayCount + 1;
@@ -225,9 +225,6 @@ begin
 			end if;
 			
 		elsif unsigned(contagem) = 3 then
-			saida <= ESP;
-			
-		elsif unsigned(contagem) = 4 then
 			if player0CardsSum(6 downto 0) = "1000000" then
 				saida <= ZERO;
 			elsif player0CardsSum(6 downto 0) = "1111001" then
@@ -262,11 +259,78 @@ begin
 				saida <= F;
 			end if;
 			
-		elsif unsigned(contagem) = 5 then
+		elsif unsigned(contagem) = 4 then
 			saida <= ESP;
 			
+		elsif unsigned(contagem) = 5 then
+			if player1CardsSum(13 downto 7) = "1000000" then
+				saida <= ZERO;
+			elsif player1CardsSum(13 downto 7) = "1111001" then
+				saida <= ONE;
+			elsif player1CardsSum(13 downto 7) = "0100100" then
+				saida <= TWO;
+			elsif player1CardsSum(13 downto 7) = "0110000" then
+				saida <= THREE;
+			elsif player1CardsSum(13 downto 7) = "0011001" then
+				saida <= FOUR;
+			elsif player1CardsSum(13 downto 7) = "0010010" then
+				saida <= FIVE;
+			elsif player1CardsSum(13 downto 7) = "0000010" then
+				saida <= SIX;
+			elsif player1CardsSum(13 downto 7) = "1111000" then
+				saida <= SEVEN;
+			elsif player1CardsSum(13 downto 7) = "0000000" then
+				saida <= EIGHT;
+			elsif player1CardsSum(13 downto 7) = "0011000" then
+				saida <= NINE;
+			elsif player1CardsSum(13 downto 7) = "0001000" then
+				saida <= A;
+			elsif player1CardsSum(13 downto 7) = "0000011" then
+				saida <= B;
+			elsif player1CardsSum(13 downto 7) = "1000110" then
+				saida <= C;
+			elsif player1CardsSum(13 downto 7) = "0100001" then
+				saida <= D;
+			elsif player1CardsSum(13 downto 7) = "0000110" then
+				saida <= E;
+			elsif player1CardsSum(13 downto 7) = "0001110" then
+				saida <= F;
+			end if;
+			
 		elsif unsigned(contagem) = 6 then
-			saida <= ESP;
+			if player1CardsSum(6 downto 0) = "1000000" then
+				saida <= ZERO;
+			elsif player1CardsSum(6 downto 0) = "1111001" then
+				saida <= ONE;
+			elsif player1CardsSum(6 downto 0) = "0100100" then
+				saida <= TWO;
+			elsif player1CardsSum(13 downto 0) = "0110000" then
+				saida <= THREE;
+			elsif player1CardsSum(6 downto 0) = "0011001" then
+				saida <= FOUR;
+			elsif player1CardsSum(6 downto 0) = "0010010" then
+				saida <= FIVE;
+			elsif player1CardsSum(6 downto 0) = "0000010" then
+				saida <= SIX;
+			elsif player1CardsSum(6 downto 0) = "1111000" then
+				saida <= SEVEN;
+			elsif player1CardsSum(6 downto 0) = "0000000" then
+				saida <= EIGHT;
+			elsif player1CardsSum(6 downto 0) = "0011000" then
+				saida <= NINE;
+			elsif player1CardsSum(6 downto 0) = "0001000" then
+				saida <= A;
+			elsif player1CardsSum(6 downto 0) = "0000011" then
+				saida <= B;
+			elsif player1CardsSum(6 downto 0) = "1000110" then
+				saida <= C;
+			elsif player1CardsSum(6 downto 0) = "0100001" then
+				saida <= D;
+			elsif player1CardsSum(6 downto 0) = "0000110" then
+				saida <= E;
+			elsif player1CardsSum(6 downto 0) = "0001110" then
+				saida <= F;
+			end if;
 			
 		elsif unsigned(contagem) = 7 then
 			saida <= ESP;
