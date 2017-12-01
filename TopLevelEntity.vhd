@@ -18,7 +18,9 @@ entity TopLevelEntity is
 		debugNextRound: out std_logic;
 		debugSaidaPrinter: out std_logic_vector(6 downto 0);
 		debugContagem: out std_logic_vector(3 downto 0);
-		debugEstado: out std_logic_vector(2 downto 0)
+		debugEstado: out std_logic_vector(2 downto 0);
+		debugTransmissaoEmAndamento: out std_logic;
+		debugTransmiteDado: out std_logic
 		);
 end TopLevelEntity;
 
@@ -113,7 +115,7 @@ architecture arch of TopLevelEntity is
 	signal sDadoTransmissao : std_logic_vector(6 downto 0);
 	signal sRecebeDado : std_logic;
 	signal sDadoRecepcao : std_logic_vector(7 downto 0);
-	signal sTrasmissaoEmAndadamento : std_logic;
+	signal sTransmissaoEmAndadamento : std_logic;
 	signal sTemDadoRecebido : std_logic;
 	signal sNextRound:std_logic;
 	signal sClockInternoRecepcao: std_logic;
@@ -147,13 +149,13 @@ begin
             clock                   => clock,
             reset                   => reset,
             entradaSerial           => entradaSerial,
-            transmiteDado           => '1',
+            transmiteDado           => sTransmiteDado,
             dadoTransmissao         => sDadoTransmissao,
             recebeDado              => '1',
             dadoRecepcao            => sDadoRecepcao,
             paridadeOk              => open,
             saidaSerial             => saidaSerial,
-            trasmissaoEmAndadamento => sTrasmissaoEmAndadamento,
+            trasmissaoEmAndadamento => sTransmissaoEmAndadamento,
             temDadoRecebido         => sTemDadoRecebido,
             hexaInterface0          => open,
             hexaInterface1          => open,
@@ -185,7 +187,7 @@ begin
             stopDealingToPlayer0    => sStopDealingToPlayer0,
             stopDealingToPlayer1    => sStopDealingToPlayer1,
             dadoRecepcao            => sDadoRecepcao,
-            trasmissaoEmAndadamento => sTrasmissaoEmAndadamento,
+            trasmissaoEmAndadamento => sTransmissaoEmAndadamento,
             temDadoRecebido         => sTemDadoRecebido,
             transmiteDado           => sTransmiteDado,
             recebeDado              => sRecebeDado,
@@ -204,4 +206,6 @@ begin
 	 debugSaidaPrinter <= sDadoTransmissao;
 	 debugContagem <= sDebugContagem;
 	 debugEstado <= sDebugEstado;
+	 debugTransmissaoEmAndamento <= sTransmissaoEmAndadamento;
+	 debugTransmiteDado <= sTransmiteDado;
 end arch;
