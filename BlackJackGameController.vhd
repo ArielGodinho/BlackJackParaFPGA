@@ -126,7 +126,7 @@ begin
 	 nextRound <= sNextRound;
     debugTopCard <= sTopCard;
     player0Stopped <= player0.stopped;
-    player0Stopped <= player1.stopped;
+    player1Stopped <= player1.stopped;
 end arch;
 
 
