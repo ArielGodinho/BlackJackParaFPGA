@@ -17,7 +17,8 @@ entity TransmissaoSerial is
 		  clockInterno 			: out std_logic;
 		  resetCountDebug 		: out std_logic;
 		  loadRegisterDebug 	: out std_logic;
-		  shiftRegisterDebug 	: out std_logic
+		  shiftRegisterDebug 	: out std_logic;
+		  debugEstadoTransUC: out std_logic_vector(1 downto 0)
 	);
 end TransmissaoSerial;
 
@@ -30,7 +31,8 @@ architecture exemplo of TransmissaoSerial is
             pronto               : out std_logic;
             resetCount           : out std_logic;
             loadRegister         : out std_logic;
-            shiftRegister        : out std_logic
+            shiftRegister        : out std_logic;
+				debugEstadoTransUC: out std_logic_vector(1 downto 0)
         );
     end component TransmissaoUnidadeControle;
 
@@ -55,10 +57,11 @@ signal sLoadRegister : std_logic;
 signal sShiftRegister : std_logic;
 signal sClockInterno : std_logic;
 signal sCount : std_logic_vector(0 to 3);
+signal sDebugEstadoTransUC: std_logic_vector(1 downto 0);
 	
 begin 
 	
-	k1 : TransmissaoUnidadeControle port map (sClockInterno, reset, enviar, sCount, pronto, sResetCount, sLoadRegister, sShiftRegister);
+	k1 : TransmissaoUnidadeControle port map (sClockInterno, reset, enviar, sCount, pronto, sResetCount, sLoadRegister, sShiftRegister, sDebugEstadoTransUC);
 	k2 : TransmissaoFluxoDeDados port map (clock, reset, dadoParalelo, sResetCount, sLoadRegister, sShiftRegister, sCount, saidaSerial, sClockInterno, conteudoRegistrador, subClockRunning);
 				
 
@@ -67,4 +70,5 @@ begin
 	resetCountDebug <= sResetCount;
 	loadRegisterDebug <= sLoadRegister;
 	shiftRegisterDebug <= sShiftRegister;
+	debugEstadoTransUC <= sDebugEstadoTransUC;
 end exemplo;

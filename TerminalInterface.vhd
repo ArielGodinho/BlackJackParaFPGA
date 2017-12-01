@@ -60,7 +60,7 @@ begin
             clock           => clock,
             reset           => reset,
             imprime         => nextRound,
-            fim_transmissao => not trasmissaoEmAndadamento,
+            fim_transmissao => '0',
             player0CardsSum => player0CardsSum,
             player1CardsSum => player1CardsSum,
             result          => result,

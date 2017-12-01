@@ -20,7 +20,9 @@ entity TopLevelEntity is
 		debugContagem: out std_logic_vector(3 downto 0);
 		debugEstado: out std_logic_vector(2 downto 0);
 		debugTransmissaoEmAndamento: out std_logic;
-		debugTransmiteDado: out std_logic
+		debugTransmiteDado: out std_logic;
+		debugEstadoTransUC: out std_logic_vector(1 downto 0);
+		debugClockInternoTransmissao: out std_logic
 		);
 end TopLevelEntity;
 
@@ -77,7 +79,9 @@ architecture arch of TopLevelEntity is
 			loadRegisterDebug       : out std_logic;
 			shiftRegisterDebug      : out std_logic;
 			dadoRegistrador         : out std_logic_vector(7 downto 0);
-			dadoDisplay             : out std_logic_vector(7 downto 0)
+			dadoDisplay             : out std_logic_vector(7 downto 0);
+			debugEstadoTransUC: out std_logic_vector(1 downto 0);
+			debugClockInternoTransmissao: out std_logic
 		);
 	end component UART;
 	
@@ -172,7 +176,9 @@ begin
             loadRegisterDebug       => open,
             shiftRegisterDebug      => open,
             dadoRegistrador         => open,
-            dadoDisplay             => open
+            dadoDisplay             => open,
+				debugEstadoTransUC => debugEstadoTransUC,
+				debugClockInternoTransmissao => debugClockInternoTransmissao
         );	
     interface : TerminalInterface
         port map (

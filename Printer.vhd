@@ -105,7 +105,7 @@ begin
 					
 				when espera => 
 					if fim_transmissao = '1' then
-						estado <= prox_char;
+						estado <= espera;
 					end if;
 					
 				when prox_char => 
