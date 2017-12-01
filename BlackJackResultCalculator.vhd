@@ -7,6 +7,8 @@ entity BlackJackResultCalculator is
 		clock          : in  std_logic;
 		playerOneCards : in  std_logic_vector(59 downto 0);
 		playerTwoCards : in  std_logic_vector(59 downto 0);
+		player0Stopped: in boolean;
+        player1Stopped: in boolean;
 		result         : out integer;
 		-- 0 -> game continues
 		-- 1 -> player 1 won
@@ -37,7 +39,13 @@ begin
 			playerTwoCardsSum <= to_integer(unsigned(playerTwoCards(5 downto 2))) + to_integer(unsigned(playerTwoCards(11 downto 8))) + to_integer(unsigned(playerTwoCards(17 downto 14))) + to_integer(unsigned(playerTwoCards(23 downto 20))) + to_integer(unsigned(playerTwoCards(29 downto 26))) + to_integer(unsigned(playerTwoCards(35 downto 32))) + to_integer(unsigned(playerTwoCards(41 downto 38))) + to_integer(unsigned(playerTwoCards(47 downto 44))) + to_integer(unsigned(playerTwoCards(53 downto 50))) + to_integer(unsigned(playerTwoCards(59 downto 56)));
 			
 			if (playerOneCardsSum <= 21 and playerTwoCardsSum <= 21) then
-				result <= 0;
+				if (playerOneCardsSum < playerTwoCardsSum) then
+					result <= 2;
+				elsif (playerOneCardsSum > playerTwoCardsSum) then
+					result <= 1;
+				else
+					result <= 0;
+				end if;
 				gameFinished <= '0';
 			elsif (playerOneCardsSum <= 21 and playerTwoCardsSum > 21) then
 				result <= 1;
@@ -47,6 +55,10 @@ begin
 				gameFinished <= '1';
 			elsif (playerOneCardsSum > 21 and playerTwoCardsSum > 21) then
 				result <= 3;
+				gameFinished <= '1';
+			end if;
+
+			if (player0Stopped and player1Stopped) then
 				gameFinished <= '1';
 			end if;
 			

@@ -27,7 +27,10 @@ entity BlackJackGameController is
         --Debug
         player0Cards        : out std_logic_vector(59 downto 0);
         player1Cards        : out std_logic_vector(59 downto 0);
-        debugTopCard        : out std_logic_vector(5 downto 0)
+        debugTopCard        : out std_logic_vector(5 downto 0);
+
+        player0Stopped: out boolean;
+        player1Stopped: out boolean
     );
 end BlackJackGameController;
 
@@ -122,6 +125,8 @@ begin
     player1Cards <= player1.cards;
 	 nextRound <= sNextRound;
     debugTopCard <= sTopCard;
+    player0Stopped <= player0.stopped;
+    player0Stopped <= player1.stopped;
 end arch;
 
 
