@@ -109,9 +109,9 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AA9       :        :                   :      
 debugPlayer1CardsSum[2]      : AA10      : output : 2.5 V             :         : 3B        : Y              
 GND                          : AA11      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AA12      :        :                   :         : 3B        :                
-debugUartDadoRecepcao[5]     : AA13      : output : 2.5 V             :         : 4A        : N              
-debugUartDadoRecepcao[4]     : AA14      : output : 2.5 V             :         : 4A        : N              
-debugUartDadoRecepcao[2]     : AA15      : output : 2.5 V             :         : 4A        : N              
+debugUartDadoRecepcao[2]     : AA13      : output : 2.5 V             :         : 4A        : N              
+debugUartDadoRecepcao[5]     : AA14      : output : 2.5 V             :         : 4A        : N              
+debugUartDadoRecepcao[4]     : AA15      : output : 2.5 V             :         : 4A        : N              
 VCCIO4A                      : AA16      : power  :                   : 2.5V    : 4A        :                
 debugPlayer0CardsSum[12]     : AA17      : output : 2.5 V             :         : 4A        : Y              
 debugPlayer0CardsSum[10]     : AA18      : output : 2.5 V             :         : 4A        : Y              
@@ -130,10 +130,10 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AB8       :        :                   :      
 GND                          : AB9       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB10      :        :                   :         : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB11      :        :                   :         : 3B        :                
-debugUartDadoRecepcao[6]     : AB12      : output : 2.5 V             :         : 4A        : N              
-debugUartDadoRecepcao[7]     : AB13      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AB12      :        :                   :         : 4A        :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : AB13      :        :                   :         : 4A        :                
 GND                          : AB14      : gnd    :                   :         :           :                
-debugDealCardsToPlayer0      : AB15      : output : 2.5 V             :         : 4A        : N              
+debugUartDadoRecepcao[7]     : AB15      : output : 2.5 V             :         : 4A        : N              
 VREFB4AN0                    : AB16      : power  :                   :         : 4A        :                
 debugPlayer1CardsSum[1]      : AB17      : output : 2.5 V             :         : 4A        : Y              
 debugPlayer0CardsSum[11]     : AB18      : output : 2.5 V             :         : 4A        : Y              
@@ -175,7 +175,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : C9        :        :                   :      
 VCCPD7A8A                    : C10       : power  :                   : 2.5V    : 7A, 8A    :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C11       :        :                   :         : 7A        :                
 VCCIO7A                      : C12       : power  :                   : 2.5V    : 7A        :                
-debugDealCardsToPlayer1      : C13       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : C13       :        :                   :         : 7A        :                
 VREFB7AN0                    : C14       : power  :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C15       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C16       :        :                   :         : 7A        :                
@@ -360,7 +360,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : L18       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : L19       :        :                   :         : 5B        :                
 VREFB5BN0                    : L20       : power  :                   :         : 5B        :                
 GND                          : L21       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : L22       :        :                   :         : 5B        :                
+debugClockInternoRecepcao    : L22       : output : 2.5 V             :         : 5B        : N              
 GND                          : M1        : gnd    :                   :         :           :                
 GND                          : M2        : gnd    :                   :         :           :                
 VCCA_FPLL                    : M3        : power  :                   : 2.5V    :           :                
@@ -437,7 +437,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : R7        :        :                   :      
 VCCIO3B                      : R8        : power  :                   : 2.5V    : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : R9        :        :                   :         : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : R10       :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : R11       :        :                   :         : 3B        :                
+debugUartDadoRecepcao[3]     : R11       : output : 2.5 V             :         : 3B        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : R12       :        :                   :         : 3B        :                
 GND                          : R13       : gnd    :                   :         :           :                
 debugSaidaPrinter[3]         : R14       : output : 2.5 V             :         : 4A        : N              
@@ -460,9 +460,9 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : T8        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : T9        :        :                   :         : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : T10       :        :                   :         : 3B        :                
 VCCIO3B                      : T11       : power  :                   : 2.5V    : 3B        :                
-debugUartDadoRecepcao[0]     : T12       : output : 2.5 V             :         : 4A        : N              
-debugUartDadoRecepcao[1]     : T13       : output : 2.5 V             :         : 4A        : N              
-debugSaidaPrinter[1]         : T14       : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : T12       :        :                   :         : 4A        :                
+debugUartDadoRecepcao[6]     : T13       : output : 2.5 V             :         : 4A        : N              
+debugDealCardsToPlayer1      : T14       : output : 2.5 V             :         : 4A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : T15       :        :                   :         : 5A        :                
 GND                          : T16       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : T17       :        :                   :         : 5A        :                
@@ -485,12 +485,12 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : U11       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : U12       :        :                   :         : 3B        :                
 reset                        : U13       : input  : 2.5 V             :         : 4A        : Y              
 VCCIO4A                      : U14       : power  :                   : 2.5V    : 4A        :                
-debugSaidaPrinter[2]         : U15       : output : 2.5 V             :         : 4A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : U16       :        :                   :         : 4A        :                
+debugNextRound               : U15       : output : 2.5 V             :         : 4A        : N              
+debugDealCardsToPlayer0      : U16       : output : 2.5 V             :         : 4A        : N              
 debugPlayer1CardsSum[11]     : U17       : output : 2.5 V             :         : 4A        : Y              
 VCCA_FPLL                    : U18       : power  :                   : 2.5V    :           :                
 VCCIO4A                      : U19       : power  :                   : 2.5V    : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : U20       :        :                   :         : 4A        :                
+debugSaidaPrinter[4]         : U20       : output : 2.5 V             :         : 4A        : N              
 debugPlayer0CardsSum[0]      : U21       : output : 2.5 V             :         : 4A        : Y              
 debugPlayer0CardsSum[13]     : U22       : output : 2.5 V             :         : 4A        : Y              
 GND                          : V1        : gnd    :                   :         :           :                
@@ -505,14 +505,14 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : V9        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : V10       :        :                   :         : 3B        :                
 NC                           : V11       :        :                   :         :           :                
 GND                          : V12       : gnd    :                   :         :           :                
-debugClockInternoRecepcao    : V13       : output : 2.5 V             :         : 4A        : N              
+debugUartDadoRecepcao[0]     : V13       : output : 2.5 V             :         : 4A        : N              
 debugPlayer1CardsSum[4]      : V14       : output : 2.5 V             :         : 4A        : Y              
-debugNextRound               : V15       : output : 2.5 V             :         : 4A        : N              
+debugSaidaPrinter[0]         : V15       : output : 2.5 V             :         : 4A        : N              
 debugPlayer1CardsSum[10]     : V16       : output : 2.5 V             :         : 4A        : Y              
 GND                          : V17       : gnd    :                   :         :           :                
 debugPlayer1CardsSum[12]     : V18       : output : 2.5 V             :         : 4A        : Y              
 debugPlayer1CardsSum[13]     : V19       : output : 2.5 V             :         : 4A        : Y              
-debugSaidaPrinter[0]         : V20       : output : 2.5 V             :         : 4A        : N              
+debugSaidaPrinter[2]         : V20       : output : 2.5 V             :         : 4A        : N              
 debugPlayer0CardsSum[1]      : V21       : output : 2.5 V             :         : 4A        : Y              
 GND                          : V22       : gnd    :                   :         :           :                
 VREFB2AN0                    : W1        : power  :                   :         : 2A        :                
@@ -551,11 +551,11 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : Y11       :        :                   :      
 VREFB3BN0                    : Y12       : power  :                   :         : 3B        :                
 VCCIO3B                      : Y13       : power  :                   : 2.5V    : 3B        :                
 debugPlayer1CardsSum[3]      : Y14       : output : 2.5 V             :         : 4A        : Y              
-debugUartDadoRecepcao[3]     : Y15       : output : 2.5 V             :         : 4A        : N              
+debugUartDadoRecepcao[1]     : Y15       : output : 2.5 V             :         : 4A        : N              
 debugPlayer1CardsSum[7]      : Y16       : output : 2.5 V             :         : 4A        : Y              
 debugPlayer1CardsSum[9]      : Y17       : output : 2.5 V             :         : 4A        : Y              
 GND                          : Y18       : gnd    :                   :         :           :                
 debugPlayer1CardsSum[0]      : Y19       : output : 2.5 V             :         : 4A        : Y              
-debugSaidaPrinter[4]         : Y20       : output : 2.5 V             :         : 4A        : N              
+debugSaidaPrinter[1]         : Y20       : output : 2.5 V             :         : 4A        : N              
 debugPlayer0CardsSum[5]      : Y21       : output : 2.5 V             :         : 4A        : Y              
 debugPlayer0CardsSum[4]      : Y22       : output : 2.5 V             :         : 4A        : Y              
