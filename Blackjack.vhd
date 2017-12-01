@@ -40,7 +40,9 @@ architecture arch of Blackjack is
 			nextRound    : out std_logic;
 			player0Cards : out std_logic_vector(59 downto 0);
 			player1Cards : out std_logic_vector(59 downto 0);
-			debugTopCard : out std_logic_vector(5 downto 0)
+			debugTopCard : out std_logic_vector(5 downto 0);
+			player0Stopped: out boolean;
+	        player1Stopped: out boolean
 		);
 	end component BlackJackGameController;
 	
@@ -65,6 +67,8 @@ architecture arch of Blackjack is
 			clock                  : in  std_logic;
 			playerOneCards         : in  std_logic_vector(59 downto 0);
 			playerTwoCards         : in  std_logic_vector(59 downto 0);
+			player0Stopped: in boolean;
+	        player1Stopped: in boolean;
 			result                 : out integer;
 			gameFinished           : out std_logic;
 			debugPlayerOneCardsSum : out integer;
@@ -107,6 +111,8 @@ architecture arch of Blackjack is
 	signal sPlayer1CardsSumInt   : integer;
 	signal sPlayer0CardsSum      : std_logic_vector(7 downto 0) := std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));
 	signal sPlayer1CardsSum      : std_logic_vector(7 downto 0) := std_logic_vector(to_unsigned(sPlayer1CardsSumInt, 8));
+	signal sPlayer0Stopped: boolean;
+    signal sPlayer1Stopped: boolean;
 	
 begin
 		e0 : EdgeDetector port map (clock, dealCardToPlayer0, sDealCardToPlayer0);
@@ -117,9 +123,9 @@ begin
 	sDealNewCard <= (not sPlayerTurn and sDealCardToPlayer0) or (sPlayerTurn and sDealCardToPlayer1);
 	sStopDealing <= (not sPlayerTurn and sStopDealingToPlayer0) or (sPlayerTurn and sStopDealingToPlayer1);
 	
-		k1 : BlackJackGameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards, lastCardTaken);
+		k1 : BlackJackGameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards, lastCardTaken, sPlayer0Stopped, sPlayer1Stopped);
 		k2 : BlackJackControlUnit port map (clock, reset, '1', sNextRound, reset, sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult);
-		k3 : BlackJackResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sResultInt, sGameFinished, sPlayer0CardsSumInt, sPlayer1CardsSumInt);
+		k3 : BlackJackResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sPlayer0Stopped, sPlayer1Stopped, sResultInt, sGameFinished, sPlayer0CardsSumInt, sPlayer1CardsSumInt);
 	
 	sPlayer0CardsSum <= std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));
 	sPlayer1CardsSum <= std_logic_vector(to_unsigned(sPlayer1CardsSumInt, 8)); 
@@ -136,7 +142,7 @@ begin
 	dealCardsOut         <= sDealCardsOut;
 	calculateResult      <= sCalculateResult;
 	showResult           <= sShowResult;
-	nextRound            <= sNextRound;
+	nextRound            <= sNextRound and not sGameFinished;
 	debugPlayer0CardsSum <= sPlayer0CardsSumInt;
 	debugPlayer1CardsSum <= sPlayer1CardsSumInt;
 end arch;

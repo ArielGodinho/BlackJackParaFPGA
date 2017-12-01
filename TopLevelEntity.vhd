@@ -23,7 +23,8 @@ entity TopLevelEntity is
 		debugEstadoTransUC           : out std_logic_vector(1 downto 0);
 		debugClockInternoTransmissao : out std_logic;
 		debugRegistradorTransmissao  : out std_logic_vector(11 downto 0);
-		debugTemDadoRecebido         : out std_logic
+		debugTemDadoRecebido         : out std_logic;
+		debugLastCardTaken: out std_logic_vector(5 downto 0)
 	);
 end TopLevelEntity;
 
@@ -140,7 +141,7 @@ begin
 			player1CardsSum      => sPlayer1CardsSum,
 			debugPlayer0CardsSum => open,
 			debugPlayer1CardsSum => open,
-			lastCardTaken        => open,
+			lastCardTaken        => debugLastCardTaken,
 			result               => sResult,
 			nextRound            => sNextRound,
 			playerTurn           => open,
