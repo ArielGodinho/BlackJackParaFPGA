@@ -23,7 +23,8 @@ entity Blackjack is
 		dealCardsOut         : out std_logic;
 		calculateResult      : out std_logic;
 		showResult           : out std_logic;
-		trainning: in std_logic
+		trainning: in std_logic;
+		cardGiven: in std_logic_vector(5 downto 0)
 	);
 end Blackjack;
 
@@ -43,7 +44,9 @@ architecture arch of Blackjack is
 			player1Cards : out std_logic_vector(59 downto 0);
 			debugTopCard : out std_logic_vector(5 downto 0);
 			player0Stopped: out boolean;
-	        player1Stopped: out boolean
+	        player1Stopped: out boolean;
+	        trainning: in std_logic;
+	        cardGiven: in std_logic_vector(5 downto 0)
 		);
 	end component BlackJackGameController;
 	
@@ -126,7 +129,7 @@ begin
 	sDealNewCard <= (not sPlayerTurn and sDealCardToPlayer0) or (sPlayerTurn and sDealCardToPlayer1);
 	sStopDealing <= (not sPlayerTurn and sStopDealingToPlayer0) or (sPlayerTurn and sStopDealingToPlayer1);
 	
-		k1 : BlackJackGameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards, lastCardTaken, sPlayer0Stopped, sPlayer1Stopped);
+		k1 : BlackJackGameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards, lastCardTaken, sPlayer0Stopped, sPlayer1Stopped, trainning, cardGiven);
 		k2 : BlackJackControlUnit port map (clock, reset, '1', sNextRound, reset, sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult, trainning, '0');
 		k3 : BlackJackResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sPlayer0Stopped, sPlayer1Stopped, sResultInt, sGameFinished, sPlayer0CardsSumInt, sPlayer1CardsSumInt);
 	

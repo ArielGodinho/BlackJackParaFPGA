@@ -30,7 +30,10 @@ entity BlackJackGameController is
         debugTopCard        : out std_logic_vector(5 downto 0);
 
         player0Stopped: out boolean;
-        player1Stopped: out boolean
+        player1Stopped: out boolean;
+
+        trainning: in std_logic;
+        cardGiven: in std_logic_vector(5 downto 0)
     );
 end BlackJackGameController;
 
@@ -64,12 +67,19 @@ architecture arch of BlackJackGameController is
     signal sNextRound : std_logic := '0';
     signal sTopCard : std_logic_vector(5 downto 0);
 
+    signal sActualCard: std_logic_vector(5 downto 0);
+
 begin
 
     d1 : Deck port map (clock, reset, sShuffleDeck, sNextCard, sTopCard);
 
     process(clock, reset, dealCards, playerTurn, doEndTurn, dealNewCard, stopDealing)
     begin
+        if trainning = '0' then
+            sActualCard <= sTopCard;
+        else
+            sActualCard <= cardGiven;
+        end if;
 		
         if reset='1' then
             player0 <= c_Player;
@@ -94,7 +104,7 @@ begin
 						  sNextRound <= '1';
                 elsif dealNewCard = '1' then
                     player0.cards(59 downto 6) <= player0.cards(53 downto 0);
-                    player0.cards(5 downto 0) <= sTopCard;
+                    player0.cards(5 downto 0) <= sActualCard;
                     player0.cardCount <= player0.cardCount;
                     sNextCard <= '1';
                     sNextRound <= '1';
@@ -108,7 +118,7 @@ begin
 						  sNextRound <= '1';
                 elsif dealNewCard = '1' then
                     player1.cards(59 downto 6) <= player1.cards(53 downto 0);
-                    player1.cards(5 downto 0) <= sTopCard;
+                    player1.cards(5 downto 0) <= sActualCard;
                     player1.cardCount <= player1.cardCount;
                     sNextCard <= '1';
                     sNextRound <= '1';
@@ -124,7 +134,7 @@ begin
     player0Cards <= player0.cards;
     player1Cards <= player1.cards;
 	 nextRound <= sNextRound;
-    debugTopCard <= sTopCard;
+    debugTopCard <= sActualCard;
     player0Stopped <= player0.stopped;
     player1Stopped <= player1.stopped;
 end arch;

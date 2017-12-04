@@ -157,7 +157,8 @@ begin
 			dealCardsOut         => open,
 			calculateResult      => open,
 			showResult           => open,
-			trainning => sTrainning
+			trainning => sTrainning,
+			cardGiven => "000100"
 		);
 	uart1 : UART
 		port map (
