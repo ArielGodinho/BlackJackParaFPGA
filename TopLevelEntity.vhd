@@ -219,6 +219,7 @@ begin
 
 			if (reset = '1') then
 				gameMode <= "00";
+			end if;
 
 			if (gameMode = "01") then -- gameMode = trainning (T)
 				-- add logic to trainning
