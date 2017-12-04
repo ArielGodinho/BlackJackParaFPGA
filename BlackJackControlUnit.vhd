@@ -140,6 +140,18 @@ begin
 				dealCardsOut <= '0';
 				calculateResult <= '0';
 				showResult <= '1';
+
+			when givingCard1 =>
+				playerTurn <= '0';
+				dealCardsOut <= '0';
+				calculateResult <= '0';
+				showResult <= '0';
+
+			when givingCard2 =>
+				playerTurn <= '0';
+				dealCardsOut <= '0';
+				calculateResult <= '0';
+				showResult <= '0';
 		end case;
 	end process;
 
