@@ -132,6 +132,7 @@ architecture arch of TopLevelEntity is
 	signal sPlayingDealCardToPlayer1        : std_logic;
 	signal sPlayingStopDealingToPlayer0     : std_logic;
 	signal sPlayingStopDealingToPlayer1     : std_logic;
+	signal sPlayerTurn     : std_logic;
 begin
 	bj : Blackjack
 		port map (
@@ -150,7 +151,7 @@ begin
 			lastCardTaken        => debugLastCardTaken,
 			result               => sResult,
 			nextRound            => sNextRound,
-			playerTurn           => open,
+			playerTurn           => sPlayerTurn,
 			dealCardsOut         => open,
 			calculateResult      => open,
 			showResult           => open
@@ -222,11 +223,22 @@ begin
 			end if;
 
 			if (gameMode = "01") then -- gameMode = trainning (T)
-				-- add logic to trainning
+				
 				sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
-				sPlayingDealCardToPlayer1 <= '1';
 				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
-				sPlayingStopDealingToPlayer1 <= '0';
+				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
+				sPlayingStopDealingToPlayer1 <= sStopDealingToPlayer0;
+
+				if (sPlayerTurn = '1') then
+					sTemDadoRecebido <= '1';
+					sDadoRecepcao <= "11000110"; 
+				end if;
+
+				sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
+				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
+				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
+				sPlayingStopDealingToPlayer1 <= sStopDealingToPlayer0;
+
 			elsif (gameMode = "10") then -- gameMode = playing (J)
 				sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
 				sPlayingDealCardToPlayer1 <= sDealCardToPlayer1;
