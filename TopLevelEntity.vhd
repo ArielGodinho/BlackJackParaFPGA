@@ -217,6 +217,9 @@ begin
 				gameMode <= "10"; -- playing mode
 			end if;
 
+			if (reset = '1') then
+				gameMode <= "00";
+
 			if (gameMode = "01") then -- gameMode = trainning (T)
 				-- add logic to trainning
 			elsif (gameMode = "10") then -- gameMode = playing (J)
