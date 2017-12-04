@@ -133,8 +133,6 @@ architecture arch of TopLevelEntity is
 	signal sPlayingStopDealingToPlayer0     : std_logic;
 	signal sPlayingStopDealingToPlayer1     : std_logic;
 	signal sPlayerTurn     : std_logic;
-	signal sDadoRecepcaoTerminalInterface     : std_logic_vector(7 downto 0);
-	signal sTemDadoRecebidoTerminalInterface     : std_logic;
 begin
 	bj : Blackjack
 		port map (
@@ -227,17 +225,11 @@ begin
 			if (gameMode = "01") then -- gameMode = trainning (T)
 				
 				if (sPlayerTurn = '1') then
-					-- sTemDadoRecebidoTerminalInterface <= '1';
-					-- sDadoRecepcaoTerminalInterface <= "11000110"; 
-
 					sPlayingDealCardToPlayer0 <= '0';
 					sPlayingDealCardToPlayer1 <= '1';
 					sPlayingStopDealingToPlayer0 <= '0';
 					sPlayingStopDealingToPlayer1 <= '0';
 				else
-					-- sTemDadoRecebidoTerminalInterface <= sTemDadoRecebido;
-					-- sDadoRecepcaoTerminalInterface <= sDadoRecepcao; 	
-
 					sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
 					sPlayingDealCardToPlayer1 <= sDealCardToPlayer1;
 					sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
