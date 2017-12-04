@@ -241,8 +241,6 @@ begin
 				sPlayingDealCardToPlayer1 <= sDealCardToPlayer1;
 				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
 				sPlayingStopDealingToPlayer1 <= sStopDealingToPlayer1;
-				sTemDadoRecebidoTerminalInterface <= sTemDadoRecebido;
-				sDadoRecepcaoTerminalInterface <= sDadoRecepcao;
 			else -- gameMode not set
 				sPlayingDealCardToPlayer0 <= '0';
 				sPlayingDealCardToPlayer1 <= '0';
