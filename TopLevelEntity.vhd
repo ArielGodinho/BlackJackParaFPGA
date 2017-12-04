@@ -223,6 +223,10 @@ begin
 
 			if (gameMode = "01") then -- gameMode = trainning (T)
 				-- add logic to trainning
+				sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
+				sPlayingDealCardToPlayer1 <= '1';
+				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
+				sPlayingStopDealingToPlayer1 <= '0';
 			elsif (gameMode = "10") then -- gameMode = playing (J)
 				sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
 				sPlayingDealCardToPlayer1 <= sDealCardToPlayer1;
