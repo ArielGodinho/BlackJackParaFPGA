@@ -231,6 +231,7 @@ begin
 				sPlayingStopDealingToPlayer1 <= '0';
 			end if;
 		end if;
+	end process;
 	
 	debugUartDadoRecepcao       <= sDadoRecepcao;
 	debugClockInternoRecepcao   <= sClockInternoRecepcao;
