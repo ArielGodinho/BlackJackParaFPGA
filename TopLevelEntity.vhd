@@ -50,7 +50,8 @@ architecture arch of TopLevelEntity is
 			dealCardsOut         : out std_logic;
 			calculateResult      : out std_logic;
 			showResult           : out std_logic;
-			trainning: in std_logic
+			trainning: in std_logic;
+			cardGiven: in std_logic_vector(5 downto 0)
 		);
 	end component Blackjack;
 	
