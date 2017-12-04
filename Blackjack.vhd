@@ -24,7 +24,8 @@ entity Blackjack is
 		calculateResult      : out std_logic;
 		showResult           : out std_logic;
 		trainning: in std_logic;
-		cardGiven: in std_logic_vector(5 downto 0)
+		cardGiven: in std_logic_vector(5 downto 0);
+		cardGivenUc: in std_logic
 	);
 end Blackjack;
 
@@ -130,7 +131,7 @@ begin
 	sStopDealing <= (not sPlayerTurn and sStopDealingToPlayer0) or (sPlayerTurn and sStopDealingToPlayer1);
 	
 		k1 : BlackJackGameController port map (clock, reset, sDealCardsOut, sPlayerTurn, sCalculateResult, sDealNewCard, sStopDealing, sNextRound, sPlayer0cards, sPlayer1cards, lastCardTaken, sPlayer0Stopped, sPlayer1Stopped, trainning, cardGiven);
-		k2 : BlackJackControlUnit port map (clock, reset, '1', sNextRound, reset, sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult, trainning, '0');
+		k2 : BlackJackControlUnit port map (clock, reset, '1', sNextRound, reset, sNextRound, sGameFinished, sPlayerTurn, sDealCardsOut, sCalculateResult, sShowResult, trainning, cardGivenUc);
 		k3 : BlackJackResultCalculator port map (clock, sPlayer0cards, sPlayer1cards, sPlayer0Stopped, sPlayer1Stopped, sResultInt, sGameFinished, sPlayer0CardsSumInt, sPlayer1CardsSumInt);
 	
 	sPlayer0CardsSum <= std_logic_vector(to_unsigned(sPlayer0CardsSumInt, 8));

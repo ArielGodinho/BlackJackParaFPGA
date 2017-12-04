@@ -51,7 +51,8 @@ architecture arch of TopLevelEntity is
 			calculateResult      : out std_logic;
 			showResult           : out std_logic;
 			trainning: in std_logic;
-			cardGiven: in std_logic_vector(5 downto 0)
+			cardGiven: in std_logic_vector(5 downto 0);
+			cardGivenUc: in std_logic
 		);
 	end component Blackjack;
 	
@@ -136,6 +137,7 @@ architecture arch of TopLevelEntity is
 	signal sPlayingStopDealingToPlayer1     : std_logic;
 	signal sPlayerTurn     : std_logic;
 	signal sTrainning     : std_logic;
+	signal sCardGiven: in std_logic_vector(5 downto 0);
 begin
 	bj : Blackjack
 		port map (
@@ -159,7 +161,8 @@ begin
 			calculateResult      => open,
 			showResult           => open,
 			trainning => sTrainning,
-			cardGiven => "000100"
+			cardGiven => "000100",
+			cardGivenUc => sTemDadoRecebido
 		);
 	uart1 : UART
 		port map (
@@ -230,6 +233,14 @@ begin
 
 			if (gameMode = "01") then -- gameMode = trainning (T)
 				sTrainning <= '1';
+
+				if sDadoRecepcao = "1110001" then
+					sCardGiven = "000100";
+				elsif sDadoRecepcao = "1110010" then
+					sCardGiven = "001000";
+				elsif sDadoRecepcao = "0110011" then
+					sCardGiven = "001100";
+				end if;
 				
 				if (sPlayerTurn = '1') then
 					sPlayingDealCardToPlayer0 <= '0';
