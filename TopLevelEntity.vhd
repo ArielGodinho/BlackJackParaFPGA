@@ -226,11 +226,6 @@ begin
 
 			if (gameMode = "01") then -- gameMode = trainning (T)
 				
-				sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
-				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
-				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
-				sPlayingStopDealingToPlayer1 <= sStopDealingToPlayer0;
-
 				if (sPlayerTurn = '1') then
 					sTemDadoRecebidoTerminalInterface <= '1';
 					sDadoRecepcaoTerminalInterface <= "11000110"; 
@@ -240,15 +235,17 @@ begin
 				end if;
 
 				sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
+				sPlayingDealCardToPlayer1 <= sDealCardToPlayer1;
 				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
-				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
-				sPlayingStopDealingToPlayer1 <= sStopDealingToPlayer0;
+				sPlayingStopDealingToPlayer1 <= sStopDealingToPlayer1;
 
 			elsif (gameMode = "10") then -- gameMode = playing (J)
 				sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
 				sPlayingDealCardToPlayer1 <= sDealCardToPlayer1;
 				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
-				sPlayingStopDealingToPlayer1 <= sStopDealingToPlayer0;
+				sPlayingStopDealingToPlayer1 <= sStopDealingToPlayer1;
+				sTemDadoRecebidoTerminalInterface <= sTemDadoRecebido;
+				sDadoRecepcaoTerminalInterface <= sDadoRecepcao;
 			else -- gameMode not set
 				sPlayingDealCardToPlayer0 <= '0';
 				sPlayingDealCardToPlayer1 <= '0';
