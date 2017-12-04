@@ -244,11 +244,6 @@ begin
 					sPlayingStopDealingToPlayer1 <= sStopDealingToPlayer1;
 				end if;
 
-				sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
-				sPlayingDealCardToPlayer1 <= sDealCardToPlayer1;
-				sPlayingStopDealingToPlayer0 <= sStopDealingToPlayer0;
-				sPlayingStopDealingToPlayer1 <= sStopDealingToPlayer1;
-
 			elsif (gameMode = "10") then -- gameMode = playing (J)
 				sPlayingDealCardToPlayer0 <= sDealCardToPlayer0;
 				sPlayingDealCardToPlayer1 <= sDealCardToPlayer1;
