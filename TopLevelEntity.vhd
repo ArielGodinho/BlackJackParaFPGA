@@ -212,9 +212,9 @@ begin
 		begin
 		if rising_edge(clock) then
 			if (sDadoRecepcao = "11010100" and gameMode = "00") then -- sDadoRecepcao = T
-				gameMode <= "01" -- trainning mode
+				gameMode <= "01"; -- trainning mode
 			elsif (sDadoRecepcao = "11001010" and gameMode = "00") then -- sDadoRecepcao = J
-				gameMode <= "10" -- playing mode
+				gameMode <= "10"; -- playing mode
 			end if;
 
 			if (gameMode = "01") then -- gameMode = trainning (T)
