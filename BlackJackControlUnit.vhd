@@ -13,13 +13,15 @@ entity BlackJackControlUnit is
 		playerTurn: out std_logic;
 		dealCardsOut: out std_logic;
 		calculateResult: out std_logic;
-		showResult: out std_logic
+		showResult: out std_logic;
+		trainning: in std_logic;
+		cardGiven: in std_logic
 	);
 end BlackJackControlUnit;
 
 architecture arch of BlackJackControlUnit is
 
-	type state_type is (start, dealingCards, firstPlayerTurn, secondPlayerTurn, calculatingResult, waiting, showingResult);
+	type state_type is (start, dealingCards, firstPlayerTurn, secondPlayerTurn, calculatingResult, waiting, showingResult, givingCard1, givingCard2);
 	signal state: state_type;
 
 begin
@@ -38,14 +40,33 @@ begin
 					end if;
 
 				when dealingCards =>
+					if trainning = '0' then
 						state <= firstPlayerTurn;
-					
+					else
+						state <= givingCard1;
+					end if;
+
+				when givingCard1 =>
+					if cardGiven = '1' then
+						state <= firstPlayerTurn;
+					else
+						state <= givingCard1;
+					end if;
 
 				when firstPlayerTurn =>
-					if nextTurn = '1' then
+					if (nextTurn = '1' and trainning = '0') then
 						state <= secondPlayerTurn;
+					elsif (nextTurn = '1' and trainning = '1') then
+						state <= givingCard2;
 					else
 						state <= firstPlayerTurn;
+					end if;
+
+				when givingCard2 =>
+					if cardGiven = '1' then
+						state <= secondPlayerTurn;
+					else
+						state <= givingCard2;
 					end if;
 
 				when secondPlayerTurn =>
